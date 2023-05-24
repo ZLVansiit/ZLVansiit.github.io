@@ -1,3 +1,10 @@
 _site
 .sass-cache
 .jekyll-cache
+*.iml
+out
+gen
+target
+.idea
+*.jar
+*.log
