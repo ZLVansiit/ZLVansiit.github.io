@@ -1,18 +1,17 @@
 # theme: jekyll-theme-cayman
 
 # Site settings
-title: Wml Blog
-SEOTitle: 吴美莲的博客 | Wml Blog
+title: vansiit Blog
+SEOTitle: vansiit的博客 | vansiit Blog
 header-img: img/home-bg.png
 email: 1054527951@qq.com
-description: "前端开发 | 吴美莲，Web & Front-end Engineer | wumeilian的个人博客呀"
-keyword: "wumeilian, wml, wuml, 前端, Wml Blog, 博客，Web, Css, Javascript"
+description: "前端开发 | vansiit，Web & Front-end Engineer | vansiit的个人博客呀"
+keyword: "vansiit, Java, vansiit Blog, 博客, Blog, Css, 数据库, 全栈"
 url: "https://meilianwu.com/"              # your host, for absolute URL
 baseurl: ""                             # for example, '/blog' if your blog hosted on 'host/blog'
 
 
 # avatar and Favicon
-# avatar: http://7u2ho6.com1.z0.glb.clouddn.com/site-avatar.png
 favicon: favicon.ico
 
 
@@ -31,7 +30,7 @@ featured-condition-size: 1              # A tag will be featured if the size of 
 RSS: false
 weibo_username:     false
 zhihu_username:     false
-github_username:    wumeilian
+github_username:    ZLVansiit
 
 
 # Build settings
@@ -43,22 +42,18 @@ plugins: [jekyll-paginate]
 # Gitalk
 gitalk:
   enable: true    #是否开启Gitalk评论
-  clientID: a84c2a57837302767371                            #生成的clientID
-  clientSecret: 847046720bec629fbd3580d8f3cc617ab9d3a27a    #生成的clientSecret
-  repo: wumeilian.github.io    #仓库名称
-  owner: wumeilian    #github用户名
-  admin: wumeilian
+  clientID: ce8fe1a6dd8dfa4d4814                            #生成的clientID
+  clientSecret: 5fde20930cab3816338e352eb84ead8f824012a8    #生成的clientSecret
+  repo: zlvansiit.github.io    #仓库名称
+  owner: zlvansiit    #github用户名
+  admin: zlvansiit
   # distractionFreeMode: true #是否启用类似FB的阴影遮罩
 
 
 # Friends
 friends: [
   {
-    title: "wfm's github",
-    href: "https://wfm19970.github.io/"
-  },
-  {
-    title: "chenshuyao's blog",
-    href: "https://chenshuyao.cn/"
+    title: "zlvansiit's github",
+    href: "https://zlvansiit.github.io/"
   }
 ]
