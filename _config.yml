@@ -1,4 +1,4 @@
-# theme: jekyll-theme-cayman
+remote_theme: pages-themes/architect@v0.2.0
 
 # Site settings
 title: Vansiit's Blog
@@ -35,7 +35,7 @@ github_username:    ZLVansiit
 
 # Build settings
 paginate: 10
-plugins: [jekyll-paginate]
+plugins: [jekyll-paginate, jekyll-remote-theme]
 # gems: [jekyll-paginate]
 
 
