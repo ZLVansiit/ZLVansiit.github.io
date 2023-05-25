@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "MapStruct"
+title:      "MapStruct 看这篇就够了"
 subtitle:   "MapStruct是一个生成类型安全，高性能且无依赖的JavaBea 映射代码的注解处理器"
 author:     "vansiit"
 header-img: "img/bg/output6.jpg"
