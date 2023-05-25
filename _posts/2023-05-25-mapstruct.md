@@ -1,9 +1,9 @@
 ---
 layout:     post
-title:      "Java"
-subtitle:   "Java"
-author:     "wml"
-header-img: "img/bg/output.jpg"
+title:      "MapStruct"
+subtitle:   "MapStruct是一个生成类型安全，高性能且无依赖的JavaBea 映射代码的注解处理器"
+author:     "vansiit"
+header-img: "img/bg/output6.jpg"
 header-mask:  0.5
 catalog: true
 tags:
