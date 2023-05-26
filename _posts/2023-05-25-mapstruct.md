@@ -15,7 +15,7 @@ tags:
 > 在一个Java工程中会涉及到多种对象，po、vo、dto、entity、do、domain这些定义的对象运用在不同的场景模块中，这种对象与对象之间的互相转换，就需要有一个专门用来解决转换问题的工具。以往的方式要么是自己写转换器，要么是用Apache或Spring的BeanUtils来实现转换。无论哪种方式都存在明显的缺点，比如手写转换器既浪费时间， 而且在添加新的字段的时候也要进行方法的修改；而无论是 BeanUtils, BeanCopier 等都是使用反射来实现，效率低下并且仅支持属性名一致时的转换。
 ---
 ## 一、各大对象映射框架性能对比
-![img.png](img/mapstruct/img.png)
+![img.png](https://zlvansiit.github.io/img/mapstruct/img.png)
 ---
 ## 二、实现原理
 
