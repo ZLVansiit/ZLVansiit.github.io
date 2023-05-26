@@ -12,17 +12,17 @@ tags:
 ---
 
 # MapStruct
-在一个Java工程中会涉及到多种对象，po、vo、dto、entity、do、domain这些定义的对象运用在不同的场景模块中，这种对象与对象之间的互相转换，就需要有一个专门用来解决转换问题的工具。以往的方式要么是自己写转换器，要么是用Apache或Spring的BeanUtils来实现转换。无论哪种方式都存在明显的缺点，比如手写转换器既浪费时间， 而且在添加新的字段的时候也要进行方法的修改；而无论是 BeanUtils, BeanCopier 等都是使用反射来实现，效率低下并且仅支持属性名一致时的转换。
-******
+> 在一个Java工程中会涉及到多种对象，po、vo、dto、entity、do、domain这些定义的对象运用在不同的场景模块中，这种对象与对象之间的互相转换，就需要有一个专门用来解决转换问题的工具。以往的方式要么是自己写转换器，要么是用Apache或Spring的BeanUtils来实现转换。无论哪种方式都存在明显的缺点，比如手写转换器既浪费时间， 而且在添加新的字段的时候也要进行方法的修改；而无论是 BeanUtils, BeanCopier 等都是使用反射来实现，效率低下并且仅支持属性名一致时的转换。
+---
 ## 一、各大对象映射框架性能对比
-![img.png](../img/mapstruct/img.png)
-******
+![img.png](img/mapstruct/img.png)
+---
 ## 二、实现原理
 
-MapStruct 是一个生成类型安全， 高性能且无依赖的 JavaBean 映射代码的注解处理器。
+> MapStruct 是一个生成类型安全， 高性能且无依赖的 JavaBean 映射代码的注解处理器。
 
-您要做的就是定义一个映射器接口，该接口声明任何必需的映射方法。在编译期间，MapStruct将生成此接口的实现。此实现使用简单的Java方法调用在源对象和目标对象之间进行映射，即没有反射或类似内容。
-******
+> 您要做的就是定义一个映射器接口，该接口声明任何必需的映射方法。在编译期间，MapStruct将生成此接口的实现。此实现使用简单的Java方法调用在源对象和目标对象之间进行映射，即没有反射或类似内容。
+---
 
 ## 三、使用方法
 ### 1.Maven引入
@@ -39,7 +39,7 @@ MapStruct 是一个生成类型安全， 高性能且无依赖的 JavaBean 映�
     <version>1.3.1.Final</version> 
 </dependency>
 ```
-******
+---
 ### 2.Gradle引入
 
 ```java
@@ -58,7 +58,7 @@ dependencies {
     testAnnotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
 }
 ```
-******
+---
 ## 四、实例
 
 ### 1.创建接口、抽象类
@@ -75,7 +75,7 @@ public abstract class CashAccountConverter {
 
 }
 ```
-******
+---
 ### 2.Spring bean 注入或者Mappers.getMapper
 
 ```java
@@ -113,7 +113,7 @@ public abstract class CashAccountConverter {
  })
  PeopleVO po2bo(PeopleDO people, CountryDO country, Integer age);
 ```
-******
+---
 
 ## 五、注解大全
 + @Mapper
@@ -143,7 +143,7 @@ public abstract class CashAccountConverter {
 
 ### @Mapper
 
-@Mapper将接口或抽象类标记为映射器，并自动生成映射实现类代码。
+> @Mapper将接口或抽象类标记为映射器，并自动生成映射实现类代码。
 
 ```java
 public @interface Mapper {
@@ -196,10 +196,10 @@ public @interface Mapper {
     boolean suppressTimestampInGenerated() default false;
 }
 ```
-******
+---
 ### @Mapping
 
-@Mapping用于配置属性或枚举常量的映射关系。
+> @Mapping用于配置属性或枚举常量的映射关系。
 
 ```java
 public @interface Mapping {
@@ -235,31 +235,29 @@ public @interface Mapping {
     NullValuePropertyMappingStrategy nullValuePropertyMappingStrategy() default NullValuePropertyMappingStrategy.SET_TO_NULL;
 }
 ```
-******
+---
 ### @Mappings
 
-@Mappings 用于声明多个@Mapping。
+> @Mappings 用于声明多个@Mapping。
 
 ```java
 public @interface Mappings {
     Mapping[] value();
 }
 ```
-******
+---
 ### @BeforeMapping
 
 ### @AfterMapping
 
-@BeforeMapping和@AfterMapping 标记在映射方法开始或结束后时需要调用的方法，也就是可以在映射开始、结束后调用。
-
+> @BeforeMapping和@AfterMapping 标记在映射方法开始或结束后时需要调用的方法，也就是可以在映射开始、结束后调用。
 可以在映射前后做一些自定义操作，类似AOP中的切面。
 
-******
+---
 
 ### @BeanMapping
 
-配置两种bean类型之间的映射。
-
+> 配置两种bean类型之间的映射。
 @BeanMapping 用于控制整个映射方法。可以通过设置 @BeanMapping 的 NullValueCheckStrategy 使整个方法都生效。
 
 参考：
@@ -293,12 +291,11 @@ public @interface BeanMapping {
     Class<? extends Annotation> mappingControl() default MappingControl.class;
 }
 ```
-******
+---
 
 ### @IterableMapping
 
-@IterableMapping用于配置两个几个类似类型之间的映射，
-
+> @IterableMapping用于配置两个几个类似类型之间的映射，
 例如 {@code List<String>} 和 {@code List<Date>}。
 
 ```java
@@ -319,10 +316,10 @@ public @interface IterableMapping {
     Class<? extends Annotation> elementMappingControl() default MappingControl.class;
 }
 ```
-******
+---
 ### @ValueMapping @ValueMappings
 
-@ValueMapping 配置源常量值到目标常量值的映射，支持枚举到枚举，@ValueMappings就是可以写多个@ValueMapping 。
+> @ValueMapping 配置源常量值到目标常量值的映射，支持枚举到枚举，@ValueMappings就是可以写多个@ValueMapping 。
 
 ```java
 public @interface ValueMapping {
@@ -336,13 +333,13 @@ public @interface ValueMappings {
 }
 ```
 
-******
+---
 
 ### @SubclassMapping 
 
 ### @SubclassMappings
 
-@ValueMapping 配置映射子类，也就是参数和目标对象为父类时，执行其子类的映射关系，@SubclassMappings就是可以写多个@SubclassMapping。
+> @ValueMapping 配置映射子类，也就是参数和目标对象为父类时，执行其子类的映射关系，@SubclassMappings就是可以写多个@SubclassMapping。
 
 ```java
 public @interface SubclassMapping {
@@ -356,12 +353,12 @@ public @interface SubclassMappings {
     SubclassMapping[] value();
 }
 ```
-******
+---
 ### @TargetType
 
-@TargetType可以在自定义映射方法的参数中声明目标对象的类型。比如返回类型为泛型，这个时候可以在参数中指定目标的类型。
+> @TargetType可以在自定义映射方法的参数中声明目标对象的类型。比如返回类型为泛型，这个时候可以在参数中指定目标的类型。
 
-不能将多个参数声明为{@code TargetType},并且该参数必须是{@link Class}类型或者它的超类型。
+> 不能将多个参数声明为{@code TargetType},并且该参数必须是{@link Class}类型或者它的超类型。
 
 ```java
 public class EntityFactory {
@@ -370,10 +367,10 @@ public <T extends BaseEntity> T createEntity(@TargetType Class entityClass) {
   }
  }
 ```
-******
+---
 ### @MapperConfig
 
-将类或接口标记为配置，允许在多个映射器类之间共享通用配置。
+> 将类或接口标记为配置，允许在多个映射器类之间共享通用配置。
 
 ```java
 public @interface MapperConfig {
@@ -424,11 +421,11 @@ public @interface MapperConfig {
     boolean suppressTimestampInGenerated() default false;
 }
 ```
-******
+---
 
 ### @EnumMapping
 
-配置两种枚举类型之间的映射。
+> 配置两种枚举类型之间的映射。
 
 ```java
 public @interface EnumMapping {
@@ -440,31 +437,42 @@ public @interface EnumMapping {
     Class<? extends Exception> unexpectedValueMappingException() default IllegalArgumentException.class;
 }
 ```
-nameTransformationStrategy属性
+> nameTransformationStrategy属性
 指定枚举常量映射的策略，如增加/去掉前缀或者后缀，大写、小写以及首字符大写等。
 取值范围有：
-MappingConstants.SUFFIX_TRANSFORMATION
-在源枚举常量上加上configuration属性指定的后缀。
-MappingConstants.STRIP_SUFFIX_TRANSFORMATION
-从源枚举常量中删除configuration属性指定的后缀。
-MappingConstants.PREFIX_TRANSFORMATION
-在源枚举常量上加上configuration属性指定的前缀。
-MappingConstants.STRIP_PREFIX_TRANSFORMATION
-从源枚举常量中删除configuration属性指定的前缀。
-MappingConstants.CASE_TRANSFORMATION
++ MappingConstants.SUFFIX_TRANSFORMATION
+
+    在源枚举常量上加上configuration属性指定的后缀。
+
++ MappingConstants.STRIP_SUFFIX_TRANSFORMATION
+
+    从源枚举常量中删除configuration属性指定的后缀。
+
++ MappingConstants.PREFIX_TRANSFORMATION
+
+    在源枚举常量上加上configuration属性指定的前缀。
+
++ MappingConstants.STRIP_PREFIX_TRANSFORMATION
+  
+  从源枚举常量中删除configuration属性指定的前缀。
+
++ MappingConstants.CASE_TRANSFORMATION
 
 nameTransformationStrategy属性指定值为MappingConstants.CASE_TRANSFORMATION时，configuration属性可选的值有三个：
+
 upper：对源枚举执行大写转换。
+
 lower：对源枚举执行小写转换。
+
 capital：对源枚举中每个被“_”分割的单词的第一个字符进行大写，并将其他所有字符都小写。
 
-******
+---
 
 ### @ValueMapping 
 
 ### @ValueMappings
 
-@ValueMapping 配置源常量值到目标常量值的映射，支持枚举到枚举，@ValueMappings就是可以写多个@ValueMapping 。
+> @ValueMapping 配置源常量值到目标常量值的映射，支持枚举到枚举，@ValueMappings就是可以写多个@ValueMapping 。
 
 ```java
 public @interface ValueMapping {
@@ -478,7 +486,7 @@ public @interface ValueMappings {
 }
 ```
 
-******
+---
 
 参考资料
 

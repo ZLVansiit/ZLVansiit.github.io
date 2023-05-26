@@ -17,7 +17,7 @@ favicon: favicon.ico
 
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
-sidebar-about-description: "Web Developer"
+sidebar-about-description: "坐睡觉来无一事，满窗晴日看蚕生"
 sidebar-avatar: /img/bg/output6.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
 
 
