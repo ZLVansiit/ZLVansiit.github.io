@@ -154,7 +154,8 @@ public static void main(String[] args) {
 ```
 
     Maven 坐标：
-```java
+
+```
 <dependency>
   <groupId>com.aventrix.jnanoid</groupId>
   <artifactId>jnanoid</artifactId>
@@ -163,6 +164,7 @@ public static void main(String[] args) {
 ```
 
       修改后的网站url效果如下
+
 ```java
 http://xxxxxx.com/detail/movie/76Y3TWpZDR8aOhbd19cyT-Double-Dad
 http://xxxxxx.com/collection/QXUGQIYQcYKM1jDSwY83G-afdfadggd?name=qins
