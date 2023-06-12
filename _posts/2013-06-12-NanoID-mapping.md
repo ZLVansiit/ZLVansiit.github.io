@@ -1,7 +1,7 @@
 ---
 layout:     post
-title:      "使用NanoID替换整型ID映射修改"
-subtitle:   "使用NanoID替换整型ID映射修改"
+title:      "使用NanoID替换整型ID"
+subtitle:   "业务重构，使用NanoID替换整型ID，增加映射修改"
 author:     "vansiit"
 header-img: "img/bg/output7.jpg"
 header-mask:  0.5
