@@ -57,3 +57,6 @@ friends: [
     href: "https://zlvansiit.github.io/"
   }
 ]
+
+sitemap:
+  path: sitemap.xml
