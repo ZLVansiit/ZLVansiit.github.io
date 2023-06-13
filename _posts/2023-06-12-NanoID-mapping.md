@@ -116,12 +116,14 @@ public void initData(){
 ```
 
 ## 五.修改原来的sitemap.xml相关接口
+
 修改原有ID生成逻辑，其他保持不变
 
 ## 六.映射ID生成逻辑
-    鉴于UUID长度太长，这里的mappingId是用NanoId。
-    修改默认字符集为“0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ”，去除默认的“_-”，防止和URL中的字符冲突，长度使用默认的21位
-    具体代码如下：
+
+鉴于UUID长度太长，这里的mappingId是用NanoId。
+修改默认字符集为“0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ”，去除默认的“_-”，防止和URL中的字符冲突，长度使用默认的21位
+具体代码如下：
 
 ```java
 public class NanoIdUtil {
@@ -145,7 +147,7 @@ public class NanoIdUtil {
 }
 ```
 
-    使用方法如下：
+使用方法如下：
 
 ```java
 public static void main(String[] args) {
@@ -153,7 +155,7 @@ public static void main(String[] args) {
 }
 ```
 
-    Maven 坐标：
+Maven 坐标：
 
 ```
 <dependency>
@@ -163,7 +165,7 @@ public static void main(String[] args) {
 </dependency>
 ```
 
-      修改后的网站url效果如下
+修改后的网站url效果如下
 
 ```java
 http://xxxxxx.com/detail/movie/76Y3TWpZDR8aOhbd19cyT-Double-Dad
