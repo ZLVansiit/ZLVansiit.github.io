@@ -2,23 +2,41 @@
 layout: default
 title: 博客归档
 permalink: /archive/
+header-img: "img/bg/output9.jpg"
 ---
 
-<div class="page-content wc-container">
-  <h1>博客归档</h1>
-  {% for post in site.posts %}
-  	{% capture currentyear %}{{post.date | date: "%Y"}}{% endcapture %}
-  	{% if currentyear != year %}
-    	{% unless forloop.first %}</ul>{% endunless %}
-    		<h3>{{ currentyear }}</h3>
-    		<ul class="posts">
-    		{% capture year %}{{currentyear}}{% endcapture %}
-  		{% endif %}
-    <li>
-        <span>{{ post.date | date_to_string }}</span> &raquo;
-        <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-    </li>
-    {% if forloop.last %}</ul>{% endif %}
-{% endfor %}
 
+<!-- Page Header -->
+<header class="intro-header" style="background-image: url('{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="site-heading" id="tag-heading">
+                    <h1>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</h1>
+                    <span class="subheading">{{ page.description }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<!-- Main Content -->
+<div class="container">
+    <div class="row">
+      {% for post in site.posts %}
+        {% capture currentyear %}{{post.date | date: "%Y"}}{% endcapture %}
+        {% if currentyear != year %}
+            {% unless forloop.first %}</ul>{% endunless %}
+                <h3>{{ currentyear }}</h3>
+                <ul class="posts">
+                {% capture year %}{{currentyear}}{% endcapture %}
+            {% endif %}
+        <li>
+            <span>{{ post.date | date_to_string }}</span> &raquo;
+            <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+        </li>
+        {% if forloop.last %}</ul>{% endif %}
+    {% endfor %}
+    </div>
 </div>
