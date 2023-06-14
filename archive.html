@@ -28,21 +28,23 @@ header-img: "img/bg/output9.jpg"
         {% capture currentyear %}{{post.date | date: "%Y"}}{% endcapture %}
         {% if currentyear != year %}
             {% unless forloop.first %}</ul>{% endunless %}
-                <h3>{{ currentyear }}</h3>
+        <span class="tag-text">{{ currentyear }}</span>
                 <ul class="posts">
                 {% capture year %}{{currentyear}}{% endcapture %}
             {% endif %}
-        <li>
-            <div class="post-preview">
-                <a href="{{ post.url | prepend: site.baseurl }}">
-                    <h2 class="post-title">
-                        {{ post.title }}
-                    </h2>
-                </a>
-                <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p>
-            </div>
-            <hr>
-        </li>
+                    <div class="one-tag-list">
+                        <li>
+                            <div class="post-preview">
+                                <a href="{{ post.url | prepend: site.baseurl }}">
+                                    <h2 class="post-title">
+                                        {{ post.title }}
+                                    </h2>
+                                </a>
+                                <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p>
+                            </div>
+                            <hr>
+                        </li>
+                    </div>
         {% if forloop.last %}</ul>{% endif %}
     {% endfor %}
     </div>
