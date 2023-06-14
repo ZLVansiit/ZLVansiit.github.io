@@ -28,7 +28,7 @@ header-img: "img/bg/output9.jpg"
         {% capture currentyear %}{{post.date | date: "%Y"}}{% endcapture %}
         {% if currentyear != year %}
             {% unless forloop.first %}</ul>{% endunless %}
-        <span class="tag-text">{{ currentyear }}</span>
+        <span class="year-text">{{ currentyear }}</span>
                 <ul class="posts">
                 {% capture year %}{{currentyear}}{% endcapture %}
             {% endif %}
