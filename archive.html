@@ -24,6 +24,7 @@ header-img: "img/bg/output9.jpg"
 <!-- Main Content -->
 <div class="container">
     <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       {% for post in site.posts %}
         {% capture currentyear %}{{post.date | date: "%Y"}}{% endcapture %}
         {% if currentyear != year %}
@@ -47,5 +48,6 @@ header-img: "img/bg/output9.jpg"
                     </div>
         {% if forloop.last %}</ul>{% endif %}
     {% endfor %}
+        </div>
     </div>
 </div>
