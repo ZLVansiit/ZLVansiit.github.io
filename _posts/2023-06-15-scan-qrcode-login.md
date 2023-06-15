@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "APP扫码登录设计：不只有原理，直接上代码"
+title:      "APP扫码登录：不只有原理，直接上代码"
 subtitle:   "基于SpringBoot+redis+轮询，实现APP扫码登录"
 author:     "vansiit"
 header-img: "img/bg/20230615135535.png"
