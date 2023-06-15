@@ -29,12 +29,12 @@ tags:
 
 ![img.png](https://zlvansiit.github.io/img/qrcode/scan-qrcode.jpg)
 
-二维码状态
-- INIT(1, "初始状态"),
-- SCANNING(2, "扫码中"),
-- CANCEL(3, "取消"),
-- CONFIRM(4, "确定登录"),
-- EXPIRE(5, "过期");
+>二维码状态
+>- INIT(1, "初始状态"),
+>- SCANNING(2, "扫码中"),
+>- CANCEL(3, "取消"),
+>- CONFIRM(4, "确定登录"),
+>- EXPIRE(5, "过期");
 
 1. 用户在PC端请求二维码信息
 
@@ -393,10 +393,10 @@ public enum QrcodeStatus {
 
 # 五.其他思考
 
-### 1.轮询和websocket
+### 轮询和websocket
 
 #### 轮询
-前端每隔固定时间向后台发送一次请求，询问服务器是否有新数据
+前端每隔固定时间向后台发送一次请求，查询新数据
 
 优点：
 
