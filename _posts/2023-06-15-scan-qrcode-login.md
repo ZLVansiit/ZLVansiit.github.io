@@ -14,10 +14,17 @@ tags:
 
 
 
+```mermaid
+	sequenceDiagram
+	Client->>Gateway : 发送JSON RPC请求
+	Gateway-->>Client : 把JSON RPC响应发送给客户端
+```
+
 ```sequence
-sequenceDiagram
-Client->>Gateway : 发送JSON RPC请求
-Gateway-->>Client : 把JSON RPC响应发送给客户端
+title:APP扫码登录设计图
+participant APP
+participant PC
+APP->PC: 连接
 ```
 
 
