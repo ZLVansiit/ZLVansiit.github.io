@@ -11,3 +11,15 @@ tags:
 - util
 - 架构
 ---
+
+
+
+```sequence
+sequenceDiagram
+Client->>Gateway : 发送JSON RPC请求
+Gateway-->>Client : 把JSON RPC响应发送给客户端
+```
+
+
+
+![img.png](https://zlvansiit.github.io/img/qrcode/scan-qrcode.jpg)
