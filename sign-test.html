@@ -1,0 +1,249 @@
+---
+title: 加签接口调试
+layout: default
+permalink: /sign-test.html
+header-img: "img/bg/output12.jpg"
+---
+  <div>
+    公钥: <br />
+    <textarea type="text" id="publicKey" rows="10" style="width: 20%">MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC3bahNR2MaPTf3vCNwORGKjMb+QtvnE58W6PlnXnm8lxYxkpRq4NtcotZm8x5DPnTbfCwrZ0YLh1uOmOCTY+ECYliWT2C6PI0fD8ryleh5+PNmYZVfNq2IVxGIJ+TQ5N2SnpmFgg2TFUg//Cu93GO+0GHJ2B5xzXqi8direBQjZwIDAQAB</textarea>
+    <br />
+    domain: <br />
+    <input type="text" id="domain" value="http://172.21.27.183" style="width: 20%" /><br />
+    uri: <br />
+    <input type="text" id="uri" value="/cms/app/movieDrama/get?id=20&category=1" style="width: 20%" /><br />
+    method:
+    <input type="radio" name="method" value="get"  checked="checked" />get
+    <input type="radio" name="method" value="post" />post <br />
+    body: <br />
+    <textarea type="text" id="body" rows="10" style="width: 20%"></textarea><br />
+    语言: <br />
+    <input type="text" id="lang" value="en" style="width: 20%" /><br />
+    clientType: <br />
+    <input type="text" id="clientType" value="android_default" style="width: 20%" /><br />
+    versionCode: <br />
+    <input type="text" id="versionCode" value="38" style="width: 20%" /><br /><br />
+    deviceId: <br />
+    <input type="text" id="deviceId" value="AC45663D-946F-490F-9450-9C0526783B9E" style="width: 20%" /><br /><br />
+    token: <br />
+    <input type="text" id="token" value="" style="width: 20%" /><br /><br />
+    <button onclick="request()">发送请求</button><br /><br />
+    结果: <br />
+    <textarea type="text" id="response" rows="10" style="width: 20%"></textarea><br />
+	解密: <br />
+    <textarea type="text" id="decipher" rows="10" style="width: 20%"></textarea><br />
+	curl: <br />
+    <textarea type="text" id="curl" rows="10" style="width: 20%"></textarea><br />
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/core.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/enc-base64.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/md5.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/evpkdf.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/cipher-core.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/aes.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/pad-pkcs7.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/mode-ecb.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/enc-utf8.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/enc-hex.min.js"></script>
+  <script src="https://cdn.bootcss.com/jsencrypt/3.0.0-beta.1/jsencrypt.js"></script>
+  <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+  <script type="text/javascript" language="javascript">
+    /**
+     * 加解密操作
+     */
+    const aesUtil = {
+      // 获取key，
+      genKey(length = 16) {
+        const random =
+          'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        let str = '';
+        for (let i = 0; i < length; i++) {
+          str = str + random.charAt(Math.random() * random.length);
+        }
+        return str;
+      },
+
+      // 加密
+      encrypt(plaintext, key) {
+        if (plaintext instanceof Object) {
+          // JSON.stringify
+          plaintext = JSON.stringify(plaintext);
+        }
+        const encrypted = CryptoJS.AES.encrypt(
+          CryptoJS.enc.Utf8.parse(plaintext),
+          CryptoJS.enc.Utf8.parse(key),
+          { mode: CryptoJS.mode.ECB, padding: CryptoJS.pad.Pkcs7 }
+        );
+
+        return encrypted.toString();
+      },
+
+      // 解密
+      decrypt(ciphertext, key) {
+        const decrypt = CryptoJS.AES.decrypt(
+          ciphertext,
+          CryptoJS.enc.Utf8.parse(key),
+          { mode: CryptoJS.mode.ECB, padding: CryptoJS.pad.Pkcs7 }
+        );
+        let decString = CryptoJS.enc.Utf8.stringify(decrypt).toString();
+        if (decString.charAt(0) === '{' || decString.charAt(0) === '[') {
+          // JSON.parse
+          decString = JSON.parse(decString);
+        }
+        return decString;
+      },
+    };
+
+    const rsaUtil = {
+      // RSA 位数，这里要跟后端对应
+      bits: 1024,
+      // 当前JSEncrypted对象
+      thisKeyPair: {},
+      // 生成密钥对(公钥和私钥)
+      genKeyPair(bits = rsaUtil.bits) {
+        const genKeyPair = {};
+        rsaUtil.thisKeyPair = new JSEncrypt({ default_key_size: bits });
+        // 获取私钥
+        genKeyPair.privateKey = rsaUtil.thisKeyPair.getPrivateKey();
+        // 获取公钥
+        genKeyPair.publicKey = rsaUtil.thisKeyPair.getPublicKey();
+        return genKeyPair;
+      },
+
+      // 公钥加密
+      encrypt(plaintext, publicKey) {
+        if (plaintext instanceof Object) {
+          // 1、JSON.stringify
+          plaintext = JSON.stringify(plaintext);
+        }
+        publicKey && rsaUtil.thisKeyPair.setPublicKey(publicKey);
+        return rsaUtil.thisKeyPair.encrypt(plaintext);
+      },
+
+      // 私钥解密
+      decrypt(ciphertext, privateKey) {
+        privateKey && rsaUtil.thisKeyPair.setPrivateKey(privateKey);
+        let decString = rsaUtil.thisKeyPair.decrypt(ciphertext);
+        if (decString.charAt(0) === '{' || decString.charAt(0) === '[') {
+          // JSON.parse
+          decString = JSON.parse(decString);
+        }
+        return decString;
+      },
+    };
+    // 获取前端RSA公钥密码、AES的key，并放到window
+    const genKeyPair = rsaUtil.genKeyPair();
+
+    function request() {
+
+      const publicKey = document.getElementById('publicKey').value;
+      const clientType = document.getElementById('clientType').value;
+      const versionCode = document.getElementById('versionCode').value;
+      const lang = document.getElementById('lang').value;
+      const domain = document.getElementById('domain').value;
+      const uri = document.getElementById('uri').value;
+      const radio = document.getElementsByName('method');
+      const deviceId = document.getElementById('deviceId').value;
+      const token = document.getElementById('token').value;
+      var method;
+      for (i=0; i<radio.length; i++) {
+        if (radio[i].checked) {
+          method = radio[i].value;
+        }
+      }
+      var sortValue;
+      if(method === "get"){
+        if (uri.indexOf("?") !== -1) {
+          var queryObj = {};
+          var queryString = uri.split("?")[1];
+          var params = queryString.split("&");
+          for (var i = 0; i < params.length; i++) {
+            var kv = params[i].split("=");
+            queryObj[kv[0]] = kv[1];
+          }
+          sortValue = sortVal(queryObj);
+        }
+      }else{
+        var body = document.getElementById('body').value;
+        if(body !== undefined && body !== ''){
+          var bodyObj = JSON.parse(body);
+          sortValue = sortVal(bodyObj);
+        }
+      }
+
+      const currentTime = new Date().getTime();
+      sortValue = encodeURIComponent(sortValue) + currentTime;
+      // for(i = 0; i < 10; ++i){
+      const aesKey = aesUtil.genKey();
+      console.log("aesKey:"+aesKey);
+      const encryptAesKey = rsaUtil.encrypt(aesKey, publicKey);
+      const encryptData = aesUtil.encrypt(sortValue, aesKey);
+      const sign = md5(encryptData);
+      const httpRequest = new XMLHttpRequest();
+      const requestUrl = `${domain}${uri}`;
+      httpRequest.open(method,requestUrl,true);
+      httpRequest.setRequestHeader('content-type', 'application/json');
+      httpRequest.setRequestHeader('lang', lang);
+      httpRequest.setRequestHeader('clientType', clientType);
+      httpRequest.setRequestHeader('versionCode', versionCode);
+      httpRequest.setRequestHeader('sign', sign);
+      httpRequest.setRequestHeader('aesKey', encryptAesKey);
+      httpRequest.setRequestHeader('currentTime', currentTime);
+	  httpRequest.setRequestHeader('deviceId', deviceId);
+      httpRequest.setRequestHeader('token', token);
+      if(method === "get"){
+        httpRequest.send();
+      }else{
+        httpRequest.send(JSON.stringify(bodyObj));
+      }
+      //curl
+      const curlTextArea = document.getElementById('curl');
+      let curlStr = "curl --location '"+requestUrl+"' ";
+      curlStr += "--header 'content-type:application/json' ";
+      curlStr += "--header 'lang:"+lang+"' ";
+      curlStr += "--header 'clientType:"+clientType+"' ";
+      curlStr += "--header 'versionCode:"+versionCode+"' ";
+      curlStr += "--header 'sign:"+sign+"' ";
+      curlStr += "--header 'aesKey:"+encryptAesKey+"' ";
+      curlStr += "--header 'currentTime:"+currentTime+"' ";
+      curlStr += "--header 'deviceId:"+deviceId+"' ";
+      curlStr += "--header 'token:"+token+"' ";
+      if(method !== "get"){
+        curlStr += "--data '"+body+"'";
+      }
+      curlTextArea.value = curlStr;
+      //response
+      const responseTextArea = document.getElementById('response');
+	  const decipherTextArea = document.getElementById('decipher');
+      httpRequest.onreadystatechange = function(){
+        const response = httpRequest.responseText;
+        if(response !== ""){
+          responseTextArea.value = response;
+          const responseObj = JSON.parse(response);
+          const encrypt = responseObj.data;
+          if(encrypt !== ""){
+            responseObj.data = aesUtil.decrypt(encrypt, aesKey);
+            decipherTextArea.value = JSON.stringify(responseObj);
+          }
+
+          console.log(httpRequest.getAllResponseHeaders().toLocaleLowerCase());
+        }
+      };
+    }
+    function sortVal(bodyObj){
+      var sortValue = "";
+      if (bodyObj instanceof Object) {
+        Object.keys(bodyObj).sort().forEach(function(key) {
+          sortValue += sortVal(bodyObj[key]);
+        });
+      }else if(bodyObj instanceof Array){
+        bodyObj.map(value => {
+          sortValue += sortVal(value);
+        })
+      }else{
+        sortValue += bodyObj;
+      }
+      return sortValue;
+    }
+  </script>
+</html>
