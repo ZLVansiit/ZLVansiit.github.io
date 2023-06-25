@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      "负载均衡之平滑加权轮询算法"
-subtitle:   "平滑加权轮询算法，Smooth Weighted Round Robin"
+subtitle:   "平滑it加权轮询算法，Smooth Weighted Round Robin"
 author:     "vansiit"
 header-img: "img/bg/output10.jpg"
 header-mask:  0.5
