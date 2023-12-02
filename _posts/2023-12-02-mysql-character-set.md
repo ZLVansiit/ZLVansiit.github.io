@@ -1,7 +1,7 @@
 ---
 layout:     post
-title:      "MySQL学习笔记(一) 字符集和比较"
-subtitle:   "字符集和比较规则"
+title:      "MySQL字符集和比较规则，utf8和utf8mb4的区别"
+subtitle:   "字符集和比较规则，utf8和utf8mb4的区别"
 author:     "vansiit"
 header-img: "img/bg/output12.jpg"
 header-mask:  0.5
