@@ -12,19 +12,28 @@ tags:
 ---
 
 # MapStruct
-> 在一个Java工程中会涉及到多种对象，po、vo、dto、entity、do、domain这些定义的对象运用在不同的场景模块中，这种对象与对象之间的互相转换，就需要有一个专门用来解决转换问题的工具。以往的方式要么是自己写转换器，要么是用Apache或Spring的BeanUtils来实现转换。无论哪种方式都存在明显的缺点，比如手写转换器既浪费时间， 而且在添加新的字段的时候也要进行方法的修改；而无论是 BeanUtils, BeanCopier 等都是使用反射来实现，效率低下并且仅支持属性名一致时的转换。
+
+>在一个Java工程中会涉及到多种对象，po、vo、dto、entity、do、domain这些定义的对象运用在不同的场景模块中，这种对象与对象之间的互相转换，就需要有一个专门用来解决转换问题的工具。以往的方式要么是自己写转换器，要么是用Apache或Spring的BeanUtils来实现转换。无论哪种方式都存在明显的缺点，比如手写转换器既浪费时间， 而且在添加新的字段的时候也要进行方法的修改；而无论是 BeanUtils, BeanCopier 等都是使用反射来实现，效率低下并且仅支持属性名一致时的转换。
+
 ---
+
 ## 一、各大对象映射框架性能对比
+
 ![img.png](https://zlvansiit.github.io/img/mapstruct/img.png)
+
 ---
+
 ## 二、实现原理
 
 > MapStruct 是一个生成类型安全， 高性能且无依赖的 JavaBean 映射代码的注解处理器。
 
 > 您要做的就是定义一个映射器接口，该接口声明任何必需的映射方法。在编译期间，MapStruct将生成此接口的实现。此实现使用简单的Java方法调用在源对象和目标对象之间进行映射，即没有反射或类似内容。
+
+
 ---
 
 ## 三、使用方法
+
 ### 1.Maven引入
 
 ```maven
@@ -40,6 +49,7 @@ tags:
 </dependency>
 ```
 ---
+
 ### 2.Gradle引入
 
 ```java
@@ -58,7 +68,9 @@ dependencies {
     testAnnotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
 }
 ```
+
 ---
+
 ## 四、实例
 
 ### 1.创建接口、抽象类
