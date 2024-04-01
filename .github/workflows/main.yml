@@ -38,17 +38,15 @@ jobs:
           cache: pnpm
 
       # 打包成静态文件
+      - name: Install
+      - run: pnpm install
+
       - name: Build
-        run: pnpm install && pnpm run docs:build
-
-      - name: Config
+        run: pnpm run docs:build
       - uses: actions/configure-pages@v2
-
-      - name: Upload
       - uses: actions/upload-pages-artifact@v1
         with:
           path: docs/.vitepress/dist
-
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v1
