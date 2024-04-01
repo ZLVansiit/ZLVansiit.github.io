@@ -5,7 +5,7 @@ set -e
 
 # 重新打包组件库
 
-pnpm build
+# pnpm build
 
 # 打包生成静态文件
 pnpm docs:build
@@ -18,7 +18,7 @@ git add .
 git commit -m 'deploy'
 
 # 部署到 https://<username>.github.io/<repo>
-git push -f git@github.com:ZLVansiit/ZLVansiit.github.io.git main:github-pages
+git push
 
 # 提交所有代码到github
 cd ../../../
