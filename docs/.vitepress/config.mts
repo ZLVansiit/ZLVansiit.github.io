@@ -88,6 +88,6 @@ export default defineConfig({
   lastUpdated: true,
 
   sitemap: {
-    hostname: 'https://vansiit.githu.io'
+    hostname: 'https://zlvansiit.githu.io'
   }
 })
