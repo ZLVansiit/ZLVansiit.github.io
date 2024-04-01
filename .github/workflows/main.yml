@@ -11,12 +11,6 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    permissions:
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       # 使用actions/checkout@v4 库拉取代码到 ubuntu 上
       - name: Checkout
