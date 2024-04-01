@@ -25,14 +25,14 @@ features:
     details: Java，Redis，架构，SpringBoot，算法，MySQL，工具，重构... 吾生也有涯 ，而知也无涯。
     link: /technical
   - icon:
-        dark: /public/icon/icons003d.png
-        light: /public/icon/icons003.png
+        dark: /icon/icons003d.png
+        light: /icon/icons003.png
     title: 精神自旋
     details: 内在感知，心智自转。接纳、理解、思考，直到生命的终点
     link: /spirit
   - icon:
-        dark: /public/icon/icons001.png
-        light: /public/icon/icons001d.png
+        dark: /icon/icons001.png
+        light: /icon/icons001d.png
     title: 放情于天地外
     details: 天高地海，once in a life，总有些景色、艺术、音乐、电影、运动、文学、科技、物理学、“道”让你心潮澎湃
     link: /hobby
