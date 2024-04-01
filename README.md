@@ -1,7 +1,8 @@
 
 vansiit.github.io
+```
 ├─.github           # github配置
-│  └─workflows      # 自动构建部署配置
+│   └─workflows      # 自动构建部署配置
 ├─bin               # 执行脚本
 ├─components        # vue组件
 ├─docs              # 博客内容
@@ -20,3 +21,4 @@ vansiit.github.io
 ├─package.json      # node.js配置
 ├─pnpm-lock.yaml    # 依赖的锁定版本号
 └─README.md         # 工程说明
+```
