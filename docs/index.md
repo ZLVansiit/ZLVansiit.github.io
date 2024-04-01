@@ -19,8 +19,8 @@ hero:
 
 features:
   - icon:
-        dark: /public/icon/icons002d2.png
-        light: /public/icon/icons002.png
+        dark: /icon/icons002d2.png
+        light: /icon/icons002.png
     title: 从无知到有知
     details: Java，Redis，架构，SpringBoot，算法，MySQL，工具，重构... 吾生也有涯 ，而知也无涯。
     link: /technical
