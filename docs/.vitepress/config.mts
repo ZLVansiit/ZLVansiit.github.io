@@ -1,0 +1,93 @@
+import { defineConfig } from 'vitepress'
+import { searchConsolePlugin } from 'vuepress-plugin-china-search-console'
+import { readingTimePlugin } from '@vuepress/plugin-reading-time'
+
+// https://vitepress.dev/reference/site-config
+export default defineConfig({
+  lang: 'en-US',
+  title: "Vansiit's blog",
+  description: "Z.L Vansiit's blog",
+  themeConfig: {
+    // https://vitepress.dev/reference/default-theme-config
+    siteTitle: 'Z.L Vansiit\'s blog',
+    logo: '/logo.svg',
+    nav: [
+      {text: 'Home', link: '/'},
+      {text: '归档', link: '/archive'},
+      {text: '标签', link: '/tag'},
+      {text: '关于', link: '/about'}
+    ],
+    sidebar: [
+      {
+        text: '从无知到有知',
+        collapsed: false,
+        link: '/technical',
+        items: [
+          {text: 'MapStruct使用和详解，看这篇就够了', link: '/2023/2023-05-25-mapstruct', tag: 'Java'},
+          {text: 'NanoId是什么？还在用UUID吗', link: '/2023/2023-06-12-NanoId', tag: 'Java'},
+          {text: '使用NanoID替换整型ID', link: '/2023/2023-06-12-NanoID-mapping', tag: 'Java,架构'},
+          {text: 'APP扫码登录：不只有原理，直接上代码', link: '/2023/2023-06-15-scan-qrcode-login', tag: 'Java,架构,源码'},
+          {text: '负载均衡之平滑加权轮询算法', link: '/2023/2023-06-15-weighted-round-robin', tag: 'Java,算法,Nginx'},
+          {text: 'utf8和utf8mb4的区别 - MySQL字符集和比较规则', link: '/2023/2023-12-02-mysql-character-set', tag: 'Java,Mysql'},
+        ]
+      },
+      {
+        text: '精神自旋',
+        collapsed: false,
+        link: '/spirit',
+        items: [
+            {text: '从物理学的大一统理论想到的', link: '/2024/2024-03-29-grand-unification-theory', tag: '物理学'}
+        ]
+      },
+      {
+        text: '放情于天地外',
+        collapsed: false,
+        link: '/hobby',
+        items: [
+          {text: '当我在看NBA的时候在看什么', link: '/2024/2024-03-29-nba', tag: '篮球,NBA'}
+        ]
+      }
+    ],
+
+    socialLinks: [
+      {icon: 'github', link: 'https://github.com/vuejs/vitepress'}
+    ],
+
+    footer: {
+      message: 'Power by VuePress',
+      copyright: 'copyright @ 2024-present Z.L Vansiit'
+    },
+
+    search: {
+      provider: 'local'
+    },
+  },
+
+  head: [
+    [
+      'script',
+      { async: '', src: 'https://www.googletagmanager.com/gtag/js?id=nzppveVKtaoZ6TS8Etur3rYS2-tgeS7_jtiDk67Ii2M' }
+    ],
+    [
+      'script',
+      {},
+      `window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'TAG_ID');`
+    ]
+  ],
+
+  /*plugins: [
+    backToTopPlugin(),
+    readingTimePlugin({
+
+    })
+  ]*/
+
+  lastUpdated: true,
+
+  sitemap: {
+    hostname: 'https://vansiit.githu.io'
+  }
+})
