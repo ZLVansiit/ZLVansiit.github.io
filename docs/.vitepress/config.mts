@@ -14,7 +14,7 @@ export default defineConfig({
     nav: [
       {text: 'Home', link: '/'},
       {text: '归档', link: '/archive'},
-      {text: '标签', link: '/bookmark'},
+      {text: '书签', link: '/bookmark'},
       {text: '关于', link: '/about'}
     ],
     sidebar: [
@@ -67,7 +67,7 @@ export default defineConfig({
   head: [
     [
       'script',
-      { async: '', src: 'https://www.googletagmanager.com/gtag/js?id=nzppveVKtaoZ6TS8Etur3rYS2-tgeS7_jtiDk67Ii2M' }
+      { async: '', src: 'https://www.googletagmanager.com/gtag/js?id=G-341DFSJ9B1' }
     ],
     [
       'script',
@@ -75,7 +75,7 @@ export default defineConfig({
       `window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'TAG_ID');`
+      gtag('config', 'G-341DFSJ9B1');`
     ]
   ],
 
