@@ -3,9 +3,10 @@
 layout: home
 
 hero:
-  name: "Z.L Vansiit's blog"
-  # text: "Z.L Vansiit's blog"
-  # tagline: My great project tagline
+  name: Z.L Vansiit's blog
+  text: 
+  tagline: |
+    技术博客 | 生活随笔 | 唠嗑扯淡
   image: 
     src: /img/logo.svg
     alt: Ballcat Logo
@@ -41,5 +42,6 @@ features:
 :root {
     --vp-home-hero-name-color: transparent;
     --vp-home-hero-name-background: -webkit-linear-gradient(120deg, #fe8834, #8741ff);
+    --vp-home-hero-image-background-image: linear-gradient(-45deg, #8741ff 50%, #fe8834 50%)
 }
 </style>

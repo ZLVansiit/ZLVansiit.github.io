@@ -1,6 +1,5 @@
 import { defineConfig } from 'vitepress'
-import { searchConsolePlugin } from 'vuepress-plugin-china-search-console'
-import { readingTimePlugin } from '@vuepress/plugin-reading-time'
+import emailSVGString from "./theme/svgs/email";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -14,7 +13,7 @@ export default defineConfig({
     nav: [
       {text: 'Home', link: '/'},
       {text: '归档', link: '/archive'},
-      {text: '书签', link: '/bookmark'},
+      /*{text: '书签', link: '/bookmark'},*/
       {text: '关于', link: '/about'}
     ],
     sidebar: [
@@ -29,7 +28,7 @@ export default defineConfig({
           {text: 'APP扫码登录：不只有原理，直接上代码', link: '/2023/06/15/scan-qrcode-login', tag: 'Java,架构,源码'},
           {text: '负载均衡之平滑加权轮询算法', link: '/2023/06/15/weighted-round-robin', tag: 'Java,算法,Nginx'},
           {text: 'utf8和utf8mb4的区别 - MySQL字符集和比较规则', link: '/2023/12/02/mysql-character-set', tag: 'Java,Mysql'},
-          {text: 'git常用命令大全', link: '/2023/12/02/git-common-commands', tag: 'Java,Mysql'},
+          {text: 'git常用命令大全', link: '/2024/03/21/git-common-commands', tag: 'Java,Mysql'},
         ]
       },
       {
@@ -51,11 +50,17 @@ export default defineConfig({
     ],
 
     socialLinks: [
-      {icon: 'github', link: 'https://github.com/vuejs/vitepress'}
+      { icon: 'github', link: 'https://github.com/ZLVansiit'},
+      {
+        icon: {
+          svg: emailSVGString,
+        },
+        link: "mailto:vansiit@163.com",
+      },
     ],
 
     footer: {
-      message: 'Power by VuePress',
+      message: 'Power by vitepress',
       copyright: 'copyright @ 2024-present Z.L Vansiit'
     },
 
@@ -90,5 +95,6 @@ export default defineConfig({
 
   sitemap: {
     hostname: 'https://zlvansiit.githu.io'
-  }
+  },
+
 })
