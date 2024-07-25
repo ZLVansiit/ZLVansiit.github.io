@@ -1,22 +1,31 @@
 {
-  "name": "zlvansiit.github.io",
+  "name": "vansiit.github.io",
   "version": "1.0.0",
-  "description": "",
+  "description": "Z.L Vansiit's blog.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs",
+    "docs:deploy": "sh script/deploy.sh",
+    "pub": "sh script/publish.sh"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/zlvansiit/zlvansiit.github.io.git"
+  "keywords": ["Vansiit"],
+  "author": "Vansiit",
+  "license": "MIT",
+  "devDependencies": {
+    "@vuepress/client": "2.0.0-rc.9",
+    "@vuepress/plugin-reading-time": "2.0.0-rc.21",
+    "vitepress": "^1.0.1",
+    "vue": "^3.4.21",
+    "vuepress": "2.0.0-rc.9",
+    "vuepress-plugin-china-search-console": "^2.1.5",
+    "vuepress-theme-gungnir": "2.0.0-alpha.26",
+    "vuepress-theme-reco": "2.0.0-rc.6",
+    "reading-time": "^1.5.0"
   },
-  "keywords": [
-    "blog"
-  ],
-  "author": "zlvansiit",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/zlvansiit/zlvansiit.github.io/issues"
-  },
-  "homepage": "https://github.com/zlvansiit/zlvansiit.github.io#readme"
+  "dependencies": {
+    "mddir": "^1.1.1"
+  }
 }
