@@ -4,6 +4,11 @@ description: ""
 ---
 
 {% for post in paginator.posts %}
+
+<div v-for="(item, index) in $frontmatter.tags" style="line-height:40px">
+    <span>{{item}}</span>
+</div>
+
 <div class="post-preview">
     <a href="{{ post.url | prepend: site.baseurl }}">
         <h2 class="post-title">
