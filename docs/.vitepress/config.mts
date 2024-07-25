@@ -94,7 +94,7 @@ export default defineConfig({
   lastUpdated: true,
 
   sitemap: {
-    hostname: 'https://zlvansiit.githu.io'
+    hostname: 'https://zlvansiit.github.io'
   },
 
 })
