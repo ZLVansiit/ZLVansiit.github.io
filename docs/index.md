@@ -3,7 +3,7 @@
 layout: home
 
 hero:
-  name: Z.L Vansiit's blog
+  name: Z.L Vansiit's blog k
   text: 
   tagline: |
     技术博客 | 生活随笔 | 唠嗑扯淡
