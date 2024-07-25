@@ -36,7 +36,8 @@ export default defineConfig({
         collapsed: false,
         link: '/spirit',
         items: [
-            {text: '从物理学的大一统理论想到的', link: '/2024/03/29/grand-unification-theory', tag: '物理学'}
+            {text: '从物理学的大一统理论想到的', link: '/2024/03/29/grand-unification-theory', tag: '物理学'},
+            {text: '种地', link: '/2024/03/29/grand-unification-theory', tag: '杂说'}
         ]
       },
       {
