@@ -165,4 +165,4 @@ http://xxxxxx.com/collection/QXUGQIYQcYKM1jDSwY83G-afdfadggd?name=qins
 
 ### 七.参考资料：
 
-[github NanoId](https://zlvansiit.github.io/2023/06/12/NanoId.html)
+* [github NanoId](https://zlvansiit.github.io/2023/06/12/NanoId.html)

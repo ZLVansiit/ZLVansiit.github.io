@@ -11,7 +11,9 @@
     "docs:deploy": "sh script/deploy.sh",
     "pub": "sh script/publish.sh"
   },
-  "keywords": ["Vansiit"],
+  "keywords": [
+    "Vansiit"
+  ],
   "author": "Vansiit",
   "license": "MIT",
   "devDependencies": {

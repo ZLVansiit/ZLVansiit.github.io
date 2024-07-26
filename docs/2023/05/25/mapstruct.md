@@ -259,3 +259,9 @@ public @interface Mappings {
 > 可以在映射前后做一些自定义操作，类似AOP中的切面。
 
 ---
+
+## 参考资料
+
+* [ github / mapstruct ](https://github.com/xiaohongshu/mapstruct-demo)
+
+* [ mapstruct.org ](https://mapstruct.org/)
