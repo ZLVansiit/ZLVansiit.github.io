@@ -2,7 +2,7 @@
 outline: deep
 title: MapStruct使用和详解，看这篇就够了
 description: MapStruct使用和详解，看这篇就够了
-keywords: MapStruct,mapstruct,mapstruct使用,mapstruct详解,mapstruct使用和详解,mapstruct使用和详解, Java, JavaBeans, JavaBeans映射, JavaBean映射, JavaBean映射框架, JavaBean映射框架
+head: [['meta', { name: 'keywords', content: 'MapStruct,mapstruct,mapstruct使用,mapstruct详解,mapstruct使用和详解,mapstruct使用和详解, Java, JavaBeans, JavaBeans映射, JavaBean映射, JavaBean映射框架, JavaBean映射框架' }]]
 ---
 
 # MapStruct使用和详解，看这篇就够了
