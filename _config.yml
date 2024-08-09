@@ -19,7 +19,7 @@ pages: [
 
 
 # avatar and Favicon
-favicon: favicon.ico
+favicon: /img/favicon.ico
 
 
 # Sidebar settings
