@@ -6,6 +6,21 @@ export default defineConfig({
   lang: 'en-US',
   title: "Vansiit's blog",
   description: "Z.L Vansiit's blog",
+  head: [
+    ['link', { rel: 'icon', href: '/favicon.ico' }],
+    [
+      'script',
+      { async: '', src: 'https://www.googletagmanager.com/gtag/js?id=G-341DFSJ9B1' }
+    ],
+    [
+      'script',
+      {},
+      `window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-341DFSJ9B1');`
+    ]
+  ],
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     siteTitle: 'Z.L Vansiit\'s blog',
@@ -85,22 +100,15 @@ export default defineConfig({
         },
       },
     },
-  },
 
-  head: [
-    [
-      'script',
-      { async: '', src: 'https://www.googletagmanager.com/gtag/js?id=G-341DFSJ9B1' }
-    ],
-    [
-      'script',
-      {},
-      `window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-341DFSJ9B1');`
-    ]
-  ],
+    lastUpdated: {
+      text: 'Updated at',
+      formatOptions: {
+        dateStyle: 'full',
+        timeStyle: 'medium'
+      }
+    }
+  },
 
   /*plugins: [
     backToTopPlugin(),
@@ -109,10 +117,8 @@ export default defineConfig({
     })
   ]*/
 
-  lastUpdated: true,
-
   sitemap: {
-    hostname: 'https://zlvansiit.github.io'
+    hostname: 'https://vansiit.cc'
   },
 
 })
