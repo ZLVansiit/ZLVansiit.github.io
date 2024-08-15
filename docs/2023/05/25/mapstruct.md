@@ -1,4 +1,5 @@
 ---
+layout: doc
 outline: deep
 title: MapStruct使用和详解，看这篇就够了
 description: MapStruct使用和详解，看这篇就够了
