@@ -19,7 +19,7 @@ title: APP扫码登录：不只有原理，直接上代码
 
 ## 二.原理和时序图
 
-![img.png](https://zlvansiit.github.io/img/qrcode/scan-qrcode.jpg)
+![img.png](https://vansiit.cc/img/qrcode/scan-qrcode.jpg)
 
 >二维码状态
 >- INIT(1, "初始状态"),

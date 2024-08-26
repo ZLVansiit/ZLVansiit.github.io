@@ -16,7 +16,7 @@ head: [['meta', { name: 'keywords', content: 'MapStruct,mapstruct,mapstruct使�
 
 ## 一、各大对象映射框架性能对比
 
-![img.png](https://zlvansiit.github.io/img/mapstruct/img.png)
+![img.png](https://vansiit.cc/img/mapstruct/img.png)
 
 ---
 

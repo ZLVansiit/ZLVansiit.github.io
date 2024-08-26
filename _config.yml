@@ -7,7 +7,7 @@ header-img: img/bg/output.jpg
 email: vansiit@163.com
 description: "开发 | vansiit，Web & Front-end Engineer | vansiit的个人博客呀"
 keyword: "vansiit, Java, vansiit Blog, 博客, Blog, Css, 数据库, 全栈"
-url: "https://zlvansiit.github.io/"              # your host, for absolute URL
+url: "https://vansiit.cc/"              # your host, for absolute URL
 baseurl: ""                       # for example, '/blog' if your blog hosted on 'host/blog'
 
 pages: [
@@ -61,7 +61,7 @@ gitalk:
 friends: [
   {
     title: "zlvansiit's github ",
-    href: "https://zlvansiit.github.io/"
+    href: "https://vansiit.cc/"
   }
 ]
 
