@@ -1,7 +1,7 @@
 {
   "name": "vansiit.github.io",
   "version": "1.0.0",
-  "description": "Z.L Vansiit's blog.",
+  "description": "Z.L Vansiit's blog. ",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
