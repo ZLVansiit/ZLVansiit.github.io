@@ -1,7 +1,7 @@
 ---
 outline: deep
-title:      "MapStruct使用和详解，看这篇就够了"
-subtitle:   "MapStruct是一个生成类型安全，高性能且无依赖的JavaBea 映射代码的注解处理器"
+title:      "Git 常用指令 以及 IDEA常用commit插件推荐"
+subtitle:   "MapStructGit 常用指令 以及 IDEA常用commit插件推荐"
 author:     "vansiit"
 header-img: "img/bg/output6.jpg"
 header-mask:  0.5
