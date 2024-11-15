@@ -1,8 +1,23 @@
 import { defineConfig } from 'vitepress'
-import emailSVGString from "./theme/svgs/email";
+import emailSVGString from "./theme/svgs/email"
+const anchor = require('markdown-it-footnote')
+
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
+  markdown: {
+    lineNumbers: true, // 显示代码块行号
+    config: md => {
+      md.use(require('markdown-it-footnote'))
+      md.renderer.rules.footnote_anchor = function render_footnote_anchor(tokens, idx, options, env, slf) {
+        let id = slf.rules.footnote_anchor_name?.(tokens, idx, options, env, slf)
+        if (tokens[idx].meta.subId > 0) {
+          id += ':' + tokens[idx].meta.subId
+        }
+        return ' <a href="#fnref' + id + '" class="footnote-backref">👈🏻</a>'
+      }
+    },
+  },
   lang: 'en-US',
   title: "Vansiit's blog",
   description: "Z.L Vansiit's blog",
@@ -25,6 +40,13 @@ export default defineConfig({
     // https://vitepress.dev/reference/default-theme-config
     siteTitle: 'Z.L Vansiit\'s blog',
     logo: '/logo.svg',
+    vssueConfig: {
+      platform: 'github',
+      owner: 'vansiit',
+      repo: 'NAME_OF_REPO',
+      clientId: 'YOUR_CLIENT_ID',
+      clientSecret: 'YOUR_CLIENT_SECRET',
+    },
     nav: [
       {text: 'Home', link: '/'},
       {text: '归档', link: '/archive'},
@@ -52,7 +74,8 @@ export default defineConfig({
         link: '/spirit',
         items: [
             {text: '从物理学的大一统理论想到的', link: '/2024/03/29/grand-unification-theory', tag: '物理学'},
-            {text: '种地', link: '/2024/03/29/grand-unification-theory', tag: '杂说'}
+            {text: '供奉释迦牟尼、李白、耶稣、姜子牙的高台教到底是什么', link: '/2024/09/21/Caodaism', tag: '无聊的知识'},
+            {text: '中东局势', link: '/2024/09/21/middle-east', tag: '无聊的知识'},
         ]
       },
       {
@@ -60,6 +83,7 @@ export default defineConfig({
         collapsed: false,
         link: '/hobby',
         items: [
+          {text: '当我在看NBA的时候在看什么', link: '/2024/03/29/nba', tag: '篮球'},
           {text: '当我在看NBA的时候在看什么', link: '/2024/03/29/nba', tag: '篮球,NBA'}
         ]
       }

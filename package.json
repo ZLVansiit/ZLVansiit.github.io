@@ -19,15 +19,17 @@
   "devDependencies": {
     "@vuepress/client": "2.0.0-rc.9",
     "@vuepress/plugin-reading-time": "2.0.0-rc.21",
+    "reading-time": "^1.5.0",
     "vitepress": "^1.0.1",
     "vue": "^3.4.21",
     "vuepress": "2.0.0-rc.9",
     "vuepress-plugin-china-search-console": "^2.1.5",
     "vuepress-theme-gungnir": "2.0.0-alpha.26",
-    "vuepress-theme-reco": "2.0.0-rc.6",
-    "reading-time": "^1.5.0"
+    "vuepress-theme-reco": "2.0.0-rc.6"
   },
   "dependencies": {
-    "mddir": "^1.1.1"
+    "markdown-it-footnote": "^4.0.0",
+    "mddir": "^1.1.1",
+    "vuepress-plugin-comment": "^0.7.3"
   }
 }

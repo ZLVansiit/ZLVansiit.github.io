@@ -1,0 +1,10 @@
+/* 脚注超链接样式修正 */
+.footnote-backref,
+.footnote-ref a {
+    padding-right: unset !important;
+}
+
+.footnote-item {
+    font-style: italic;
+    font-weight: bold;
+}
