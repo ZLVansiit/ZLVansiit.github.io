@@ -1,22 +1,11 @@
 import { defineConfig } from 'vitepress'
 import emailSVGString from "./theme/svgs/email"
-const anchor = require('markdown-it-footnote')
 
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   markdown: {
     lineNumbers: true, // 显示代码块行号
-    config: md => {
-      md.use(require('markdown-it-footnote'))
-      md.renderer.rules.footnote_anchor = function render_footnote_anchor(tokens, idx, options, env, slf) {
-        let id = slf.rules.footnote_anchor_name?.(tokens, idx, options, env, slf)
-        if (tokens[idx].meta.subId > 0) {
-          id += ':' + tokens[idx].meta.subId
-        }
-        return ' <a href="#fnref' + id + '" class="footnote-backref">👈🏻</a>'
-      }
-    },
   },
   lang: 'en-US',
   title: "Vansiit's blog",

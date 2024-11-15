@@ -28,7 +28,6 @@
     "vuepress-theme-reco": "2.0.0-rc.6"
   },
   "dependencies": {
-    "markdown-it-footnote": "^4.0.0",
     "mddir": "^1.1.1",
     "vuepress-plugin-comment": "^0.7.3"
   }
