@@ -4,19 +4,19 @@ layout: home
 
 hero:
   name: Z.L Vansiit's blog
-  text: 
+  text:
   tagline: |
     技术博客 | 生活随笔 | 唠嗑扯淡
-  image: 
+  image:
     src: /img/logo.svg
     alt: Ballcat Logo
   actions:
     - theme: brand
       text: Get Started
       link: /technical
-    - theme: alt
-      text: View on GitHub
-      link: https://github.com/ZLVansiit/ZLVansiit.github.io
+#    - theme: alt
+#      text: View on GitHub
+#      link: https://github.com/ZLVansiit/ZLVansiit.github.io
 
 features:
   - icon:
