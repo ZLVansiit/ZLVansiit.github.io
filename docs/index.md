@@ -23,13 +23,13 @@ features:
         dark: /icon/icons002d2.png
         light: /icon/icons002.png
     title: 从无知到有知
-    details: Java，Redis，架构，SpringBoot，算法，MySQL，工具，重构... 吾生也有涯 ，而知也无涯。
+    details: Java，Redis，架构，SpringBoot，算法，MySQL，工具，重构...
     link: /technical
   - icon:
         dark: /icon/icons003d.png
         light: /icon/icons003.png
     title: 精神自旋
-    details: 内在感知，心智自转。接纳、理解、思考，直到生命的终点
+    details: 内在感知，心智自转。
     link: /spirit
   - icon:
         dark: /icon/icons001.png
