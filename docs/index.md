@@ -34,9 +34,9 @@ features:
   - icon:
         dark: /icon/icons001.png
         light: /icon/icons001d.png
-    title: 放情于天地外
-    details: 天高地海，once in a life，总有些景色、艺术、音乐、电影、运动、文学、科技、物理学让你心潮澎湃
-    link: /hobby
+    title: 非虚构写作
+    details: 天高地海
+    link: /non-fiction
 ---
 <style module>
 :root {
