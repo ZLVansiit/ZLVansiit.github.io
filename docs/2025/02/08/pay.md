@@ -69,4 +69,3 @@
 
 这些选择不仅能够满足当前市场需求，还能适应未来支付技术和用户习惯的不断演进。
 
-**引用**：&#8203;:contentReference[oaicite:6]{index=6} :contentReference[oaicite:7]{index=7} :contentReference[oaicite:8]{index=8}
