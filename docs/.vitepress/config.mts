@@ -56,6 +56,8 @@ export default defineConfig({
           {text: 'utf8和utf8mb4的区别 - MySQL字符集和比较规则', link: '/2023/12/02/mysql-character-set', tag: 'Java,Mysql'},
           {text: 'git常用命令大全', link: '/2024/03/21/git-common-commands', tag: 'Java,Mysql'},
           {text: 'Java虚拟线程和Go协程的对比', link: '/2025/02/08/virtual-thread', tag: 'Java,JDK'},
+          {text: '人工智能（AI）的现状、问题、瓶颈、未来趋势', link: '/2025/02/08/ai', tag: 'AI'},
+          {text: '国外支付平台及国际化APP支付对接建议', link: '/2025/02/08/pay', tag: '运营,出海'},
         ]
       },
       {
