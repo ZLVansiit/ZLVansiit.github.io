@@ -55,6 +55,7 @@ export default defineConfig({
           {text: '负载均衡之平滑加权轮询算法', link: '/2023/06/15/weighted-round-robin', tag: 'Java,算法,Nginx'},
           {text: 'utf8和utf8mb4的区别 - MySQL字符集和比较规则', link: '/2023/12/02/mysql-character-set', tag: 'Java,Mysql'},
           {text: 'git常用命令大全', link: '/2024/03/21/git-common-commands', tag: 'Java,Mysql'},
+          {text: 'Java17 虚拟线程初体验', link: '/2024/03/21/virtual-thread', tag: 'Java,JDK'},
         ]
       },
       {
