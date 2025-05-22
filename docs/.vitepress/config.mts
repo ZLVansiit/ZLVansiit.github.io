@@ -60,6 +60,7 @@ export default defineConfig({
           {text: '国外支付平台及国际化APP支付对接建议', link: '/2025/02/08/pay', tag: '运营,出海'},
           {text: 'Java 对接 PayPal 详细文档', link: '/2025/02/08/paypal', tag: 'pay,出海'},
           {text: 'Java 对接 Google Pay 详细文档', link: '/2025/02/08/googlepay', tag: 'pay,出海'},
+          {text: 'Java 项目升级遇到的那些事儿', link: '/2025/05/21/project-upgrade', tag: 'Java,JDK'},
         ]
       },
       {
