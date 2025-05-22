@@ -79,8 +79,8 @@ export default defineConfig({
         collapsed: false,
         link: '/non-fiction',
         items: [
-          /*{text: '突然想起来初中同桌的一些事', link: '/2025/01/06/shudong', tag: '非虚构'},
-          {text: '山里娃', link: '/2025/01/07/shanliren', tag: '非虚构'},*/
+          {text: '突然想起来初中同桌的一些事', link: '/2025/01/06/shudong', tag: '非虚构'},
+          /*{text: '山里娃', link: '/2025/01/07/shanliren', tag: '非虚构'},*/
         ]
       },
     ],

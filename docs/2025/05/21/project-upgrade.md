@@ -104,7 +104,9 @@ private IYuouerShopPromoterService yuouerShopPromoterService;
 ### mybatis plus 合集
     升级过程中，遇到很多坑，情绪一直很稳定。
 
-    直到遇到mybatis plus，真是无力吐槽。升级就升级，把所有的包名路径全改了几个意思，Wrapper的用法也大调整，能不能向下兼容一下。大变动的新版本升级一个新的artifactId，叫mybatis-plus3，旧的mybatis-plus漏洞修复一下，停更不就行了嘛。
+    直到遇到mybatis plus，真是无力吐槽。升级就升级，把所有的包名路径全改了几个意思，Wrapper的用法也大调整，能不能向下兼容一下。
+
+    大变动的新版本升级一个新的artifactId，叫mybatis-plus3，旧的mybatis-plus漏洞修复一下，停更不就行了嘛。
 
     你或者像jakarta也行，直接改名，我也只用javax.servlet全局替换成jakarta.servlet
 
