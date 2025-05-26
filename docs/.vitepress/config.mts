@@ -25,6 +25,19 @@ export default defineConfig({
       gtag('config', 'G-341DFSJ9B1');`
     ]
   ],
+  transformHead: ({ pageData, siteData }) => {
+    const canonicalUrl = `https://vansiit.cc${pageData.relativePath.replace(/\.md$/, '.html')}`
+
+    return [
+      [
+        'link',
+        {
+          rel: 'canonical',
+          href: canonicalUrl
+        }
+      ]
+    ]
+  },
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     siteTitle: 'Z.L Vansiit\'s blog',
