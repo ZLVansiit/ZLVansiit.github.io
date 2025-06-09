@@ -23,7 +23,11 @@ export default defineConfig({
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-341DFSJ9B1');`
-    ]
+    ],
+    ['meta', {
+      name: 'msvalidate.01',
+      content: 'E05ABB64BECAFCC799E9521FCAF19CAB'
+    }]
   ],
   transformHead: ({ pageData, siteData }) => {
     const canonicalUrl = `https://vansiit.cc${pageData.relativePath.replace(/\.md$/, '.html')}`
