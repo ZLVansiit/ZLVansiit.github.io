@@ -27,6 +27,10 @@ export default defineConfig({
     ['meta', {
       name: 'msvalidate.01',
       content: 'E05ABB64BECAFCC799E9521FCAF19CAB'
+    }],
+    ['meta', {
+      name: 'baidu-site-verification',
+      content: 'codeva-vE7R0LNAfC'
     }]
   ],
   transformHead: ({ pageData, siteData }) => {
