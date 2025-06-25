@@ -40,7 +40,7 @@ features:
 ---
 
 <script setup>
-import DataPanel from './components/DataPanel.vue';
+import DataPanel from './components/home/DataPanel.vue';
 </script>
 <DataPanel />
 
