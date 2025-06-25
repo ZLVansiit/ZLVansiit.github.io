@@ -39,11 +39,6 @@ features:
     link: /non-fiction
 ---
 
-<script setup>
-import DataPanel from './components/home/DataPanel.vue';
-</script>
-<DataPanel />
-
 <style module>
 :root {
     --vp-home-hero-name-color: transparent;

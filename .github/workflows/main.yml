@@ -54,6 +54,7 @@ jobs:
 
   # 部署工作
   deploy:
+    if: ${{ success() }}  # 明确要求前置作业必须成功
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
