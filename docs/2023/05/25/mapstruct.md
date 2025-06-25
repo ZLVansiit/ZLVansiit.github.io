@@ -35,14 +35,14 @@ head: [['meta', { name: 'keywords', content: 'MapStruct,mapstruct,mapstruct使�
 
 ```maven
 <dependency>
-    <groupId>org.mapstruct</groupId> 
-    <artifactId>mapstruct-jdk8</artifactId> 
+    <groupId>org.mapstruct</groupId>
+    <artifactId>mapstruct-jdk8</artifactId>
     <version>1.3.1.Final</version>
-</dependency> 
-<dependency> 
-    <groupId>org.mapstruct</groupId> 
-    <artifactId>mapstruct-processor</artifactId> 
-    <version>1.3.1.Final</version> 
+</dependency>
+<dependency>
+    <groupId>org.mapstruct</groupId>
+    <artifactId>mapstruct-processor</artifactId>
+    <version>1.3.1.Final</version>
 </dependency>
 ```
 ---
@@ -268,3 +268,8 @@ public @interface Mappings {
 * [ github / mapstruct ](https://github.com/xiaohongshu/mapstruct-demo)
 
 * [ mapstruct.org ](https://mapstruct.org/)
+
+
+<span>
+  本文总阅读量 <span id="vercount_value_page_pv">Loading</span> 次
+</span>

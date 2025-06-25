@@ -38,6 +38,12 @@ features:
     details: 天高地海
     link: /non-fiction
 ---
+
+<script setup>
+import DataPanel from './components/DataPanel.vue';
+</script>
+<DataPanel />
+
 <style module>
 :root {
     --vp-home-hero-name-color: transparent;

@@ -2,6 +2,8 @@
 import { h } from 'vue'
 import type { Theme } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
+import { inBrowser } from 'vitepress';
+import useVisitData from '../hooks/useVisitData';
 import './style.css'
 
 export default {
@@ -12,6 +14,10 @@ export default {
     })
   },
   enhanceApp({ app, router, siteData }) {
-    // ...
+    if (inBrowser) {
+      router.onAfterPageLoad = (to) => {
+        useVisitData() // 每次页面加载后触发统计
+      }
+    }
   }
 } satisfies Theme
