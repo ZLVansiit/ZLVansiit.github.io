@@ -62,7 +62,8 @@ export default defineConfig({
       {text: 'Home', link: '/'},
       {text: '归档', link: '/archive'},
       /*{text: '书签', link: '/bookmark'},*/
-      {text: '关于', link: '/about'}
+      {text: '关于', link: '/about'},
+      {text: '友链', link: '/dxternalLinks'}
     ],
     sidebar: [
       {
