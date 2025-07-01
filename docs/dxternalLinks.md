@@ -1,155 +1,86 @@
 
-<div class="friend-links-container">
+<div class="links-container">
+  <div class="links-intro">
+    <h2>🌐 友情链接</h2>
+    <p>欢迎与我交换友链！请确保您的网站内容原创且符合中国大陆法律，已开启HTTPS并有持续更新~</p>
+    <p>精选优质网站，探索更多精彩内容</p>
+  </div>
+
+  <div class="links-grid">
+    <!-- 单个友链卡片 -->
+    <div class="link-card">
+      <img class="link-avatar" src="https://vansiit.cc/img/logo.svg" alt="vansiit">
+      <div class="link-info">
+        <a href="https://vansiit.cc" target="_blank" class="link-name">技术博客</a>
+        <p class="link-desc">专注Web技术与开源项目</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
 <style>
-  .friend-links-container {
-    max-width: 1200px;
+  /* 核心样式 */
+  .links-container {
+    max-width: 900px;
     margin: 2rem auto;
     padding: 0 20px;
   }
-  .friend-links-section {
-    margin-bottom: 3rem;
-  }
-  .section-title {
-    font-size: 1.8rem;
-    border-left: 4px solid #4CAF50;
-    padding-left: 15px;
-    margin-bottom: 1.5rem;
-    color: #2c3e50;
-  }
+
   .links-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 25px;
+    gap: 20px;
+    margin-top: 1.5rem;
   }
-  .friend-card {
-    background: white;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    transition: all 0.3s ease;
+
+  .link-card {
     display: flex;
-    flex-direction: column;
-    height: 100%;
+    align-items: center;
+    padding: 15px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
   }
-  .friend-card:hover {
+
+  .link-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.12);
   }
-  .card-header {
-    padding: 20px;
-    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
-    color: white;
+
+  .link-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+    object-fit: cover;
   }
-  .card-body {
-    padding: 20px;
-    flex-grow: 1;
-  }
-  .friend-name {
-    font-size: 1.3rem;
-    margin: 0 0 10px;
+
+  .link-name {
     font-weight: 600;
-  }
-  .friend-desc {
-    color: #555;
-    line-height: 1.6;
-    font-size: 0.95rem;
-  }
-  .friend-link {
-    display: inline-block;
-    margin-top: 15px;
-    padding: 8px 20px;
-    background: #f5f7fa;
-    border-radius: 30px;
-    color: #3498db;
+    color: #2bbc8a;
     text-decoration: none;
-    font-weight: 500;
-    transition: all 0.2s;
-    border: 1px solid #e3e9f1;
+    font-size: 1.1rem;
   }
-  .friend-link:hover {
-    background: #3498db;
-    color: white;
-    box-shadow: 0 4px 10px rgba(52,152,219,0.3);
+
+  .link-name:hover {
+    color: #d480aa;
+    text-decoration: underline;
   }
-  @media (max-width: 768px) {
+
+  .link-desc {
+    color: #666;
+    font-size: 0.9rem;
+    margin-top: 4px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* 响应式适配 */
+  @media (max-width: 600px) {
     .links-grid {
       grid-template-columns: 1fr;
     }
-    .section-title {
-      font-size: 1.5rem;
-    }
   }
 </style>
-
-## 🌐 友情链接
-> 精选优质网站，探索更多精彩内容
-
-### 🧩 技术社区
-<div class="links-grid">
-  <div class="friend-card">
-    <div class="card-header">
-      <h3 class="friend-name">GitHub</h3>
-    </div>
-    <div class="card-body">
-      <p class="friend-desc">全球最大的代码托管平台，开源项目聚集地</p>
-      <a href="https://github.com" class="friend-link" target="_blank">访问网站</a>
-    </div>
-  </div>
-
-  <div class="friend-card">
-    <div class="card-header">
-      <h3 class="friend-name">Stack Overflow</h3>
-    </div>
-    <div class="card-body">
-      <p class="friend-desc">程序员问答社区，解决编码难题的首选平台</p>
-      <a href="https://stackoverflow.com" class="friend-link" target="_blank">访问网站</a>
-    </div>
-  </div>
-</div>
-
-### 🎨 设计资源
-<div class="links-grid">
-  <div class="friend-card">
-    <div class="card-header">
-      <h3 class="friend-name">Dribbble</h3>
-    </div>
-    <div class="card-body">
-      <p class="friend-desc">设计师作品展示平台，汇集全球创意灵感</p>
-      <a href="https://dribbble.com" class="friend-link" target="_blank">访问网站</a>
-    </div>
-  </div>
-
-  <div class="friend-card">
-    <div class="card-header">
-      <h3 class="friend-name">Behance</h3>
-    </div>
-    <div class="card-body">
-      <p class="friend-desc">Adobe旗下创意作品平台，设计项目展示</p>
-      <a href="https://behance.net" class="friend-link" target="_blank">访问网站</a>
-    </div>
-  </div>
-</div>
-
-### 📚 学习平台
-<div class="links-grid">
-  <div class="friend-card">
-    <div class="card-header">
-      <h3 class="friend-name">Coursera</h3>
-    </div>
-    <div class="card-body">
-      <p class="friend-desc">全球顶尖大学课程，在线学习专业知识</p>
-      <a href="https://coursera.org" class="friend-link" target="_blank">访问网站</a>
-    </div>
-  </div>
-
-  <div class="friend-card">
-    <div class="card-header">
-      <h3 class="friend-name">MDN Web Docs</h3>
-    </div>
-    <div class="card-body">
-      <p class="friend-desc">最权威的Web开发文档，由Mozilla维护</p>
-      <a href="https://developer.mozilla.org" class="friend-link" target="_blank">访问网站</a>
-    </div>
-  </div>
-</div>
-</div>
