@@ -1,6 +1,19 @@
 ---
 outline: deep
-title: utf8和utf8mb4的区别 - MySQL字符集和比较规则
+title: MySQL字符集详解：utf8与utf8mb4的区别及最佳实践
+description: 深入解析MySQL中utf8和utf8mb4字符集的区别、应用场景和配置方法，包含字符编码原理、存储差异和性能对比分析
+keywords: MySQL字符集,utf8,utf8mb4,字符编码,数据库配置,MySQL优化,中文编码,emoji存储
+author: Z.L Vansiit
+date: 2023-12-02
+lastmod: 2023-12-02
+category: 技术分享
+tags:
+  - MySQL
+  - 数据库
+  - 字符编码
+  - 数据库优化
+  - 配置管理
+image: /img/favicon.ico
 ---
 
 # utf8和utf8mb4的区别 - MySQL字符集和比较规则

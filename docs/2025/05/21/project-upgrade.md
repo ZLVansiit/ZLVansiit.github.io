@@ -1,4 +1,22 @@
 
+---
+outline: deep
+title: Java项目升级实战：从JDK8到JDK17的完整迁移指南
+description: 详细记录Java项目从JDK8升级到JDK17的完整过程，包括Spring Boot 3.x迁移、依赖包升级、安全漏洞修复等实战经验
+keywords: Java项目升级,JDK17迁移,Spring Boot 3.x,依赖升级,安全漏洞修复,javax到jakarta,POI升级,FastJSON替换
+author: Z.L Vansiit
+date: 2025-05-21
+lastmod: 2025-05-21
+category: 技术分享
+tags:
+  - Java
+  - Spring Boot
+  - 项目升级
+  - JDK17
+  - 安全修复
+image: /img/project-upgrade/1.png
+---
+
 # Java 项目升级遇到的那些事儿
 
 某日，甲方爸爸丢过来一个excel。你们项目有漏洞啊，安全性怎么保证，赶紧全部修复掉，立刻马上。

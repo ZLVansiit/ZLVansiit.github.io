@@ -1,17 +1,27 @@
 ---
 layout: doc
 outline: deep
-title: MapStruct使用和详解，看这篇就够了
-description: MapStruct使用和详解，看这篇就够了
+title: MapStruct完整使用指南：高性能JavaBean映射框架详解
+description: 深入解析MapStruct映射框架的使用方法和实现原理，包含性能对比、注解详解、实战示例等完整教程，助你掌握高效的JavaBean对象转换技术
+keywords: MapStruct, JavaBean映射, 对象转换, Java映射框架, 高性能映射, 注解处理器, 代码生成, 类型安全映射
+author: ZLVansiit
+date: 2023-05-25
+updated: 2023-05-25
+category: Java开发
+tags:
+  - MapStruct
+  - Java
+  - 对象映射
+  - 性能优化
+  - 注解处理
+image: /img/favicon.ico
 head: [['meta', { name: 'keywords', content: 'MapStruct,mapstruct,mapstruct使用,mapstruct详解,mapstruct使用和详解,mapstruct使用和详解, Java, JavaBeans, JavaBeans映射, JavaBean映射, JavaBean映射框架, JavaBean映射框架' }]]
 ---
 
 # MapStruct使用和详解，看这篇就够了
 
 
-> 在一个Java工程中会涉及到多种对象，po、vo、dto、entity、do、domain这些定义的对象运用在不同的场景模块中，这种对象与对象之间的互相转换，就需要有一个专门用来解决转换问题的工具。以往的方式要么是自己写转换器，要么是用Apache或Spring的BeanUtils来实现转换。无论哪种方式都存在明显的缺点，比如手写转换器既浪费时间， 而且在添加新的字段的时候也要进行方法的修改；而无论是 BeanUtils, BeanCopier 等都是使用反射来实现，效率低下并且仅支持属性名一致时的转换。
-
----
+> 在一个Java工程中会涉及到多种对象，po、vo、dto、entity、do、domain这些定义的对象运用在不同的场景模块中，这种对象与对象之间的互相转换，就需要有一个专门用来解决转换问题的工具。以往的方式要么是自己写转换器，要么是用Apache或Spring的BeanUtils来实现转换。无论哪种方式都存在明显的缺点，比如手写转换器既浪费时间， 而且在添加新的字段的时候也要进行方法的修改；而无论是 BeanUtils, BeanCopier 等都是使用反射来实现，效率低下并且仅支持属性名一致时的转
 
 
 ## 一、各大对象映射框架性能对比

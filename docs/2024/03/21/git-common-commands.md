@@ -1,15 +1,19 @@
 ---
 outline: deep
-title:      "Git 常用指令 以及 IDEA常用commit插件推荐"
-subtitle:   "MapStructGit 常用指令 以及 IDEA常用commit插件推荐"
-author:     "vansiit"
-header-img: "img/bg/output6.jpg"
-header-mask:  0.5
-catalog: true
-foot: true
+title: Git常用指令大全及IDEA提交插件推荐
+description: 详细整理Git版本控制的常用命令和操作技巧，推荐IDEA中好用的commit插件，提升开发效率和代码管理质量
+keywords: Git命令,版本控制,IDEA插件,commit插件,代码管理,开发工具,Git操作,代码提交
+author: Z.L Vansiit
+date: 2024-03-21
+lastmod: 2024-03-21
+category: 技术分享
 tags:
-    - Java
-    - util
+  - Git
+  - 开发工具
+  - IDEA
+  - 版本控制
+  - 效率工具
+image: /img/bg/output6.jpg
 ---
 
 # Git 常用指令 以及 IDEA常用commit插件推荐

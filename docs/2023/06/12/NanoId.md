@@ -1,6 +1,19 @@
 ---
 outline: deep
-title: 各种常用ID生成器的对比，重点介绍一下NanoId
+title: ID生成器全面对比：UUID vs SnowFlake vs NanoId性能分析
+description: 深入对比分析UUID、SnowFlake、NanoId等常用ID生成器的优缺点、性能表现和适用场景，为分布式系统选择最佳ID方案
+keywords: ID生成器,UUID,SnowFlake,NanoId,分布式ID,唯一标识符,性能对比,数据库主键
+author: Z.L Vansiit
+date: 2023-06-12
+lastmod: 2023-06-12
+category: 技术分享
+tags:
+  - 分布式系统
+  - ID生成器
+  - 性能优化
+  - 数据库设计
+  - NanoId
+image: /img/nanoId/CollisionCalculator.png
 ---
 
 # 各种常用ID生成器的对比，重点介绍一下NanoId

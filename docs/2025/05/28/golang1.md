@@ -1,3 +1,21 @@
+---
+outline: deep
+title: Golang学习笔记(一)：Go语言起源、发展历程与核心特性
+description: 详细介绍Go语言的起源发展历程、核心设计理念和主要特性，适合Go语言初学者了解语言背景和基础知识
+keywords: Golang学习,Go语言入门,Go语言历史,Rob Pike,Ken Thompson,Go语言特性,编程语言学习
+author: Z.L Vansiit
+date: 2025-05-28
+lastmod: 2025-05-28
+category: 技术分享
+tags:
+  - Golang
+  - Go语言
+  - 编程语言
+  - 学习笔记
+  - 后端开发
+image: /img/favicon.ico
+---
+
 # Golang 学习笔记（一）
 
 ## 1. 起源与发展

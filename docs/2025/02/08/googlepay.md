@@ -1,3 +1,21 @@
+---
+outline: deep
+title: Java对接Google Pay完整指南：支付集成与安全实现
+description: 详细介绍Java后端系统对接Google Pay的完整流程，包含支付令牌处理、安全验证、错误处理等关键技术要点
+keywords: Google Pay集成,Java支付开发,移动支付,支付令牌,支付安全,Google Pay API,支付处理器,加密支付
+author: Z.L Vansiit
+date: 2025-02-08
+lastmod: 2025-02-08
+category: 技术分享
+tags:
+  - Java
+  - 支付集成
+  - Google Pay
+  - 移动支付
+  - 支付安全
+image: /img/favicon.ico
+---
+
 # Java 对接 Google Pay 详细文档
 
 本文档旨在介绍如何在 Java 后端系统中对接 Google Pay，主要涵盖整体流程、关键步骤和需要特别注意的要点。需要注意的是，Google Pay 的核心功能主要由客户端（如 Android 应用或 Web 前端）发起支付请求，后端 Java 系统则负责接收和处理 Google Pay 返回的加密支付令牌，再交由支付处理器完成扣款。下面介绍详细内容。

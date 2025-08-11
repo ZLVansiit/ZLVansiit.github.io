@@ -1,3 +1,24 @@
 User-agent: *
-Disallow:
+Allow: /
+
+# 禁止访问开发和构建相关目录
+Disallow: /docs/.vitepress/
+Disallow: /.github/
+Disallow: /node_modules/
+Disallow: /*.json$
+Disallow: /*.lock$
+Disallow: /package.json
+Disallow: /package-lock.json
+Disallow: /pnpm-lock.yaml
+
+# 允许爬取静态资源
+Allow: /img/
+Allow: /icon/
+Allow: /favicon.ico
+Allow: /manifest.json
+
+# 爬虫延迟设置
+Crawl-delay: 1
+
+# Sitemap位置
 Sitemap: https://vansiit.cc/sitemap.xml

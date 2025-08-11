@@ -1,6 +1,19 @@
 ---
 outline: deep
-title: 使用NanoID替换整型ID
+title: 使用NanoID替换整型ID：防爬虫与数据安全实战方案
+description: 详细介绍如何使用NanoID替换自增长整型ID，防止爬虫轮询抓取数据，包含数据库映射表设计、缓存处理等完整实现方案
+keywords: NanoID,防爬虫,数据安全,ID映射,随机字符串,数据库设计,缓存处理,接口安全
+author: Z.L Vansiit
+date: 2023-06-12
+lastmod: 2023-06-12
+category: 技术分享
+tags:
+  - 数据安全
+  - 防爬虫
+  - 数据库设计
+  - NanoID
+  - 接口安全
+image: /img/nanoId/objectId.png
 ---
 
 # 使用NanoID替换整型ID

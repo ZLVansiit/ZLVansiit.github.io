@@ -1,6 +1,19 @@
 ---
 outline: deep
-title: 平滑加权轮询算法，Smooth Weighted Round Robin
+title: 平滑加权轮询算法详解：Smooth Weighted Round Robin实现与应用
+description: 深入解析平滑加权轮询算法的原理、实现和应用场景，包含负载均衡、进程调度等实际应用案例和代码实现
+keywords: 加权轮询算法,负载均衡,Smooth Weighted Round Robin,进程调度,算法实现,分布式系统,服务器调度
+author: Z.L Vansiit
+date: 2023-06-15
+lastmod: 2023-06-15
+category: 技术分享
+tags:
+  - 算法
+  - 负载均衡
+  - 分布式系统
+  - 系统设计
+  - 性能优化
+image: /img/post/1711003537001.png
 ---
 
 # 平滑加权轮询算法，Smooth Weighted Round Robin

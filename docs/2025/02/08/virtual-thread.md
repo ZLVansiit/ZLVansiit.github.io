@@ -1,6 +1,18 @@
 ---
 outline: deep
-title: Java虚拟线程和Go协程的对比
+title: Java21虚拟线程详解：与Go协程性能对比分析
+description: 深入解析Java21虚拟线程特性，对比Go协程性能差异，包含实战代码示例和最佳实践指南
+keywords: Java21,虚拟线程,Virtual Threads,Go协程,并发编程,性能优化,轻量级线程,响应式编程
+author: Z.L Vansiit
+date: 2025-02-08
+lastmod: 2025-02-08
+category: 技术分享
+tags:
+  - Java
+  - 并发编程
+  - 性能优化
+  - Go语言
+image: /img/java-virtual-threads.png
 ---
 
 # Java21 虚拟线程初体验

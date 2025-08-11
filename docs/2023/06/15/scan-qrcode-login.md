@@ -1,6 +1,19 @@
 ---
 outline: deep
-title: APP扫码登录：不只有原理，直接上代码
+title: APP扫码登录完整实现：从原理到代码的全栈开发指南
+description: 详细讲解APP扫码登录的实现原理和完整代码实现，包含前端二维码生成、后端接口设计、移动端扫码处理等全栈开发方案
+keywords: 扫码登录,二维码登录,APP开发,前端开发,后端接口,移动端开发,用户认证,登录安全
+author: Z.L Vansiit
+date: 2023-06-15
+lastmod: 2023-06-15
+category: 技术分享
+tags:
+  - 移动开发
+  - 用户认证
+  - 前端开发
+  - 后端开发
+  - 二维码
+image: /img/qrcode/scan-qrcode.jpg
 ---
 
 # APP扫码登录：不只有原理，直接上代码

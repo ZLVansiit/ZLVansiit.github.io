@@ -1,4 +1,22 @@
 
+---
+outline: deep
+title: 国外支付平台全面对比：国际化APP支付集成最佳实践
+description: 详细对比分析PayPal、Stripe、Square等主流国外支付平台的特点和优势，提供国际化APP支付对接的完整建议和实施方案
+keywords: 国外支付平台,PayPal集成,Stripe支付,国际化支付,跨境支付,移动支付,支付对接,全球支付
+author: Z.L Vansiit
+date: 2025-02-08
+lastmod: 2025-02-08
+category: 技术分享
+tags:
+  - 支付集成
+  - 国际化
+  - 跨境支付
+  - PayPal
+  - Stripe
+image: /img/favicon.ico
+---
+
 # 国外支付平台及国际化 APP 支付对接建议
 
 在国外（国际市场）的支付领域，众多支付平台因各自独特的优势而被广泛应用。总体来说，国外主流且较为靠谱的支付平台主要可以分为以下几类：

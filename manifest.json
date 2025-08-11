@@ -1,0 +1,33 @@
+{
+  "name": "Z.L Vansiit's Blog - 技术博客与开发分享",
+  "short_name": "Vansiit Blog",
+  "description": "专注于Java、Spring Boot、架构设计、算法、MySQL、Redis等技术分享的个人博客",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0085a1",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "16x16 32x32 48x48",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/favicon.ico",
+      "sizes": "192x192",
+      "type": "image/x-icon",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/favicon.ico",
+      "sizes": "512x512",
+      "type": "image/x-icon",
+      "purpose": "maskable any"
+    }
+  ],
+  "categories": ["blog", "technology", "development"],
+  "lang": "zh-CN",
+  "dir": "ltr",
+  "scope": "/"
+}

@@ -1,3 +1,21 @@
+---
+outline: deep
+title: Java对接PayPal完整教程：REST API集成与关键注意事项
+description: 详细介绍Java项目中集成PayPal REST API的完整流程，包含开发环境配置、API调用、错误处理和安全性建议
+keywords: PayPal集成,Java支付开发,PayPal REST API,支付对接,跨境支付,PayPal SDK,支付安全,电商支付
+author: Z.L Vansiit
+date: 2025-02-08
+lastmod: 2025-02-08
+category: 技术分享
+tags:
+  - Java
+  - PayPal
+  - 支付集成
+  - REST API
+  - 跨境支付
+image: /img/favicon.ico
+---
+
 # Java 对接 PayPal 详细文档
 
 本文档介绍如何在 Java 项目中对接 PayPal 的 REST API，并重点列出在集成过程中需要特别注意的关键点。
