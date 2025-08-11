@@ -43,6 +43,10 @@ jobs:
           cache: npm # 或 pnpm / yarn
       - name: Setup Pages
         uses: actions/configure-pages@v4
+      - name: Clean dependencies
+        run: |
+          rm -rf node_modules
+          rm -f package-lock.json
       - name: Install dependencies
         run: npm install --legacy-peer-deps # 或 pnpm install / yarn install / bun install
       - name: Build with VitePress
