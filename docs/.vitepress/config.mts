@@ -250,7 +250,6 @@ export default defineConfig({
       
       head.push(['script', { type: 'application/ld+json' }, JSON.stringify(articleSchema)])
     }
-    
     return head
   },
 
