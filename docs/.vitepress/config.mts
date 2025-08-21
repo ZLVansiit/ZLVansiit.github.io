@@ -141,7 +141,7 @@ export default defineConfig({
         link: '/non-fiction',
         items: [
           {text: '突然想起来初中同桌的一些事', link: '/2025/01/06/shudong', tag: '非虚构'},
-          {text: '那个长头发大胡子的老师出家了', link: '/2025/01/06/teacher', tag: '非虚构'},
+          {text: '那个长头发大胡子的老师出家了', link: '/2025/08/19/teacher', tag: '非虚构'},
 
           /*{text: '山里娃', link: '/2025/01/07/shanliren', tag: '非虚构'},*/
         ]
