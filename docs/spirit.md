@@ -2,13 +2,6 @@
 title: Spirit
 prev: false
 next: false
-tags:
-  - Java
-  - util
-  - 日常
-  - 架构
-  - 重构
----
 
 <script setup>
 import { useData } from 'vitepress'

@@ -14,7 +14,7 @@ export default defineConfig({
     ['meta', { name: 'keywords', content: 'Java,Spring Boot,架构,算法,MySQL,Redis,技术博客,vansiit,前端开发,后端开发' }],
     ['meta', { name: 'author', content: 'Z.L Vansiit' }],
     ['meta', { name: 'robots', content: 'index,follow' }],
-    
+
     // Open Graph meta标签
     ['meta', { property: 'og:type', content: 'website' }],
     ['meta', { property: 'og:site_name', content: 'Z.L Vansiit\'s blog' }],
@@ -25,25 +25,25 @@ export default defineConfig({
     ['meta', { property: 'og:image:width', content: '1200' }],
     ['meta', { property: 'og:image:height', content: '630' }],
     ['meta', { property: 'og:locale', content: 'zh_CN' }],
-    
+
     // Twitter Card meta标签
     ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
     ['meta', { name: 'twitter:title', content: 'Z.L Vansiit\'s blog' }],
     ['meta', { name: 'twitter:description', content: '开发 | vansiit，Web & Front-end Engineer | vansiit的个人博客呀' }],
     ['meta', { name: 'twitter:image', content: 'https://vansiit.cc/img/logo.svg' }],
-    
+
     // 移动端优化
     ['meta', { name: 'viewport', content: 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' }],
     ['meta', { name: 'format-detection', content: 'telephone=no' }],
-    
+
     // PWA相关
     ['link', { rel: 'manifest', href: '/manifest.json' }],
     ['meta', { name: 'theme-color', content: '#0085a1' }],
-    
+
     // 性能优化
     ['link', { rel: 'preconnect', href: 'https://fonts.googleapis.com' }],
     ['link', { rel: 'dns-prefetch', href: '//www.google-analytics.com' }],
-    
+
     // 结构化数据 - 网站信息
     ['script', { type: 'application/ld+json' }, JSON.stringify({
       '@context': 'https://schema.org',
@@ -67,7 +67,7 @@ export default defineConfig({
         'query-input': 'required name=search_term_string'
       }
     })],
-    
+
     ['link', { rel: 'icon', href: '/favicon.ico' }],
     [
       'script',
@@ -141,6 +141,7 @@ export default defineConfig({
         link: '/non-fiction',
         items: [
           {text: '突然想起来初中同桌的一些事', link: '/2025/01/06/shudong', tag: '非虚构'},
+          {text: '那个长头发大胡子的老师出家了', link: '/2025/01/06/teacher', tag: '非虚构'},
 
           /*{text: '山里娃', link: '/2025/01/07/shanliren', tag: '非虚构'},*/
         ]
@@ -200,25 +201,25 @@ export default defineConfig({
   // 动态生成页面meta标签
   transformHead: ({ pageData }) => {
     const head = []
-    
+
     // 动态设置页面标题
     if (pageData.frontmatter.title) {
       head.push(['meta', { property: 'og:title', content: pageData.frontmatter.title }])
       head.push(['meta', { name: 'twitter:title', content: pageData.frontmatter.title }])
     }
-    
+
     // 动态设置页面描述
     if (pageData.frontmatter.description) {
       head.push(['meta', { property: 'og:description', content: pageData.frontmatter.description }])
       head.push(['meta', { name: 'twitter:description', content: pageData.frontmatter.description }])
       head.push(['meta', { name: 'description', content: pageData.frontmatter.description }])
     }
-    
+
     // 动态设置canonical URL
     const canonicalUrl = `https://vansiit.cc${pageData.relativePath.replace(/\.md$/, '.html')}`
     head.push(['link', { rel: 'canonical', href: canonicalUrl }])
     head.push(['meta', { property: 'og:url', content: canonicalUrl }])
-    
+
     // 为博客文章添加结构化数据
     if (pageData.relativePath.match(/^\d{4}\/\d{2}\/\d{2}\/.*\.md$/)) {
       const articleSchema = {
@@ -243,11 +244,11 @@ export default defineConfig({
           '@id': canonicalUrl
         }
       }
-      
+
       if (pageData.frontmatter.keywords) {
         articleSchema.keywords = pageData.frontmatter.keywords
       }
-      
+
       head.push(['script', { type: 'application/ld+json' }, JSON.stringify(articleSchema)])
     }
     return head
