@@ -2,6 +2,7 @@
 title: Spirit
 prev: false
 next: false
+---
 
 <script setup>
 import { useData } from 'vitepress'
