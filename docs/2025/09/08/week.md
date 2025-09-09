@@ -21,14 +21,15 @@ tags:
 
 古罗马人用他们信仰的七位神祇（对应太阳、月亮和五大当时已知的行星）来命名星期。当日耳曼部落（盎格鲁-撒克逊人）接触到这个体系时，他们用自己的神祇（北欧神话体系）替换了罗马神祇，形成了古英语的名称，并最终演变成现代英语的单词。
 
-英文	古英语源	含义	对应的罗马神/天体	替换的日耳曼/北欧神
-Monday	Mōnandæg	月亮日	月亮 (Luna)	月亮 (Mona)
-Tuesday	Tīwesdæg	提尔之日	战神玛尔斯 (Mars)	战神提尔 (Tiw/Tyr)
-Wednesday	Wōdnesdæg	沃登之日	神使墨丘利 (Mercury)	主神奥丁 (Odin/Woden)
-Thursday	Þūnresdæg	托尔之日	主神朱庇特 (Jupiter)	雷神托尔 (Thor/Thunor)
-Friday	Frīgedæg	弗丽嘉之日	爱神维纳斯 (Venus)	爱神弗丽嘉/芙蕾雅 (Frigg/Freyja)
-Saturday	Sæternesdæg	萨图恩之日	农神萨图恩 (Saturn)	（无替换，直接借用）
-Sunday	Sunnandæg	太阳日	太阳 (Sol)	太阳 (Sunne)
+|英文	|古英语源	|含义	|对应的罗马神/天体	|替换的日耳曼/北欧神|
+| -------- | --------- | ---------- | --------- | --------- |
+|Monday	|Mōnandæg	|月亮日	|月亮 (Luna)	|月亮 (Mona)|
+|Tuesday	|Tīwesdæg	|提尔之日	|战神玛尔斯 (Mars)	|战神提尔 (Tiw/Tyr)|
+|Wednesday	|Wōdnesdæg	|沃登之日	|神使墨丘利 (Mercury)	|主神奥丁 (Odin/Woden)|
+|Thursday	|Þūnresdæg	|托尔之日	|主神朱庇特 (Jupiter)	|雷神托尔 (Thor/Thunor)|
+|Friday	|Frīgedæg	|弗丽嘉之日	|爱神维纳斯 (Venus)	|爱神弗丽嘉/芙蕾雅 (Frigg/Freyja)|
+|Saturday	|Sæternesdæg	|萨图恩之日	|农神萨图恩 (Saturn)	|（无替换，直接借用）|
+|Sunday	|Sunnandæg	|太阳日	|太阳 (Sol)	|太阳 (Sunne)|
 
 
 ## 二、Sunday-first 与 Monday-first
