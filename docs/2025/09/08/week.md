@@ -6,10 +6,12 @@ keywords: 文化思考
 author: Z.L Vansiit
 date: 2025-09-09
 lastmod: 2025-09-09
-category:文化思考
+category: 文化思考
+tags:
+  - 文化思考
 ---
 
-#星期天到底是怎么来的？
+# 星期天到底是怎么来的？
 
 ## 一、西方的来源
 
