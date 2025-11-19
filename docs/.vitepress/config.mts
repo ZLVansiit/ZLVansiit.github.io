@@ -44,6 +44,9 @@ export default defineConfig({
     ['link', { rel: 'preconnect', href: 'https://fonts.googleapis.com' }],
     ['link', { rel: 'dns-prefetch', href: '//www.google-analytics.com' }],
 
+    // IndexNow 验证
+    ['link', { rel: 'indexnow', href: '/OI53y5QpB6tqIjRLJ5Yf2.txt' }],
+
     // 结构化数据 - 网站信息
     ['script', { type: 'application/ld+json' }, JSON.stringify({
       '@context': 'https://schema.org',
