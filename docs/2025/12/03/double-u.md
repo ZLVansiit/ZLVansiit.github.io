@@ -1,11 +1,11 @@
 ---
 outline: deep
 title: 为什么英文字母 W 读作 double u？
-description: 星期天到底是怎么来的
+description: 为什么英文字母 W 读作 double u
 keywords: 文化思考,英语学习
 author: Z.L Vansiit
-date: 2025-09-09
-lastmod: 2025-09-09
+date: 2025-12-03
+lastmod: 2025-12-03
 category: 文化思考
 tags:
   - 文化思考
