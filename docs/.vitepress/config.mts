@@ -137,6 +137,7 @@ export default defineConfig({
             /*{text: '中东局势', link: '/2024/09/21/middle-east', tag: '无聊的知识'},*/
             {text: '春节真的是中国的传统节日吗？', link: '/2025/01/05/chunjie', tag: '无聊的知识'},
             {text: '星期天到底是怎么来的？', link: '/2025/09/08/week', tag: '无聊的知识'},
+            {text: '为什么英文字母 W 读作 double u？', link: '/2025/12/03/double-u', tag: '无聊的知识'},
         ]
       },
       {
