@@ -84,6 +84,11 @@ export default defineConfig({
       gtag('js', new Date());
       gtag('config', 'G-341DFSJ9B1');`
     ],
+    // Umami Cloud 配置
+    ['script', {
+      src: 'https://cloud.umami.is/script.js',
+      'data-website-id': 'c4e155a2-479b-4f10-a6a7-21a40322f777'
+    }],
     ['meta', {
       name: 'msvalidate.01',
       content: 'E05ABB64BECAFCC799E9521FCAF19CAB'
