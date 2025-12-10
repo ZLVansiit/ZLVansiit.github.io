@@ -8,6 +8,31 @@ Hey！我是 **Vansiit**。
 
 Java开发工程师。
 
+
+<div style="width: 100%; max-width: 600px; margin: 0 auto; padding: 20px; background: #f8f9fa; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+  <h3 style="text-align: center; color: #333;">我的技术栈饼图</h3>
+  <div style="width: 300px; height: 300px; margin: 0 auto; border-radius: 50%; background: conic-gradient(#3498db 0% 30%, #2ecc71 30% 60%, #e74c3c 60% 80%, #f39c12 80% 100%); position: relative;">
+    <div style="position: absolute; width: 120px; height: 120px; background: white; border-radius: 50%; top: 50%; left: 50%; transform: translate(-50%, -50%); display: flex; align-items: center; justify-content: center; font-weight: bold; color: #333; box-shadow: inset 0 0 10px rgba(0,0,0,0.1);">
+      总计
+    </div>
+  </div>
+  <div style="display: flex; justify-content: center; flex-wrap: wrap; margin-top: 20px;">
+    <div style="display: flex; align-items: center; margin: 5px 10px;">
+      <div style="width: 20px; height: 20px; background: #3498db; border-radius: 4px; margin-right: 5px;"></div>
+      <span>JAVA (80%)</span>
+    </div>
+    <div style="display: flex; align-items: center; margin: 5px 10px;">
+      <div style="width: 20px; height: 20px; background: #2ecc71; border-radius: 4px; margin-right: 5px;"></div>
+      <span>WEB前端 (15%)</span>
+    </div>
+    <div style="display: flex; align-items: center; margin: 5px 10px;">
+      <div style="width: 20px; height: 20px; background: #e74c3c; border-radius: 4px; margin-right: 5px;"></div>
+      <span>运维 (5%)</span>
+    </div>
+  </div>
+</div>
+
+
 关于域名：vansiit。<br><br>
 
 某日翻看《说文解字》，“惟，凡思也”。很喜欢背后的意义，人要自主的思辨能力。英文里“van”翻译成“凡”，再加“思”的汉语拼音“si”，“it”是英文的代词。合拼起来就是“vansiit”，全网唯一，沿用至今。
