@@ -8,9 +8,9 @@ Hey！我是 **Vansiit**。
 
 Java开发工程师。
 
-
+<br><br>
 <div style="width: 100%; max-width: 600px; margin: 0 auto; padding: 20px; background: #f8f9fa; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-  <h3 style="text-align: center; color: #333;">我的技术栈饼图</h3>
+  <h3 style="text-align: center; color: #333;">我的技术栈饼图</h3><br><br>
   <div style="width: 300px; height: 300px; margin: 0 auto; border-radius: 50%; background: conic-gradient(#3498db 0% 80%, #2ecc71 80% 95%, #e74c3c 95% 100%); position: relative;">
     <div style="position: absolute; width: 120px; height: 120px; background: white; border-radius: 50%; top: 50%; left: 50%; transform: translate(-50%, -50%); display: flex; align-items: center; justify-content: center; font-weight: bold; color: #333; box-shadow: inset 0 0 10px rgba(0,0,0,0.1);">
       总计
@@ -32,6 +32,7 @@ Java开发工程师。
   </div>
 </div>
 
+<br><br>
 
 关于域名：vansiit。<br><br>
 
