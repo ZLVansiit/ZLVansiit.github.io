@@ -22,7 +22,7 @@ tags:
 
 >**有人问我公理和正义的问题**
 >
-><div style="text-align: left; margin-top: -10px; margin-bottom: 20px; font-style: italic; margin-left: 100px;">中国台湾.杨牧</div>
+><div style="text-align: left; margin-top: 10px; margin-bottom: 20px; font-style: italic; margin-left: 100px;">中国台湾.杨牧</div>
 >
 >有人问我公理和正义的问题
 >写在一封缜密工整的信上，从
