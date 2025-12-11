@@ -1,3 +1,17 @@
+---
+outline: deep
+title: 读诗《有人问我公理和正义的问题》有感
+description: 读诗《有人问我公理和正义的问题》有感
+keywords: 诗歌, 读后感
+author: Z.L Vansiit
+date: 2025-12-11
+lastmod: 2025-12-11
+category: 诗歌
+tags:
+  - 诗歌
+---
+
+
 # 读诗《有人问我公理和正义的问题》有感
 
 ## 引言
@@ -6,7 +20,7 @@
 
 先贴诗歌全文如下：
 
->**有人问我公理和正义的问题** </span>
+>**有人问我公理和正义的问题**
 >
 ><div style="text-align: left; margin-top: -10px; margin-bottom: 20px; font-style: italic; margin-left: 100px;">中国台湾.杨牧</div>
 >
