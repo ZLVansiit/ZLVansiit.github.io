@@ -8,7 +8,7 @@
  *
  * Each colors have exact same color scale system with 3 levels of solid
  * colors with different brightness, and 1 soft color.
- * 
+ *
  * - `XXX-1`: The most solid color used mainly for colored text. It must
  *   satisfy the contrast ratio against when used on top of `XXX-soft`.
  *
@@ -55,25 +55,25 @@
   .VPContent {
     padding: 0 16px;
   }
-  
+
   .VPDoc .container {
     max-width: 100%;
     padding: 0 16px;
   }
-  
+
   .VPNavBar .title {
     font-size: 16px;
   }
-  
+
   .VPHero .name {
     font-size: 32px !important;
     line-height: 1.2;
   }
-  
+
   .VPHero .text {
     font-size: 18px;
   }
-  
+
   .VPFeatures .items {
     grid-template-columns: 1fr;
     gap: 16px;
@@ -98,7 +98,7 @@ img {
     scrollbar-width: none;
     -ms-overflow-style: none;
   }
-  
+
   .vp-code-group .tabs::-webkit-scrollbar {
     display: none;
   }
@@ -115,7 +115,7 @@ img {
   .vp-doc table {
     font-size: 14px;
   }
-  
+
   .vp-doc th,
   .vp-doc td {
     padding: 8px 4px;
@@ -127,7 +127,7 @@ img {
   .DocSearch-Button {
     margin: 0 8px;
   }
-  
+
   .DocSearch-Button-Placeholder {
     display: none;
   }
@@ -146,7 +146,7 @@ img {
     transform: translateX(-100%);
     transition: transform 0.25s;
   }
-  
+
   .VPSidebar.open {
     transform: translateX(0);
   }
@@ -189,18 +189,18 @@ input:focus {
   .VPFooter {
     display: none;
   }
-  
+
   .VPContent {
     margin: 0;
     padding: 0;
   }
-  
+
   .vp-doc h1,
   .vp-doc h2,
   .vp-doc h3 {
     page-break-after: avoid;
   }
-  
+
   .vp-doc pre {
     page-break-inside: avoid;
   }
@@ -291,7 +291,7 @@ input:focus {
   --docsearch-primary-color: var(--vp-c-brand-1) !important;
 }
 
-/* 
+/*
  * Custom CSS
  * -------------------------------------------------------------------------- */
 
@@ -405,4 +405,18 @@ a.VPSocialLink[aria-label="mastodon"]>svg {
 .hide-scrollbar::-webkit-scrollbar {
   /* Safari and Chrome */
   display: none;
+}
+
+
+.vp-comments {
+  margin-top: 64px;
+  padding-top: 32px;
+  border-top: 1px solid var(--vp-c-divider);
+}
+
+.vp-comments-title {
+  margin-bottom: 24px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--vp-c-text-1);
 }

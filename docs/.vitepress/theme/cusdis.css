@@ -1,0 +1,195 @@
+/* =====================================================
+ * Cusdis Comment Style for VitePress
+ * Author: you
+ * Design goal:
+ * - Native VitePress look & feel
+ * - Clean / minimal / technical
+ * - Dark mode friendly
+ * ===================================================== */
+
+/* ------------------------------
+   Comment Container
+-------------------------------- */
+.vp-comments {
+    margin-top: 64px;
+    padding-top: 32px;
+    border-top: 1px solid var(--vp-c-divider);
+}
+
+.vp-comments-title {
+    margin-bottom: 24px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--vp-c-text-1);
+}
+
+/* ------------------------------
+   Cusdis CSS Variables Override
+-------------------------------- */
+.vp-comments {
+    --cusdis-font-size: 14px;
+    --cusdis-line-height: 1.7;
+
+    --cusdis-text-color: var(--vp-c-text-1);
+    --cusdis-text-secondary-color: var(--vp-c-text-2);
+
+    --cusdis-border-color: var(--vp-c-divider);
+    --cusdis-background-color: transparent;
+
+    --cusdis-input-background-color: var(--vp-c-bg-soft);
+    --cusdis-input-text-color: var(--vp-c-text-1);
+
+    --cusdis-button-background-color: var(--vp-c-brand);
+    --cusdis-button-text-color: #fff;
+}
+
+/* ------------------------------
+   Input / Textarea
+-------------------------------- */
+.vp-comments textarea,
+.vp-comments input {
+    width: 100%;
+    border-radius: 10px !important;
+    border: 1px solid var(--vp-c-divider);
+    padding: 10px 12px;
+    font-size: 14px;
+    line-height: 1.6;
+    background-color: var(--vp-c-bg-soft);
+    color: var(--vp-c-text-1);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.vp-comments textarea::placeholder,
+.vp-comments input::placeholder {
+    color: var(--vp-c-text-3);
+}
+
+.vp-comments textarea:focus,
+.vp-comments input:focus {
+    outline: none;
+    border-color: var(--vp-c-brand);
+    box-shadow: 0 0 0 2px
+    color-mix(in srgb, var(--vp-c-brand) 20%, transparent);
+}
+
+/* ------------------------------
+   Buttons
+-------------------------------- */
+.vp-comments button {
+    appearance: none;
+    border-radius: 999px !important;
+    padding: 6px 16px;
+    font-size: 13px;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+.vp-comments button:hover {
+    transform: translateY(-1px);
+    opacity: 0.95;
+}
+
+.vp-comments button:active {
+    transform: translateY(0);
+    opacity: 0.9;
+}
+
+/* ------------------------------
+   Comment List
+-------------------------------- */
+.vp-comments .comment {
+    padding: 16px;
+    margin-bottom: 16px;
+    border-radius: 12px;
+    background-color: var(--vp-c-bg-soft);
+    border: 1px solid var(--vp-c-divider);
+}
+
+/* Header: author + date */
+.vp-comments .comment-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+    font-size: 13px;
+    color: var(--vp-c-text-2);
+}
+
+/* Author name */
+.vp-comments .comment-author {
+    font-weight: 500;
+    color: var(--vp-c-text-1);
+}
+
+/* ------------------------------
+   Comment Content
+-------------------------------- */
+.vp-comments .comment-content {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--vp-c-text-1);
+    word-break: break-word;
+}
+
+/* Code block inside comment */
+.vp-comments .comment-content pre,
+.vp-comments .comment-content code {
+    font-family: var(--vp-font-family-mono);
+    background-color: var(--vp-c-bg);
+    border-radius: 6px;
+    padding: 2px 6px;
+}
+
+/* ------------------------------
+   Reply Button
+-------------------------------- */
+.vp-comments .comment-reply-button {
+    margin-top: 8px;
+    font-size: 12px;
+    opacity: 0.6;
+}
+
+.vp-comments .comment-reply-button:hover {
+    opacity: 1;
+}
+
+/* ------------------------------
+   Nested Replies
+-------------------------------- */
+.vp-comments .comment-children {
+    margin-top: 12px;
+    padding-left: 16px;
+    border-left: 2px solid var(--vp-c-divider);
+}
+
+/* ------------------------------
+   Misc / Cleanup
+-------------------------------- */
+
+/* Hide Cusdis branding */
+.vp-comments .powered-by {
+    display: none !important;
+}
+
+/* Remove aggressive shadows */
+.vp-comments * {
+    box-shadow: none !important;
+}
+
+/* Mobile optimization */
+@media (max-width: 640px) {
+    .vp-comments {
+        margin-top: 48px;
+        padding-top: 24px;
+    }
+
+    .vp-comments-title {
+        font-size: 1.1rem;
+    }
+
+    .vp-comments .comment {
+        padding: 14px;
+    }
+}
