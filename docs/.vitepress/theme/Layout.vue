@@ -1,16 +1,16 @@
+<!-- .vitepress/theme/Layout.vue -->
+<template>
+  <Layout>
+    <template #doc-after>
+      <ClientOnly>
+        <BeautifulCusdis v-if="$frontmatter.comment !== false" />
+      </ClientOnly>
+    </template>
+  </Layout>
+</template>
+
 <script setup>
 import DefaultTheme from 'vitepress/theme'
-import { useData } from 'vitepress'
 
-const { page } = useData()
+const { Layout } = DefaultTheme
 </script>
-
-<template>
-  <DefaultTheme.Layout>
-    <ClientOnly>
-    <template #doc-after>
-      <BeautifulCusdis v-if="page.frontmatter.comment !== false" />
-    </template>
-    </ClientOnly>
-  </DefaultTheme.Layout>
-</template>
