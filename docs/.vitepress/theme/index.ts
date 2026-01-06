@@ -4,7 +4,6 @@ import type { Theme } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
 import Layout from './Layout.vue'
 import './style.css'
-import './cusdis.css'
 import BeautifulCusdis from './components/CusdisComment.vue'
 
 export default {
