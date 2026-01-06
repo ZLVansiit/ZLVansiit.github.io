@@ -73,7 +73,7 @@ const scrollObserver = ref(null)
 
 // Cusdis 配置
 const cusdisConfig = {
-  appId: 'YOUR_APP_ID', // 从 Cusdis 后台获取
+  appId: '20c62207-4689-4d4f-9702-fe99b144741a', // 从 Cusdis 后台获取
   host: 'https://cusdis.com',
   lang: 'zh-cn',
   theme: 'auto',
