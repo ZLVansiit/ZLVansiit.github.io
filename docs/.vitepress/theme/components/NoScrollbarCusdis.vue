@@ -63,7 +63,7 @@ const resizeObserver = ref(null)
 
 // 配置
 const config = {
-  appId: 'YOUR_APP_ID', // 替换为你的 Cusdis App ID
+  appId: '20c62207-4689-4d4f-9702-fe99b144741a', // 替换为你的 Cusdis App ID
   host: 'https://cusdis.com',
   theme: 'auto'
 }
