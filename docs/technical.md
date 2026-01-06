@@ -2,6 +2,7 @@
 title: technical
 prev: false
 next: false
+comment: false
 head:
 - - meta
   - name: description

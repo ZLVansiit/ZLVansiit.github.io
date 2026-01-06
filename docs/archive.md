@@ -2,6 +2,7 @@
 title: archive
 prev: false
 next: false
+comment: false
 ---
 
 <script setup>

@@ -1,6 +1,7 @@
 ---
 # https://vitepress.dev/reference/default-theme-home-page
 layout: home
+comment: false
 
 hero:
   name: Z.L Vansiit's blog
