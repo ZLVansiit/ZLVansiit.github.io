@@ -7,8 +7,10 @@ const { page } = useData()
 
 <template>
   <DefaultTheme.Layout>
+    <ClientOnly>
     <template #doc-after>
-      <CusdisComment v-if="page.frontmatter.comment !== false" />
+      <BeautifulCusdis v-if="page.frontmatter.comment !== false" />
     </template>
+    </ClientOnly>
   </DefaultTheme.Layout>
 </template>

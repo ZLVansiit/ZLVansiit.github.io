@@ -5,12 +5,12 @@ import DefaultTheme from 'vitepress/theme'
 import Layout from './Layout.vue'
 import './style.css'
 import './cusdis.css'
-import CusdisComment from './components/CusdisComment.vue'
+import BeautifulCusdis from './components/CusdisComment.vue'
 
 export default {
   extends: DefaultTheme,
   Layout,
   enhanceApp({ app, router, siteData }) {
-    app.component('CusdisComment', CusdisComment)
+    app.component('BeautifulCusdis', BeautifulCusdis)
   }
 }
