@@ -10,6 +10,56 @@
 /* ------------------------------
    Comment Container
 -------------------------------- */
+/* 强制评论区参与页面整体滚动 */
+.vp-comments,
+.vp-comments * {
+    overflow: visible !important;
+}
+
+/* 移除 Cusdis 内部高度限制 */
+#cusdis_thread {
+    max-height: none !important;
+    height: auto !important;
+}
+
+/* 防止 iframe / wrapper 滚动 */
+iframe {
+    overflow: visible !important;
+}
+
+/* Skeleton loading */
+.vp-comments-skeleton {
+    margin-top: 16px;
+}
+
+.vp-comments-skeleton .skeleton-line {
+    height: 14px;
+    background: linear-gradient(
+            90deg,
+            var(--vp-c-bg-soft) 25%,
+            var(--vp-c-bg) 37%,
+            var(--vp-c-bg-soft) 63%
+    );
+    background-size: 400% 100%;
+    border-radius: 6px;
+    animation: skeleton-loading 1.4s ease infinite;
+    margin-bottom: 10px;
+}
+
+.vp-comments-skeleton .skeleton-line.short {
+    width: 60%;
+}
+
+@keyframes skeleton-loading {
+    0% {
+        background-position: 100% 0;
+    }
+    100% {
+        background-position: 0 0;
+    }
+}
+
+
 .vp-comments {
     margin-top: 64px;
     padding-top: 32px;
