@@ -7,12 +7,8 @@ import CusdisComment from './components/CusdisComment.vue'
 
 export default {
   extends: DefaultTheme,
-  Layout: () => {
-    return h(DefaultTheme.Layout, null, {
-      // https://vitepress.dev/guide/extending-default-theme#layout-slots
-    })
-  },
+  Layout,
   enhanceApp({ app, router, siteData }) {
     app.component('CusdisComment', CusdisComment)
   }
-} satisfies Theme
+}
