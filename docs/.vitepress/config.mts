@@ -78,6 +78,14 @@ export default defineConfig({
     ],
     [
       'script',
+      {
+        async: '',
+        src: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9142047470160095',
+        crossorigin: 'anonymous'
+      }
+    ],
+    [
+      'script',
       {},
       `window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
