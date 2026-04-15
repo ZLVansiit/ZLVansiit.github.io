@@ -104,7 +104,7 @@ const initCusdis = async () => {
     cusdisContainer.value.innerHTML = ''
 
     // 生成标识符
-    const { pageId, pageUrl, pageTitle } = generateIdentifiers()
+    const { pageId, pageUrl, pageTitle } = await generateIdentifiers()
     debugLog('init identifiers', { pageId, pageUrl, pageTitle, routePath: route.path })
 
     // 创建 Cusdis 元素
@@ -153,12 +153,10 @@ const initCusdis = async () => {
 }
 
 // 生成标识符
-const generateIdentifiers = () => {
+const generateIdentifiers = async () => {
   const normalizedPath = normalizeRoutePath(route.path || '/')
-  const slugPageId = buildCusdisSlugPageId(normalizedPath)
-  const pathPageId = normalizedPath
-  // 优先使用与历史数据一致的 slug 规则，避免旧评论丢失
-  const pageId = slugPageId
+  const candidatePageIds = buildCandidatePageIds(normalizedPath)
+  const pageId = await resolvePageId(candidatePageIds, normalizedPath)
   const pageUrl = typeof window !== 'undefined'
       ? `${window.location.origin}${normalizedPath}`
       : ''
@@ -167,10 +165,7 @@ const generateIdentifiers = () => {
   debugLog('page id strategy', {
     normalizedPath,
     selectedPageId: pageId,
-    candidates: {
-      slugPageId,
-      pathPageId
-    }
+    candidatePageIds
   })
 
   return { pageId, pageUrl, pageTitle }
@@ -179,12 +174,64 @@ const generateIdentifiers = () => {
 const normalizeRoutePath = (path) => {
   if (!path) return '/'
   if (path === '/') return '/'
-  return path.endsWith('/') ? path.slice(0, -1) : path
+  const withoutQuery = path.split('?')[0].split('#')[0]
+  const withoutTrailingSlash = withoutQuery.endsWith('/') ? withoutQuery.slice(0, -1) : withoutQuery
+  return withoutTrailingSlash.replace(/\.html$/, '') || '/'
 }
 
 const buildCusdisSlugPageId = (normalizedPath) => {
   if (normalizedPath === '/') return 'index.html'
   return `${normalizedPath.replace(/^\//, '').replace(/\//g, '-')}.html`
+}
+
+const buildCandidatePageIds = (normalizedPath) => {
+  const routeDataPath = normalizeRoutePath(route.data?.relativePath?.replace(/\.md$/, '') || '')
+  const routeDataSlug = routeDataPath && routeDataPath !== '/'
+      ? `${routeDataPath.replace(/^\//, '').replace(/\//g, '-')}.html`
+      : ''
+
+  const candidates = [
+    buildCusdisSlugPageId(normalizedPath),
+    normalizedPath,
+    `${normalizedPath}.html`,
+    normalizedPath.replace(/^\//, ''),
+    route.path || '',
+    routeDataSlug
+  ]
+
+  return [...new Set(candidates.filter(Boolean))]
+}
+
+const resolvePageId = async (candidates, normalizedPath) => {
+  const fallback = candidates[0]
+  if (typeof window === 'undefined') return fallback
+
+  const cacheKey = `cusdis:pageId:${normalizedPath}`
+  const cached = window.sessionStorage.getItem(cacheKey)
+  if (cached) {
+    debugLog('reuse cached pageId', { normalizedPath, cached })
+    return cached
+  }
+
+  for (const candidate of candidates) {
+    try {
+      const url = `${config.host}/api/open/comments?page=1&appId=${config.appId}&pageId=${encodeURIComponent(candidate)}`
+      const res = await fetch(url)
+      if (!res.ok) continue
+      const json = await res.json()
+      const count = Number(json?.data?.commentCount || 0)
+      debugLog('probe pageId', { candidate, count })
+      if (count > 0) {
+        window.sessionStorage.setItem(cacheKey, candidate)
+        return candidate
+      }
+    } catch (error) {
+      debugLog('probe pageId failed', { candidate, error })
+    }
+  }
+
+  debugLog('probe fallback pageId', { fallback })
+  return fallback
 }
 
 // 加载脚本
