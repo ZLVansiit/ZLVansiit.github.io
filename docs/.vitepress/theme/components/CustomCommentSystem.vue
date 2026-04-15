@@ -41,7 +41,7 @@
             :class="{ active: activeMainTagTab === 'emoji' }"
             @click="toggleTagTab('main', 'emoji')"
           >
-            Ⓜ
+            颜
           </button>
         </div>
         <button type="submit" class="submit-btn" :disabled="submitting">
@@ -142,7 +142,7 @@
                   :class="{ active: activeReplyTagTab === 'emoji' }"
                   @click="toggleTagTab('reply', 'emoji')"
                 >
-                  Ⓜ
+                  颜
                 </button>
               </div>
               <button type="submit" class="submit-btn" :disabled="submitting">
