@@ -154,14 +154,37 @@ const initCusdis = async () => {
 
 // 生成标识符
 const generateIdentifiers = () => {
-  const normalizedPath = route.path || '/'
-  const pageId = normalizedPath
+  const normalizedPath = normalizeRoutePath(route.path || '/')
+  const slugPageId = buildCusdisSlugPageId(normalizedPath)
+  const pathPageId = normalizedPath
+  // 优先使用与历史数据一致的 slug 规则，避免旧评论丢失
+  const pageId = slugPageId
   const pageUrl = typeof window !== 'undefined'
       ? `${window.location.origin}${normalizedPath}`
       : ''
   const pageTitle = frontmatter.value.title || title.value || 'Untitled'
 
+  debugLog('page id strategy', {
+    normalizedPath,
+    selectedPageId: pageId,
+    candidates: {
+      slugPageId,
+      pathPageId
+    }
+  })
+
   return { pageId, pageUrl, pageTitle }
+}
+
+const normalizeRoutePath = (path) => {
+  if (!path) return '/'
+  if (path === '/') return '/'
+  return path.endsWith('/') ? path.slice(0, -1) : path
+}
+
+const buildCusdisSlugPageId = (normalizedPath) => {
+  if (normalizedPath === '/') return 'index.html'
+  return `${normalizedPath.replace(/^\//, '').replace(/\//g, '-')}.html`
 }
 
 // 加载脚本
