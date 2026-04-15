@@ -21,3 +21,4 @@ When the task includes substantive changes, the agent must output a git commit i
 ## Exception
 
 - If there is no code/config/content change to commit, explicitly state that no commit was created.
+- If the user explicitly says "do not commit" (or equivalent) in chat, the agent must not create any commit.
