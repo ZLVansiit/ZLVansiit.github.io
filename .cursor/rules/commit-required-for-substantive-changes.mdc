@@ -1,0 +1,23 @@
+---
+description: Require git commit after substantive feature or bug fix changes
+alwaysApply: true
+---
+
+# Commit Required For Substantive Changes
+
+When the task includes substantive changes, the agent must output a git commit in the same turn.
+
+## When this rule is triggered
+
+- Feature addition, feature behavior change, or bug fix.
+- Any implementation that changes runtime behavior (not only analysis/explanation).
+
+## Required actions
+
+1. Stage only relevant files.
+2. Create a commit with a clear message explaining why the change is made.
+3. Report commit hash and changed files in the final response.
+
+## Exception
+
+- If there is no code/config/content change to commit, explicitly state that no commit was created.

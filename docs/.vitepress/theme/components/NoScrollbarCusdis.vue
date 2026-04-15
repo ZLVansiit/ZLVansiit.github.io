@@ -49,7 +49,7 @@ import { ref, onMounted, watch, nextTick, onUnmounted } from 'vue'
 import { useRoute, useData } from 'vitepress'
 
 const route = useRoute()
-const { title, frontmatter, site } = useData()
+const { title, frontmatter } = useData()
 
 // Refs
 const cusdisContainer = ref(null)
@@ -66,6 +66,12 @@ const config = {
   appId: '20c62207-4689-4d4f-9702-fe99b144741a', // 替换为你的 Cusdis App ID
   host: 'https://cusdis.com',
   theme: 'auto'
+}
+
+const renderCusdis = () => {
+  if (typeof window !== 'undefined' && window.CUSDIS?.initial) {
+    window.CUSDIS.initial()
+  }
 }
 
 // 初始化 Cusdis
@@ -91,7 +97,6 @@ const initCusdis = async () => {
     cusdisEl.dataset.pageUrl = pageUrl
     cusdisEl.dataset.pageTitle = pageTitle
     cusdisEl.dataset.theme = config.theme
-    cusdisEl.dataset.lazy = 'true'
 
     // 添加自定义类名
     cusdisEl.className = 'no-scrollbar-cusdis'
@@ -100,6 +105,7 @@ const initCusdis = async () => {
 
     // 加载 Cusdis 脚本
     await loadScript()
+    renderCusdis()
 
     // 初始化完成后调整样式
     setTimeout(() => {
@@ -118,9 +124,10 @@ const initCusdis = async () => {
 
 // 生成标识符
 const generateIdentifiers = () => {
-  const pageId = route.path.replace(/^\//, '').replace(/\//g, '-') || 'home'
+  const normalizedPath = route.path || '/'
+  const pageId = normalizedPath
   const pageUrl = typeof window !== 'undefined'
-      ? window.location.href
+      ? `${window.location.origin}${normalizedPath}`
       : ''
   const pageTitle = frontmatter.value.title || title.value || 'Untitled'
 
@@ -130,9 +137,11 @@ const generateIdentifiers = () => {
 // 加载脚本
 const loadScript = () => {
   return new Promise((resolve, reject) => {
-    // 移除旧的脚本
     const oldScript = document.getElementById('cusdis-noscroll-script')
-    if (oldScript) oldScript.remove()
+    if (oldScript) {
+      resolve()
+      return
+    }
 
     // 创建新脚本
     const script = document.createElement('script')
@@ -140,10 +149,7 @@ const loadScript = () => {
     script.src = `${config.host}/js/cusdis.es.js`
     script.async = true
 
-    script.onload = () => {
-      console.log('Cusdis 加载成功')
-      resolve()
-    }
+    script.onload = resolve
 
     script.onerror = reject
 
@@ -246,10 +252,8 @@ const setupResizeObserver = () => {
 const cleanup = () => {
   if (resizeObserver.value) {
     resizeObserver.value.disconnect()
+    resizeObserver.value = null
   }
-
-  const script = document.getElementById('cusdis-noscroll-script')
-  if (script) script.remove()
 }
 
 // 生命周期
@@ -268,7 +272,9 @@ onUnmounted(() => {
 // 路由变化时重新初始化
 watch(() => route.path, () => {
   cleanup()
-  initCusdis()
+  nextTick(() => {
+    initCusdis()
+  })
 })
 </script>
 
