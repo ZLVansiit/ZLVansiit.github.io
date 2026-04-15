@@ -60,6 +60,7 @@ const isLoading = ref(false)
 const commentCount = ref(0)
 const showScrollHint = ref(false)
 const resizeObserver = ref(null)
+const commentObserver = ref(null)
 
 // 配置
 const config = {
@@ -68,7 +69,24 @@ const config = {
   theme: 'auto'
 }
 
+const isDebugEnabled = () => {
+  if (typeof window === 'undefined') return false
+  return (
+      window.location.search.includes('cusdisDebug=1') ||
+      window.localStorage.getItem('cusdisDebug') === '1'
+  )
+}
+
+const debugLog = (...args) => {
+  if (!isDebugEnabled()) return
+  console.log('[CusdisDebug]', ...args)
+}
+
 const renderCusdis = () => {
+  debugLog('try render via window.CUSDIS.initial()', {
+    hasCusdis: Boolean(window.CUSDIS),
+    hasInitial: Boolean(window.CUSDIS?.initial)
+  })
   if (typeof window !== 'undefined' && window.CUSDIS?.initial) {
     window.CUSDIS.initial()
   }
@@ -87,6 +105,7 @@ const initCusdis = async () => {
 
     // 生成标识符
     const { pageId, pageUrl, pageTitle } = generateIdentifiers()
+    debugLog('init identifiers', { pageId, pageUrl, pageTitle, routePath: route.path })
 
     // 创建 Cusdis 元素
     const cusdisEl = document.createElement('div')
@@ -102,6 +121,15 @@ const initCusdis = async () => {
     cusdisEl.className = 'no-scrollbar-cusdis'
 
     cusdisContainer.value.appendChild(cusdisEl)
+    debugLog('cusdis thread appended', {
+      dataset: {
+        host: cusdisEl.dataset.host,
+        appId: cusdisEl.dataset.appId,
+        pageId: cusdisEl.dataset.pageId,
+        pageUrl: cusdisEl.dataset.pageUrl,
+        pageTitle: cusdisEl.dataset.pageTitle
+      }
+    })
 
     // 加载 Cusdis 脚本
     await loadScript()
@@ -112,11 +140,13 @@ const initCusdis = async () => {
       removeScrollbars()
       updateCommentCount()
       checkScrollHint()
+      setupCommentObserver()
       setupResizeObserver()
     }, 1000)
 
   } catch (error) {
     console.error('Cusdis 初始化失败:', error)
+    debugLog('init error detail', error)
   } finally {
     isLoading.value = false
   }
@@ -139,6 +169,7 @@ const loadScript = () => {
   return new Promise((resolve, reject) => {
     const oldScript = document.getElementById('cusdis-noscroll-script')
     if (oldScript) {
+      debugLog('reuse existing script', { id: oldScript.id, src: oldScript.getAttribute('src') })
       resolve()
       return
     }
@@ -149,9 +180,15 @@ const loadScript = () => {
     script.src = `${config.host}/js/cusdis.es.js`
     script.async = true
 
-    script.onload = resolve
+    script.onload = () => {
+      debugLog('script loaded', { src: script.src })
+      resolve()
+    }
 
-    script.onerror = reject
+    script.onerror = (err) => {
+      debugLog('script load failed', { src: script.src, err })
+      reject(err)
+    }
 
     document.head.appendChild(script)
   })
@@ -202,10 +239,43 @@ const removeScrollbars = () => {
 
 // 更新评论数量
 const updateCommentCount = () => {
-  setTimeout(() => {
-    const comments = document.querySelectorAll('.cds-comment')
-    commentCount.value = comments.length
-  }, 1500)
+  const updateBySelectors = () => {
+    const selectors = ['.cds-comment', '.cds-comment-item', '[data-cusdis-comment]']
+    const counts = selectors.map(selector => ({
+      selector,
+      count: document.querySelectorAll(selector).length
+    }))
+    const nextCount = Math.max(...counts.map(item => item.count), 0)
+    commentCount.value = nextCount
+    debugLog('comment count updated', { nextCount, counts })
+  }
+
+  // Cusdis 渲染存在异步时延，分多次采样更容易定位问题
+  ;[1200, 2500, 4000].forEach(delay => {
+    setTimeout(updateBySelectors, delay)
+  })
+}
+
+const setupCommentObserver = () => {
+  if (!cusdisContainer.value || !window.MutationObserver) return
+
+  if (commentObserver.value) {
+    commentObserver.value.disconnect()
+  }
+
+  commentObserver.value = new MutationObserver((mutations) => {
+    const addedNodes = mutations.reduce((sum, item) => sum + item.addedNodes.length, 0)
+    const removedNodes = mutations.reduce((sum, item) => sum + item.removedNodes.length, 0)
+    debugLog('dom mutation detected', { addedNodes, removedNodes })
+    updateCommentCount()
+  })
+
+  commentObserver.value.observe(cusdisContainer.value, {
+    childList: true,
+    subtree: true
+  })
+
+  debugLog('mutation observer attached')
 }
 
 // 检查是否需要显示滚动提示
@@ -254,6 +324,11 @@ const cleanup = () => {
     resizeObserver.value.disconnect()
     resizeObserver.value = null
   }
+  if (commentObserver.value) {
+    commentObserver.value.disconnect()
+    commentObserver.value = null
+  }
+  debugLog('cleanup completed')
 }
 
 // 生命周期
