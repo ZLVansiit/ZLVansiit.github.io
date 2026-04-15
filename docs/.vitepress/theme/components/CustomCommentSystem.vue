@@ -180,6 +180,7 @@ const THIRD_PARTY_KEY = 'blog_vansiit_cc'
 const THIRD_PARTY_SECRET = 'c37bd3571d9d4d779cfc6b64c1ea7b16'
 const SUBJECT_TYPE = 'article'
 const PAGE_SIZE = 20
+const COMMENTER_PROFILE_KEY = 'custom-comment-profile'
 
 const route = useRoute()
 
@@ -235,6 +236,40 @@ function getOrCreateVoterKey() {
 }
 
 const getAvatarText = (name) => (name?.trim()?.[0] || '匿').toUpperCase()
+
+const loadCommenterProfile = () => {
+  if (typeof window === 'undefined') return
+  try {
+    const raw = window.localStorage.getItem(COMMENTER_PROFILE_KEY)
+    if (!raw) return
+    const parsed = JSON.parse(raw)
+    if (parsed?.nickname) {
+      form.value.nickname = parsed.nickname
+      replyForm.value.nickname = parsed.nickname
+    }
+    if (parsed?.email) {
+      form.value.email = parsed.email
+      replyForm.value.email = parsed.email
+    }
+  } catch (error) {
+    // 忽略损坏的本地缓存，避免影响正常评论流程。
+  }
+}
+
+const persistCommenterProfile = (nickname, email) => {
+  if (typeof window === 'undefined') return
+  try {
+    window.localStorage.setItem(
+      COMMENTER_PROFILE_KEY,
+      JSON.stringify({
+        nickname: nickname.trim(),
+        email: email.trim()
+      })
+    )
+  } catch (error) {
+    // 本地存储不可用时跳过，不影响提交流程。
+  }
+}
 
 const mapComment = (raw) => ({
   id: raw.id,
@@ -299,6 +334,7 @@ const handleSubmit = async () => {
       parentId: null,
       replyToCommentId: null
     })
+    persistCommenterProfile(form.value.nickname, form.value.email)
     form.value.content = ''
     await fetchComments(1)
   } finally {
@@ -343,6 +379,7 @@ const handleReplySubmit = async () => {
       parentId: replyTarget.value.commentId,
       replyToCommentId: replyTarget.value.replyId || replyTarget.value.commentId
     })
+    persistCommenterProfile(replyForm.value.nickname, replyForm.value.email)
     clearReplyComposer()
     await fetchComments(currentPage.value)
   } finally {
@@ -395,6 +432,7 @@ const insertTag = (target, tag) => {
 }
 
 onMounted(() => {
+  loadCommenterProfile()
   fetchComments(1)
 })
 
