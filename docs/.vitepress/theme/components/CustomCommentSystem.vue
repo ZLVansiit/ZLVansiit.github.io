@@ -9,10 +9,33 @@
         <input v-model="form.website" class="field-input" type="url" placeholder="网址" />
       </div>
       <textarea v-model="form.content" class="field-textarea" rows="4" placeholder="键入内容..." />
+      <div class="tag-tabs">
+        <button
+          v-for="tab in tagTabs"
+          :key="tab.key"
+          type="button"
+          class="tag-tab-btn"
+          :class="{ active: activeMainTagTab === tab.key }"
+          @click="toggleTagTab('main', tab.key)"
+        >
+          {{ tab.label }}
+        </button>
+      </div>
+      <div v-if="activeMainTagTab" class="tag-list">
+        <button
+          v-for="tag in getTagItems(activeMainTagTab)"
+          :key="tag"
+          type="button"
+          class="tag-item-btn"
+          @click="insertTag('main', tag)"
+        >
+          {{ tag }}
+        </button>
+      </div>
       <div class="form-footer">
         <div class="form-tools">
-          <button type="button" class="tool-btn">☺</button>
-          <button type="button" class="tool-btn">Ⓜ</button>
+          <button type="button" class="tool-btn" @click="toggleTagTab('main', 'kaomoji')">☺</button>
+          <button type="button" class="tool-btn" @click="toggleTagTab('main', 'emoji')">Ⓜ</button>
         </div>
         <button type="submit" class="submit-btn">发送</button>
       </div>
@@ -67,14 +90,37 @@
               <input v-model="replyForm.website" class="field-input" type="url" placeholder="网址" />
             </div>
             <textarea v-model="replyForm.content" class="field-textarea" rows="3" placeholder="键入内容..." />
+            <div class="tag-tabs">
+              <button
+                v-for="tab in tagTabs"
+                :key="`reply-${tab.key}`"
+                type="button"
+                class="tag-tab-btn"
+                :class="{ active: activeReplyTagTab === tab.key }"
+                @click="toggleTagTab('reply', tab.key)"
+              >
+                {{ tab.label }}
+              </button>
+            </div>
+            <div v-if="activeReplyTagTab" class="tag-list">
+              <button
+                v-for="tag in getTagItems(activeReplyTagTab)"
+                :key="`reply-${tag}`"
+                type="button"
+                class="tag-item-btn"
+                @click="insertTag('reply', tag)"
+              >
+                {{ tag }}
+              </button>
+            </div>
             <div class="form-footer">
               <div class="form-tools">
                 <span class="reply-tag">
                   回复 @{{ replyTarget?.author }}
                   <button type="button" class="reply-tag-close" @click="clearReplyComposer">×</button>
                 </span>
-                <button type="button" class="tool-btn">☺</button>
-                <button type="button" class="tool-btn">Ⓜ</button>
+                <button type="button" class="tool-btn" @click="toggleTagTab('reply', 'kaomoji')">☺</button>
+                <button type="button" class="tool-btn" @click="toggleTagTab('reply', 'emoji')">Ⓜ</button>
               </div>
               <button type="submit" class="submit-btn">发送</button>
             </div>
@@ -97,6 +143,20 @@ import { computed, ref } from 'vue'
 const form = ref({ nickname: '', email: '', website: '', content: '' })
 const replyForm = ref({ nickname: '', email: '', website: '', content: '' })
 const replyTarget = ref(null)
+const activeMainTagTab = ref('')
+const activeReplyTagTab = ref('')
+
+const tagTabs = [
+  { key: 'kaomoji', label: '颜表情' },
+  { key: 'emoji', label: 'Emoji' },
+  { key: 'funny', label: '滑稽' }
+]
+
+const tagItemsMap = {
+  kaomoji: ['(๑•̀ㅂ•́)و', '(ಡωಡ)', '(ง •̀_•́)ง', '(￣▽￣)~*', '(╯°□°）╯', '(｡•̀ᴗ-)✧', '(´▽`ʃ♡ƪ)', '(๑>؂<๑)', '(づ￣ 3￣)づ', '(｀･ω･´)'],
+  emoji: ['😀', '😄', '😆', '🤣', '😊', '😉', '😍', '😘', '🤔', '😎', '🥳', '👏', '👍', '👎', '❤️', '🎉', '🔥', '🚀'],
+  funny: ['[滑稽]', '[doge]', '[吃瓜]', '[赞]', '[偷笑]', '[捂脸]', '[泪目]', '[疑问]', '[大笑]', '[鼓掌]']
+}
 
 const totalCount = 46
 const pageSize = 10
@@ -135,6 +195,7 @@ const openReplyComposer = (commentId, replyId, author) => {
 const clearReplyComposer = () => {
   replyTarget.value = null
   replyForm.value.content = ''
+  activeReplyTagTab.value = ''
 }
 
 const isReplyingTo = (commentId) => replyTarget.value?.commentId === commentId
@@ -160,6 +221,24 @@ const handleReplySubmit = () => {
 
   clearReplyComposer()
 }
+
+const toggleTagTab = (target, tabKey) => {
+  if (target === 'main') {
+    activeMainTagTab.value = activeMainTagTab.value === tabKey ? '' : tabKey
+    return
+  }
+  activeReplyTagTab.value = activeReplyTagTab.value === tabKey ? '' : tabKey
+}
+
+const getTagItems = (tabKey) => tagItemsMap[tabKey] || []
+
+const insertTag = (target, tag) => {
+  if (target === 'reply') {
+    replyForm.value.content = `${replyForm.value.content}${tag} `
+    return
+  }
+  form.value.content = `${form.value.content}${tag} `
+}
 </script>
 
 <style scoped>
@@ -170,12 +249,18 @@ const handleReplySubmit = () => {
 .field-input { width: 100%; border: 0; border-right: 1px solid #f3f4f6; min-height: 52px; padding: 0 16px; font-size: 0.98rem; outline: none; }
 .field-input:last-child { border-right: 0; }
 .field-textarea { width: 100%; border: 0; min-height: 126px; resize: vertical; padding: 14px 16px; font-size: 0.98rem; outline: none; }
+.tag-tabs { display: flex; align-items: center; gap: 6px; padding: 8px 10px 0; border-top: 1px solid #f3f4f6; }
+.tag-tab-btn { border: 1px solid #e5e7eb; background: #fff; color: #374151; border-radius: 6px; padding: 2px 10px; font-size: 0.88rem; cursor: pointer; }
+.tag-tab-btn.active { border-color: #1677ff; color: #1677ff; }
+.tag-list { display: flex; flex-wrap: wrap; gap: 8px; padding: 8px 10px 10px; border-bottom: 1px solid #f3f4f6; }
+.tag-item-btn { border: 0; background: #f9fafb; color: #374151; border-radius: 6px; padding: 3px 8px; font-size: 0.9rem; cursor: pointer; }
+.tag-item-btn:hover { background: #eef2ff; color: #1d4ed8; }
 .form-footer { display: flex; align-items: center; justify-content: space-between; border-top: 1px solid #f3f4f6; padding: 10px 12px; }
 .form-tools { display: flex; align-items: center; gap: 8px; }
 .tool-btn { border: 0; background: transparent; color: #6b7280; font-size: 1rem; cursor: pointer; }
 .submit-btn { min-width: 106px; height: 36px; border: 0; border-radius: 6px; background: #1677ff; color: #fff; font-size: 1rem; cursor: pointer; }
 .comment-summary { margin: 1rem 0 0.75rem; display: flex; align-items: center; gap: 8px; }
-.comment-count { font-size: 2rem; font-weight: 700; line-height: 1.2; }
+.comment-count { font-weight: 700; line-height: 1.2; }
 .summary-arrow { color: #6b7280; font-size: 0.85rem; margin-top: 8px; }
 .comment-list { display: flex; flex-direction: column; gap: 1rem; }
 .comment-item, .reply-item { display: flex; align-items: flex-start; gap: 12px; }
@@ -213,6 +298,11 @@ const handleReplySubmit = () => {
 .dark .comment-form { background: #0f172a; border-color: #334155; }
 .dark .form-row, .dark .form-footer, .dark .field-input { border-color: #334155; background: #0f172a; color: #e5e7eb; }
 .dark .field-textarea { background: #0f172a; color: #e5e7eb; }
+.dark .tag-tabs, .dark .tag-list { border-color: #334155; }
+.dark .tag-tab-btn { border-color: #334155; background: #0f172a; color: #cbd5e1; }
+.dark .tag-tab-btn.active { border-color: #60a5fa; color: #60a5fa; }
+.dark .tag-item-btn { background: #1f2937; color: #cbd5e1; }
+.dark .tag-item-btn:hover { background: #243244; color: #93c5fd; }
 .dark .comment-content { color: #e2e8f0; }
 .dark .comment-actions button, .dark .summary-arrow, .dark .pager-info { color: #94a3b8; }
 .dark .reply-list { border-left-color: #334155; }
