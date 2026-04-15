@@ -392,7 +392,7 @@ watch(
 .custom-comment-section { margin: 2rem 0; color: #111827; }
 .comment-title { margin: 0 0 0.85rem; font-size: 1.9rem; font-weight: 700; }
 .comment-form { border: 1px solid #e5e7eb; border-radius: 10px; background: #fff; }
-.form-row { display: grid; grid-template-columns: 1fr 1fr 1fr; border-bottom: 1px solid #f3f4f6; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid #f3f4f6; }
 .field-input { width: 100%; border: 0; border-right: 1px solid #f3f4f6; min-height: 52px; padding: 0 16px; font-size: 0.98rem; outline: none; }
 .field-input:last-child { border-right: 0; }
 .field-textarea { width: 100%; border: 0; min-height: 126px; resize: vertical; padding: 14px 16px; font-size: 0.98rem; outline: none; }
