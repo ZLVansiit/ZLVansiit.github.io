@@ -217,7 +217,7 @@ const normalizePath = (path) => {
   return withoutQuery.replace(/^\/+/, '').replace(/\/+$/, '')
 }
 
-const getOrCreateVoterKey = () => {
+function getOrCreateVoterKey() {
   if (typeof window === 'undefined') return 'server_voter'
   const key = 'custom-comment-voter-key'
   const cached = window.localStorage.getItem(key)
