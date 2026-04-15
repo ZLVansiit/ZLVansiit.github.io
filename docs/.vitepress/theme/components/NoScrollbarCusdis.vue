@@ -440,6 +440,26 @@ watch(() => route.path, () => {
   padding-right: 0 !important;
 }
 
+/* 隐藏评论区滚动条（保留滚动能力） */
+.no-scrollbar-cusdis,
+.no-scrollbar-cusdis .cds-comments,
+.no-scrollbar-cusdis .cds-comment-list,
+.no-scrollbar-cusdis .cds-comment-box,
+.no-scrollbar-cusdis .cds-textarea {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+.no-scrollbar-cusdis::-webkit-scrollbar,
+.no-scrollbar-cusdis .cds-comments::-webkit-scrollbar,
+.no-scrollbar-cusdis .cds-comment-list::-webkit-scrollbar,
+.no-scrollbar-cusdis .cds-comment-box::-webkit-scrollbar,
+.no-scrollbar-cusdis .cds-textarea::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
 .cds-comment-list {
   display: flex !important;
   flex-direction: column !important;
