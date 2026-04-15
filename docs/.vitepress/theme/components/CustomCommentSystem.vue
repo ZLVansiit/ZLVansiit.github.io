@@ -8,14 +8,7 @@
         <input v-model="form.email" class="field-input" type="email" placeholder="邮箱" />
         <input v-model="form.website" class="field-input" type="url" placeholder="网址" />
       </div>
-
-      <textarea
-        v-model="form.content"
-        class="field-textarea"
-        rows="4"
-        placeholder="键入内容..."
-      />
-
+      <textarea v-model="form.content" class="field-textarea" rows="4" placeholder="键入内容..." />
       <div class="form-footer">
         <div class="form-tools">
           <button type="button" class="tool-btn">☺</button>
@@ -42,7 +35,7 @@
           <p class="comment-content">{{ item.content }}</p>
           <div class="comment-actions">
             <button type="button">赞同 ({{ item.likes }})</button>
-            <button type="button">回复</button>
+            <button type="button" @click="openReplyComposer(item.id, null, item.author)">回复</button>
           </div>
 
           <div v-if="item.replies?.length" class="reply-list">
@@ -57,23 +50,43 @@
                 <p class="comment-content">{{ reply.content }}</p>
                 <div class="comment-actions">
                   <button type="button">赞同 ({{ reply.likes }})</button>
-                  <button type="button">回复</button>
+                  <button type="button" @click="openReplyComposer(item.id, reply.id, reply.author)">回复</button>
                 </div>
               </div>
             </article>
           </div>
+
+          <form
+            v-if="isReplyingTo(item.id)"
+            class="comment-form inline-reply-form"
+            @submit.prevent="handleReplySubmit"
+          >
+            <div class="form-row">
+              <input v-model="replyForm.nickname" class="field-input" type="text" placeholder="昵称" />
+              <input v-model="replyForm.email" class="field-input" type="email" placeholder="邮箱" />
+              <input v-model="replyForm.website" class="field-input" type="url" placeholder="网址" />
+            </div>
+            <textarea v-model="replyForm.content" class="field-textarea" rows="3" placeholder="键入内容..." />
+            <div class="form-footer">
+              <div class="form-tools">
+                <span class="reply-tag">
+                  回复 @{{ replyTarget?.author }}
+                  <button type="button" class="reply-tag-close" @click="clearReplyComposer">×</button>
+                </span>
+                <button type="button" class="tool-btn">☺</button>
+                <button type="button" class="tool-btn">Ⓜ</button>
+              </div>
+              <button type="submit" class="submit-btn">发送</button>
+            </div>
+          </form>
         </div>
       </article>
     </div>
 
     <footer class="pager">
-      <button type="button" class="pager-btn" :disabled="currentPage === 1" @click="currentPage -= 1">
-        上一页
-      </button>
+      <button type="button" class="pager-btn" :disabled="currentPage === 1" @click="currentPage -= 1">上一页</button>
       <span class="pager-info">{{ currentPage }} / {{ totalPages }}</span>
-      <button type="button" class="pager-btn" :disabled="currentPage === totalPages" @click="currentPage += 1">
-        下一页
-      </button>
+      <button type="button" class="pager-btn" :disabled="currentPage === totalPages" @click="currentPage += 1">下一页</button>
     </footer>
   </section>
 </template>
@@ -81,17 +94,13 @@
 <script setup>
 import { computed, ref } from 'vue'
 
-const form = ref({
-  nickname: '',
-  email: '',
-  website: '',
-  content: ''
-})
+const form = ref({ nickname: '', email: '', website: '', content: '' })
+const replyForm = ref({ nickname: '', email: '', website: '', content: '' })
+const replyTarget = ref(null)
 
 const totalCount = 46
 const pageSize = 10
 const currentPage = ref(1)
-
 const comments = ref([
   { id: 'c1', author: 'Y', date: '2025-07-15', content: 'Hi', likes: 0, replies: [] },
   {
@@ -101,14 +110,7 @@ const comments = ref([
     content: '博主您好，我也配置了 Artalk 作为评论系统，并且我的博客跟您一样使用 Fuwari 主题，但是我的 Artalk 无法像您的这样，根据 Fuwari 主题的暗色模式自动切换暗色。',
     likes: 2,
     replies: [
-      {
-        id: 'r21',
-        author: 'Frost Ming',
-        badge: 'Admin',
-        date: '2025-06-13',
-        content: 'auto 的意思是跟随系统，而不是跟随主题切换。需要在代码中自己把切换主题的动作连接到评论系统。',
-        likes: 3
-      }
+      { id: 'r21', author: 'Frost Ming', badge: 'Admin', date: '2025-06-13', content: 'auto 的意思是跟随系统，而不是跟随主题切换。需要在代码中自己把切换主题的动作连接到评论系统。', likes: 3 }
     ]
   },
   { id: 'c3', author: '七月', date: '2025-05-20', content: '这个评论区样式很舒服，期待后端接入后支持实时刷新。', likes: 1, replies: [] },
@@ -120,8 +122,43 @@ const pagedComments = computed(() => comments.value)
 
 const handleSubmit = () => {
   if (!form.value.content.trim()) return
-  // 先完成界面，后续再接入后端存储。
   form.value.content = ''
+}
+
+const openReplyComposer = (commentId, replyId, author) => {
+  replyTarget.value = { commentId, replyId, author }
+  if (!replyForm.value.nickname) replyForm.value.nickname = form.value.nickname
+  if (!replyForm.value.email) replyForm.value.email = form.value.email
+  if (!replyForm.value.website) replyForm.value.website = form.value.website
+}
+
+const clearReplyComposer = () => {
+  replyTarget.value = null
+  replyForm.value.content = ''
+}
+
+const isReplyingTo = (commentId) => replyTarget.value?.commentId === commentId
+
+const handleReplySubmit = () => {
+  if (!replyTarget.value || !replyForm.value.content.trim()) return
+  const targetComment = comments.value.find((item) => item.id === replyTarget.value.commentId)
+  if (!targetComment) return
+
+  const replyAuthor = replyForm.value.nickname.trim() || '访客'
+  const today = new Date().toISOString().slice(0, 10)
+  const content = replyTarget.value.replyId
+    ? `回复 @${replyTarget.value.author}：${replyForm.value.content.trim()}`
+    : replyForm.value.content.trim()
+
+  targetComment.replies.push({
+    id: `r-${Date.now()}`,
+    author: replyAuthor,
+    date: today,
+    content,
+    likes: 0
+  })
+
+  clearReplyComposer()
 }
 </script>
 
@@ -153,6 +190,9 @@ const handleSubmit = () => {
 .comment-actions { display: flex; align-items: center; gap: 14px; }
 .comment-actions button { border: 0; background: transparent; color: #4b5563; padding: 0; font-size: 0.96rem; cursor: pointer; }
 .reply-list { margin-top: 0.75rem; border-left: 2px solid #e5e7eb; padding-left: 12px; display: flex; flex-direction: column; gap: 0.75rem; }
+.inline-reply-form { margin-top: 0.85rem; }
+.reply-tag { display: inline-flex; align-items: center; gap: 6px; border-radius: 6px; background: #f3f4f6; color: #374151; font-size: 0.88rem; padding: 4px 8px; }
+.reply-tag-close { border: 0; background: transparent; color: #6b7280; cursor: pointer; line-height: 1; padding: 0; }
 .pager { margin-top: 1.2rem; display: flex; align-items: center; justify-content: center; gap: 12px; }
 .pager-btn { border: 1px solid #d1d5db; background: #fff; color: #374151; border-radius: 6px; padding: 4px 10px; cursor: pointer; }
 .pager-btn:disabled { opacity: 0.45; cursor: not-allowed; }
@@ -176,5 +216,6 @@ const handleSubmit = () => {
 .dark .comment-content { color: #e2e8f0; }
 .dark .comment-actions button, .dark .summary-arrow, .dark .pager-info { color: #94a3b8; }
 .dark .reply-list { border-left-color: #334155; }
+.dark .reply-tag { background: #1f2937; color: #cbd5e1; }
 .dark .pager-btn { background: #0f172a; border-color: #334155; color: #e2e8f0; }
 </style>
