@@ -146,12 +146,12 @@ const handleSubmit = () => {
 .avatar.small { width: 40px; height: 40px; font-size: 1rem; }
 .comment-body { min-width: 0; flex: 1; }
 .comment-meta { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 4px; }
-.author { font-size: 1.75rem; font-weight: 600; color: #1677ff; }
-.badge { border-radius: 6px; background: #1677ff; color: #fff; padding: 1px 8px; font-size: 0.8rem; }
-.date { color: #6b7280; font-size: 1.5rem; }
-.comment-content { margin: 0 0 6px; font-size: 2rem; line-height: 1.7; color: #111827; }
+.author { font-size: 1.1rem; font-weight: 600; color: #1677ff; }
+.badge { border-radius: 6px; background: #1677ff; color: #fff; padding: 1px 8px; font-size: 0.72rem; }
+.date { color: #6b7280; font-size: 1rem; }
+.comment-content { margin: 0 0 6px; font-size: 1.05rem; line-height: 1.75; color: #111827; }
 .comment-actions { display: flex; align-items: center; gap: 14px; }
-.comment-actions button { border: 0; background: transparent; color: #4b5563; padding: 0; font-size: 1.5rem; cursor: pointer; }
+.comment-actions button { border: 0; background: transparent; color: #4b5563; padding: 0; font-size: 0.96rem; cursor: pointer; }
 .reply-list { margin-top: 0.75rem; border-left: 2px solid #e5e7eb; padding-left: 12px; display: flex; flex-direction: column; gap: 0.75rem; }
 .pager { margin-top: 1.2rem; display: flex; align-items: center; justify-content: center; gap: 12px; }
 .pager-btn { border: 1px solid #d1d5db; background: #fff; color: #374151; border-radius: 6px; padding: 4px 10px; cursor: pointer; }
