@@ -324,54 +324,52 @@ watch(() => route.path, () => {
 <style scoped>
 /* 主容器 */
 .no-scrollbar-comment-section {
-  margin: 3rem 0;
-  padding: 2rem;
-  border-radius: 16px;
-  background: var(--comment-bg, #f8fafc);
-  border: 1px solid var(--comment-border, #e2e8f0);
+  margin: 2.5rem 0;
+  padding: 1.5rem;
+  border-radius: 12px;
+  background: var(--comment-bg, #fff);
+  border: 1px solid var(--comment-border, #e5e7eb);
   position: relative;
 }
 
 /* 头部样式 */
 .comment-header {
-  margin-bottom: 2rem;
-  text-align: center;
+  margin-bottom: 1.25rem;
+  text-align: left;
 }
 
 .comment-title {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 12px;
-  font-size: 1.5rem;
+  justify-content: flex-start;
+  gap: 10px;
+  font-size: 1.25rem;
   font-weight: 700;
-  color: var(--comment-title-color, #1e293b);
-  margin-bottom: 0.5rem;
+  color: var(--comment-title-color, #111827);
+  margin-bottom: 0.35rem;
 }
 
 .comment-icon {
-  width: 28px;
-  height: 28px;
-  color: var(--comment-icon-color, #3b82f6);
+  width: 22px;
+  height: 22px;
+  color: var(--comment-icon-color, #2563eb);
 }
 
 .comment-count {
-  font-size: 1.5rem;
-  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  font-size: 1.75rem;
+  color: var(--comment-count-color, #111827);
+  -webkit-text-fill-color: initial;
 }
 
 .comment-subtitle {
-  color: var(--comment-subtitle-color, #64748b);
-  font-size: 0.95rem;
+  color: var(--comment-subtitle-color, #6b7280);
+  font-size: 0.92rem;
   margin: 0;
 }
 
 /* 评论内容容器 */
 .comment-content-wrapper {
-  min-height: 120px;
+  min-height: 80px;
   position: relative;
 }
 
@@ -382,14 +380,14 @@ watch(() => route.path, () => {
   align-items: center;
   justify-content: center;
   padding: 3rem;
-  color: var(--loading-color, #64748b);
+  color: var(--loading-color, #6b7280);
 }
 
 .loading-spinner {
   width: 48px;
   height: 48px;
-  border: 3px solid var(--spinner-bg, #e2e8f0);
-  border-top-color: var(--spinner-color, #3b82f6);
+  border: 3px solid var(--spinner-bg, #e5e7eb);
+  border-top-color: var(--spinner-color, #2563eb);
   border-radius: 50%;
   animation: spin 1s linear infinite;
   margin-bottom: 1rem;
@@ -407,13 +405,13 @@ watch(() => route.path, () => {
 /* 响应式设计 */
 @media (max-width: 768px) {
   .no-scrollbar-comment-section {
-    padding: 1.5rem;
+    padding: 1rem;
     margin: 2rem 0;
     border-radius: 12px;
   }
 
   .comment-title {
-    font-size: 1.25rem;
+    font-size: 1.1rem;
   }
 }
 
@@ -437,7 +435,7 @@ watch(() => route.path, () => {
   overflow: visible !important;
   max-height: none !important;
   height: auto !important;
-  padding-right: 0 !important;
+  padding: 0 !important;
 }
 
 /* 隐藏评论区滚动条（保留滚动能力） */
@@ -463,19 +461,91 @@ watch(() => route.path, () => {
 .cds-comment-list {
   display: flex !important;
   flex-direction: column !important;
-  gap: 1rem !important;
+  gap: 0.75rem !important;
   padding: 0 !important;
   margin: 0 !important;
 }
 
-/* 4. 美化评论项 */
+/* 表单区域自定义 */
+.no-scrollbar-cusdis .cds-form,
+.no-scrollbar-cusdis .cds-comment-box {
+  background: var(--comment-form-bg, #fff) !important;
+  border: 1px solid var(--comment-form-border, #e5e7eb) !important;
+  border-radius: 10px !important;
+  box-shadow: none !important;
+}
+
+.no-scrollbar-cusdis .cds-form {
+  padding: 1rem !important;
+}
+
+.no-scrollbar-cusdis .cds-form-control {
+  margin-bottom: 0.75rem !important;
+}
+
+.no-scrollbar-cusdis .cds-input,
+.no-scrollbar-cusdis .cds-textarea {
+  border: 1px solid var(--comment-input-border, #d1d5db) !important;
+  border-radius: 8px !important;
+  background: var(--comment-input-bg, #fff) !important;
+  color: var(--comment-input-color, #111827) !important;
+  box-shadow: none !important;
+}
+
+.no-scrollbar-cusdis .cds-input {
+  min-height: 40px !important;
+}
+
+.no-scrollbar-cusdis .cds-input:focus,
+.no-scrollbar-cusdis .cds-textarea:focus {
+  border-color: var(--comment-focus-border, #2563eb) !important;
+}
+
+.no-scrollbar-cusdis .cds-textarea {
+  min-height: 120px !important;
+  max-height: none !important;
+  resize: vertical !important;
+  overflow-y: hidden !important;
+}
+
+.no-scrollbar-cusdis .cds-submit-btn,
+.no-scrollbar-cusdis button[type="submit"] {
+  background: var(--comment-submit-bg, #1677ff) !important;
+  color: #fff !important;
+  border: 0 !important;
+  border-radius: 8px !important;
+  padding: 0.5rem 1rem !important;
+  font-weight: 600 !important;
+}
+
+.no-scrollbar-cusdis .cds-submit-btn:hover,
+.no-scrollbar-cusdis button[type="submit"]:hover {
+  filter: brightness(0.95);
+}
+
+/* 评论项美化 */
 .cds-comment {
-  border-radius: 12px !important;
-  padding: 1.5rem !important;
-  margin-bottom: 1rem !important;
-  background: var(--comment-item-bg, white) !important;
-  border: 1px solid var(--comment-item-border, #e2e8f0) !important;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
+  border-radius: 10px !important;
+  padding: 0.9rem 0.95rem !important;
+  margin-bottom: 0.55rem !important;
+  background: var(--comment-item-bg, #fff) !important;
+  border: 1px solid var(--comment-item-border, #e5e7eb) !important;
+  box-shadow: none !important;
+}
+
+.no-scrollbar-cusdis .cds-comment-author {
+  color: var(--comment-author-color, #111827) !important;
+  font-weight: 600 !important;
+}
+
+.no-scrollbar-cusdis .cds-comment-time {
+  color: var(--comment-time-color, #6b7280) !important;
+  font-size: 0.85rem !important;
+}
+
+.no-scrollbar-cusdis .cds-comment-content {
+  color: var(--comment-content-color, #111827) !important;
+  line-height: 1.7 !important;
 }
 
 .dark .cds-comment {
@@ -483,33 +553,11 @@ watch(() => route.path, () => {
   border-color: var(--comment-item-border, #334155) !important;
 }
 
-/* 5. 评论框美化 */
-.cds-comment-box {
-  border-radius: 12px !important;
-  padding: 1.5rem !important;
-  margin-top: 2rem !important;
-  background: var(--comment-box-bg, white) !important;
-  border: 1px solid var(--comment-box-border, #e2e8f0) !important;
-}
-
-.dark .cds-comment-box {
-  background: var(--comment-box-bg, #0f172a) !important;
-  border-color: var(--comment-box-border, #334155) !important;
-}
-
-/* 6. 输入框修复 */
-.cds-textarea {
-  min-height: 100px !important;
-  max-height: 300px !important;
-  resize: vertical !important;
-  overflow-y: auto !important;
-}
-
-/* 7. 分页样式修复 */
+/* 分页样式修复 */
 .cds-pagination {
-  margin-top: 2rem !important;
-  padding-top: 1.5rem !important;
-  border-top: 1px solid var(--pagination-border, #e2e8f0) !important;
+  margin-top: 1.2rem !important;
+  padding-top: 1rem !important;
+  border-top: 1px solid var(--pagination-border, #e5e7eb) !important;
   display: flex !important;
   justify-content: center !important;
   gap: 0.5rem !important;
@@ -521,18 +569,27 @@ watch(() => route.path, () => {
 
 /* === 深色模式变量 === */
 .dark {
-  --comment-bg: #1e293b;
+  --comment-bg: #111827;
   --comment-border: #334155;
   --comment-title-color: #f1f5f9;
   --comment-icon-color: #60a5fa;
   --comment-subtitle-color: #94a3b8;
+  --comment-count-color: #f1f5f9;
   --loading-color: #94a3b8;
   --spinner-bg: #334155;
   --spinner-color: #60a5fa;
+  --comment-form-bg: #0f172a;
+  --comment-form-border: #334155;
+  --comment-input-bg: #0b1220;
+  --comment-input-border: #334155;
+  --comment-input-color: #e5e7eb;
+  --comment-focus-border: #60a5fa;
+  --comment-submit-bg: #3b82f6;
   --comment-item-bg: #0f172a;
   --comment-item-border: #334155;
-  --comment-box-bg: #0f172a;
-  --comment-box-border: #334155;
+  --comment-author-color: #f1f5f9;
+  --comment-time-color: #94a3b8;
+  --comment-content-color: #e5e7eb;
   --pagination-border: #334155;
 }
 
