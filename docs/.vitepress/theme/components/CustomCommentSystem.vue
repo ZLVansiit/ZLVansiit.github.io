@@ -123,11 +123,11 @@
             </div>
 
             <div class="form-footer">
+              <span class="reply-tag">
+                回复 @{{ replyTarget?.author }}
+                <button type="button" class="reply-tag-close" @click="clearReplyComposer">×</button>
+              </span>
               <div class="form-tools">
-                <span class="reply-tag">
-                  回复 @{{ replyTarget?.author }}
-                  <button type="button" class="reply-tag-close" @click="clearReplyComposer">×</button>
-                </span>
                 <button
                   type="button"
                   class="tool-btn"
