@@ -4,12 +4,12 @@ import type { Theme } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
 import Layout from './Layout.vue'
 import './style.css'
-import NoScrollbarCusdis from './components/NoScrollbarCusdis.vue'
+import CustomCommentSystem from './components/CustomCommentSystem.vue'
 
 export default {
   extends: DefaultTheme,
   Layout,
   enhanceApp({ app, router, siteData }) {
-    app.component('NoScrollbarCusdis', NoScrollbarCusdis)
+    app.component('CustomCommentSystem', CustomCommentSystem)
   }
 }

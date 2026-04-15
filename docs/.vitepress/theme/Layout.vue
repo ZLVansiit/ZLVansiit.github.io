@@ -3,7 +3,7 @@
   <Layout>
     <template #doc-after>
       <ClientOnly>
-        <NoScrollbarCusdis v-if="$frontmatter.comment !== false" />
+        <CustomCommentSystem v-if="$frontmatter.comment !== false" />
       </ClientOnly>
     </template>
   </Layout>
