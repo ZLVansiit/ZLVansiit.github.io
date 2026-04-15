@@ -6,7 +6,6 @@
       <div class="form-row">
         <input v-model="form.nickname" class="field-input" type="text" placeholder="昵称" />
         <input v-model="form.email" class="field-input" type="email" placeholder="邮箱" />
-        <input v-model="form.website" class="field-input" type="url" placeholder="网址" />
       </div>
       <textarea v-model="form.content" class="field-textarea" rows="4" placeholder="键入内容..." />
 
@@ -103,7 +102,6 @@
             <div class="form-row">
               <input v-model="replyForm.nickname" class="field-input" type="text" placeholder="昵称" />
               <input v-model="replyForm.email" class="field-input" type="email" placeholder="邮箱" />
-              <input v-model="replyForm.website" class="field-input" type="url" placeholder="网址" />
             </div>
             <textarea v-model="replyForm.content" class="field-textarea" rows="3" placeholder="键入内容..." />
 
@@ -178,8 +176,8 @@ const PAGE_SIZE = 20
 
 const route = useRoute()
 
-const form = ref({ nickname: '', email: '', website: '', content: '' })
-const replyForm = ref({ nickname: '', email: '', website: '', content: '' })
+const form = ref({ nickname: '', email: '', content: '' })
+const replyForm = ref({ nickname: '', email: '', content: '' })
 const replyTarget = ref(null)
 
 const comments = ref([])
@@ -288,7 +286,6 @@ const handleSubmit = async () => {
       subjectId: subjectId.value,
       nickname: form.value.nickname.trim(),
       email: form.value.email.trim(),
-      website: form.value.website.trim(),
       content: form.value.content.trim(),
       parentId: null,
       replyToCommentId: null
@@ -304,7 +301,6 @@ const openReplyComposer = (commentId, replyId, author) => {
   replyTarget.value = { commentId, replyId, author }
   if (!replyForm.value.nickname) replyForm.value.nickname = form.value.nickname
   if (!replyForm.value.email) replyForm.value.email = form.value.email
-  if (!replyForm.value.website) replyForm.value.website = form.value.website
 }
 
 const clearReplyComposer = () => {
@@ -324,7 +320,6 @@ const handleReplySubmit = async () => {
       subjectId: subjectId.value,
       nickname: replyForm.value.nickname.trim(),
       email: replyForm.value.email.trim(),
-      website: replyForm.value.website.trim(),
       content: replyForm.value.content.trim(),
       parentId: replyTarget.value.commentId,
       replyToCommentId: replyTarget.value.replyId || replyTarget.value.commentId
