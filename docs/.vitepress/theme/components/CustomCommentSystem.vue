@@ -170,7 +170,7 @@
 import { computed, onMounted, ref, watch } from 'vue'
 import { useRoute } from 'vitepress'
 
-const THIRD_PARTY_BASE = 'https://vansiit.site/hd/api/third/comments'
+const THIRD_PARTY_BASE = 'http://localhost:8080/hd/api/third/comments'
 const THIRD_PARTY_KEY = 'blog_vansiit_cc'
 const THIRD_PARTY_SECRET = 'c37bd3571d9d4d779cfc6b64c1ea7b16'
 const SUBJECT_TYPE = 'article'
