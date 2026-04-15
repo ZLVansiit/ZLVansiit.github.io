@@ -97,13 +97,20 @@
           <form
             v-if="isReplyingTo(item.id)"
             class="comment-form inline-reply-form"
+            ref="replyFormRef"
             @submit.prevent="handleReplySubmit"
           >
             <div class="form-row">
               <input v-model="replyForm.nickname" class="field-input" type="text" placeholder="昵称" />
               <input v-model="replyForm.email" class="field-input" type="email" placeholder="邮箱" />
             </div>
-            <textarea v-model="replyForm.content" class="field-textarea" rows="3" placeholder="键入内容..." />
+            <textarea
+              ref="replyTextareaRef"
+              v-model="replyForm.content"
+              class="field-textarea"
+              rows="3"
+              placeholder="键入内容..."
+            />
 
             <div v-if="activeReplyTagTab" class="tag-panel">
               <div class="tag-panel-title">{{ getTagLabel(activeReplyTagTab) }}</div>
@@ -165,7 +172,7 @@
 </template>
 
 <script setup>
-import { computed, onMounted, ref, watch } from 'vue'
+import { computed, nextTick, onMounted, ref, watch } from 'vue'
 import { useRoute } from 'vitepress'
 
 const THIRD_PARTY_BASE = 'http://localhost:8080/hd/api/third/comments'
@@ -179,6 +186,8 @@ const route = useRoute()
 const form = ref({ nickname: '', email: '', content: '' })
 const replyForm = ref({ nickname: '', email: '', content: '' })
 const replyTarget = ref(null)
+const replyFormRef = ref(null)
+const replyTextareaRef = ref(null)
 
 const comments = ref([])
 const totalCount = ref(0)
@@ -297,10 +306,20 @@ const handleSubmit = async () => {
   }
 }
 
-const openReplyComposer = (commentId, replyId, author) => {
+const openReplyComposer = async (commentId, replyId, author) => {
   replyTarget.value = { commentId, replyId, author }
   if (!replyForm.value.nickname) replyForm.value.nickname = form.value.nickname
   if (!replyForm.value.email) replyForm.value.email = form.value.email
+  activeReplyTagTab.value = ''
+
+  await nextTick()
+
+  if (replyFormRef.value?.scrollIntoView) {
+    replyFormRef.value.scrollIntoView({ behavior: 'smooth', block: 'center' })
+  }
+  if (replyTextareaRef.value?.focus) {
+    replyTextareaRef.value.focus()
+  }
 }
 
 const clearReplyComposer = () => {
