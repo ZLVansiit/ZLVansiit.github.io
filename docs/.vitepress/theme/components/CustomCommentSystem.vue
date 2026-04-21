@@ -173,7 +173,7 @@
 
 <script setup>
 import { computed, nextTick, onMounted, ref, watch } from 'vue'
-import { useRoute } from 'vitepress'
+import { useData, useRoute } from 'vitepress'
 
 const THIRD_PARTY_BASE = 'https://vansiit.site/hd/api/third/comments'
 const THIRD_PARTY_KEY = 'blog_vansiit_cc'
@@ -183,6 +183,7 @@ const PAGE_SIZE = 20
 const COMMENTER_PROFILE_KEY = 'custom-comment-profile'
 
 const route = useRoute()
+const { title, frontmatter, site } = useData()
 
 const form = ref({ nickname: '', email: '', content: '' })
 const replyForm = ref({ nickname: '', email: '', content: '' })
@@ -210,6 +211,29 @@ const tagItemsMap = {
 }
 
 const subjectId = computed(() => normalizePath(route.path || '/'))
+const articleTitle = computed(() => {
+  const frontmatterTitle = frontmatter.value?.title
+  if (typeof frontmatterTitle === 'string' && frontmatterTitle.trim()) return frontmatterTitle.trim()
+
+  const pageTitle = title.value
+  if (typeof pageTitle === 'string' && pageTitle.trim()) return pageTitle.trim()
+
+  const routeTitle = route.data?.title
+  if (typeof routeTitle === 'string' && routeTitle.trim()) return routeTitle.trim()
+
+  if (typeof document !== 'undefined') {
+    const headingTitle = document.querySelector('.VPDoc h1')?.textContent
+    if (typeof headingTitle === 'string' && headingTitle.trim()) return headingTitle.trim()
+  }
+
+  if (typeof document !== 'undefined' && typeof document.title === 'string' && document.title.trim()) {
+    const siteTitle = site.value?.title || ''
+    const suffix = siteTitle ? ` | ${siteTitle}` : ''
+    return document.title.replace(suffix, '').trim()
+  }
+
+  return subjectId.value
+})
 const totalPages = computed(() => Math.max(1, Math.ceil((totalCount.value || 0) / PAGE_SIZE)))
 const voterKey = ref(getOrCreateVoterKey())
 
@@ -328,6 +352,7 @@ const handleSubmit = async () => {
     await createComment({
       subjectType: SUBJECT_TYPE,
       subjectId: subjectId.value,
+      subjectTitle: articleTitle.value,
       nickname: form.value.nickname.trim(),
       email: form.value.email.trim(),
       content: form.value.content.trim(),
@@ -373,6 +398,7 @@ const handleReplySubmit = async () => {
     await createComment({
       subjectType: SUBJECT_TYPE,
       subjectId: subjectId.value,
+      subjectTitle: articleTitle.value,
       nickname: replyForm.value.nickname.trim(),
       email: replyForm.value.email.trim(),
       content: replyForm.value.content.trim(),
