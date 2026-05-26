@@ -2,10 +2,22 @@
   <h2>🌐 友情链接</h2>
   <p>欢迎与我交换友链！请确保您的网站内容原创且符合中国大陆法律，已开启HTTPS并有持续更新~</p>
   <div class="link-item">
-    <a href="https://github.com" target="_blank">github.com</a>
+    <a href="https://github.com" target="_blank" rel="noopener noreferrer">github.com</a>
     <p>GitHub Student Developer Pack - GitHub Education</p>
   </div>
-  <!-- 重复结构 -->
+  <div class="link-item">
+    <a href="https://meet-blog.buyixiao.xyz/?ref=https%3A%2F%2Fvansiit.cc" target="_blank" rel="noopener noreferrer">
+      <img class="link-icon" src="https://meet-blog.buyixiao.xyz/favicon.svg" alt="" width="20" height="20" />
+      Meet Blog 博客星图
+    </a>
+    <p>博客导航与星图，收录优质站点，可随机发现新站。</p>
+    <p class="link-extra">
+      随机访问：
+      <a href="https://meet-blog.buyixiao.xyz/?random=on&ref=https%3A%2F%2Fvansiit.cc" target="_blank" rel="noopener noreferrer">全站随机</a>
+      ·
+      <a href="https://meet-blog.buyixiao.xyz/?random=on&category=AI&ref=https%3A%2F%2Fvansiit.cc" target="_blank" rel="noopener noreferrer">AI 分类随机</a>
+    </p>
+  </div>
 </div>
 
 <style>
@@ -33,9 +45,21 @@ a:link, a:visited, a:hover, a:active {
     font-weight: bold;
     color: #2980b9;
   }
+  .link-item .link-icon {
+    vertical-align: middle;
+    margin-right: 6px;
+    border-radius: 4px;
+  }
   .link-item p {
     margin: 5px 0 0;
     color: #666;
     font-size: 0.9em;
+  }
+  .link-item .link-extra {
+    font-size: 0.85em;
+    color: #888;
+  }
+  .link-item .link-extra a {
+    font-weight: normal;
   }
 </style>
