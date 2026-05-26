@@ -1,3 +1,10 @@
+---
+title: 友链
+prev: false
+next: false
+comment: false
+---
+
 <div class="links-micro">
   <h2>🌐 友情链接</h2>
   <p>欢迎与我交换友链！请确保您的网站内容原创且符合中国大陆法律，已开启HTTPS并有持续更新~</p>
@@ -14,6 +21,10 @@
       <a href="https://meet-blog.buyixiao.xyz/?random=on&category=AI&ref=https%3A%2F%2Fvansiit.cc" target="_blank" rel="noopener noreferrer">AI 分类随机</a>
     </p>
   </div>
+
+  <ClientOnly>
+    <FriendLinkApply />
+  </ClientOnly>
 </div>
 
 <style>

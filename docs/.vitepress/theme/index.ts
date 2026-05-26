@@ -5,11 +5,13 @@ import DefaultTheme from 'vitepress/theme'
 import Layout from './Layout.vue'
 import './style.css'
 import CustomCommentSystem from './components/CustomCommentSystem.vue'
+import FriendLinkApply from './components/FriendLinkApply.vue'
 
 export default {
   extends: DefaultTheme,
   Layout,
   enhanceApp({ app, router, siteData }) {
     app.component('CustomCommentSystem', CustomCommentSystem)
+    app.component('FriendLinkApply', FriendLinkApply)
   }
 }
