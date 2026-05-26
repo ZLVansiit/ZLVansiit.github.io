@@ -23,6 +23,10 @@ comment: false
   </div>
 
   <ClientOnly>
+    <FriendLinkList />
+  </ClientOnly>
+
+  <ClientOnly>
     <FriendLinkApply />
   </ClientOnly>
 </div>

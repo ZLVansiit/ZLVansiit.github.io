@@ -6,6 +6,7 @@ import Layout from './Layout.vue'
 import './style.css'
 import CustomCommentSystem from './components/CustomCommentSystem.vue'
 import FriendLinkApply from './components/FriendLinkApply.vue'
+import FriendLinkList from './components/FriendLinkList.vue'
 
 export default {
   extends: DefaultTheme,
@@ -13,5 +14,6 @@ export default {
   enhanceApp({ app, router, siteData }) {
     app.component('CustomCommentSystem', CustomCommentSystem)
     app.component('FriendLinkApply', FriendLinkApply)
+    app.component('FriendLinkList', FriendLinkList)
   }
 }
