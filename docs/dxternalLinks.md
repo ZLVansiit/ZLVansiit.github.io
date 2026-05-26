@@ -2,13 +2,9 @@
   <h2>🌐 友情链接</h2>
   <p>欢迎与我交换友链！请确保您的网站内容原创且符合中国大陆法律，已开启HTTPS并有持续更新~</p>
   <div class="link-item">
-    <a href="https://github.com" target="_blank" rel="noopener noreferrer">github.com</a>
-    <p>GitHub Student Developer Pack - GitHub Education</p>
-  </div>
-  <div class="link-item">
-    <a href="https://meet-blog.buyixiao.xyz/?ref=https%3A%2F%2Fvansiit.cc" target="_blank" rel="noopener noreferrer">
+    <a class="link-title" href="https://meet-blog.buyixiao.xyz/?ref=https%3A%2F%2Fvansiit.cc" target="_blank" rel="noopener noreferrer">
       <img class="link-icon" src="https://meet-blog.buyixiao.xyz/favicon.svg" alt="" width="20" height="20" />
-      Meet Blog 博客星图
+      <span class="link-name">Meet Blog 博客星图</span>
     </a>
     <p>博客导航与星图，收录优质站点，可随机发现新站。</p>
     <p class="link-extra">
@@ -41,14 +37,23 @@ a:link, a:visited, a:hover, a:active {
   .link-item:hover {
     background: #f9f9f9; /* 悬停微背景色 */
   }
-  .link-item a {
+  .link-item .link-title {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: nowrap;
     font-weight: bold;
     color: #2980b9;
   }
   .link-item .link-icon {
-    vertical-align: middle;
-    margin-right: 6px;
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
     border-radius: 4px;
+  }
+  .link-item .link-name {
+    line-height: 1.2;
+    white-space: nowrap;
   }
   .link-item p {
     margin: 5px 0 0;

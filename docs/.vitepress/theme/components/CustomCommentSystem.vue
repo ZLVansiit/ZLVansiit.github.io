@@ -50,6 +50,7 @@
     </form>
 
     <p v-if="errorMessage" class="status-error">{{ errorMessage }}</p>
+    <p v-else-if="successMessage" class="status-success">{{ successMessage }}</p>
     <p v-else-if="loading" class="status-loading">评论加载中...</p>
 
     <div class="comment-summary">
@@ -181,6 +182,8 @@ const THIRD_PARTY_SECRET = 'c37bd3571d9d4d779cfc6b64c1ea7b16'
 const SUBJECT_TYPE = 'article'
 const PAGE_SIZE = 20
 const COMMENTER_PROFILE_KEY = 'custom-comment-profile'
+const COMMENT_STATUS_APPROVED = 'approved'
+const COMMENT_STATUS_PENDING = 'pending'
 
 const route = useRoute()
 const { title, frontmatter, site } = useData()
@@ -198,6 +201,7 @@ const hasMore = ref(false)
 const loading = ref(false)
 const submitting = ref(false)
 const errorMessage = ref('')
+const successMessage = ref('')
 
 const activeMainTagTab = ref('')
 const activeReplyTagTab = ref('')
@@ -314,6 +318,8 @@ const fetchComments = async (page = 1) => {
     const params = new URLSearchParams({
       subjectType: SUBJECT_TYPE,
       subjectId: subjectId.value,
+      status: COMMENT_STATUS_APPROVED,
+      reviewStatus: COMMENT_STATUS_APPROVED,
       voterKey: voterKey.value,
       page: String(page),
       pageSize: String(PAGE_SIZE)
@@ -348,11 +354,15 @@ const createComment = async (payload) => {
 const handleSubmit = async () => {
   if (!form.value.nickname.trim() || !form.value.email.trim() || !form.value.content.trim()) return
   submitting.value = true
+  errorMessage.value = ''
+  successMessage.value = ''
   try {
     await createComment({
       subjectType: SUBJECT_TYPE,
       subjectId: subjectId.value,
       subjectTitle: articleTitle.value,
+      status: COMMENT_STATUS_PENDING,
+      reviewStatus: COMMENT_STATUS_PENDING,
       nickname: form.value.nickname.trim(),
       email: form.value.email.trim(),
       content: form.value.content.trim(),
@@ -361,7 +371,10 @@ const handleSubmit = async () => {
     })
     persistCommenterProfile(form.value.nickname, form.value.email)
     form.value.content = ''
+    successMessage.value = '评论已提交，审核通过后显示。'
     await fetchComments(1)
+  } catch (error) {
+    errorMessage.value = error?.message || '提交失败'
   } finally {
     submitting.value = false
   }
@@ -394,11 +407,15 @@ const isReplyingTo = (commentId) => replyTarget.value?.commentId === commentId
 const handleReplySubmit = async () => {
   if (!replyTarget.value || !replyForm.value.nickname.trim() || !replyForm.value.email.trim() || !replyForm.value.content.trim()) return
   submitting.value = true
+  errorMessage.value = ''
+  successMessage.value = ''
   try {
     await createComment({
       subjectType: SUBJECT_TYPE,
       subjectId: subjectId.value,
       subjectTitle: articleTitle.value,
+      status: COMMENT_STATUS_PENDING,
+      reviewStatus: COMMENT_STATUS_PENDING,
       nickname: replyForm.value.nickname.trim(),
       email: replyForm.value.email.trim(),
       content: replyForm.value.content.trim(),
@@ -407,7 +424,10 @@ const handleReplySubmit = async () => {
     })
     persistCommenterProfile(replyForm.value.nickname, replyForm.value.email)
     clearReplyComposer()
+    successMessage.value = '回复已提交，审核通过后显示。'
     await fetchComments(currentPage.value)
+  } catch (error) {
+    errorMessage.value = error?.message || '提交失败'
   } finally {
     submitting.value = false
   }
@@ -490,9 +510,10 @@ watch(
 .tool-btn.active { color: #1677ff; font-weight: 700; }
 .submit-btn { min-width: 106px; height: 36px; border: 0; border-radius: 6px; background: #1677ff; color: #fff; font-size: 1rem; cursor: pointer; }
 .submit-btn:disabled { opacity: 0.65; cursor: not-allowed; }
-.status-loading, .status-error { margin: 0.75rem 0 0; font-size: 0.92rem; }
+.status-loading, .status-error, .status-success { margin: 0.75rem 0 0; font-size: 0.92rem; }
 .status-loading { color: #6b7280; }
 .status-error { color: #b91c1c; }
+.status-success { color: #047857; }
 .comment-summary { margin: 1rem 0 0.75rem; display: flex; align-items: center; gap: 8px; }
 .comment-count { font-weight: 700; line-height: 1.2; }
 .summary-arrow { color: #6b7280; font-size: 0.85rem; margin-top: 8px; }
@@ -540,6 +561,7 @@ watch(
 .dark .comment-content { color: #e2e8f0; }
 .dark .comment-actions button, .dark .summary-arrow, .dark .pager-info, .dark .status-loading { color: #94a3b8; }
 .dark .status-error { color: #fca5a5; }
+.dark .status-success { color: #6ee7b7; }
 .dark .reply-list { border-left-color: #334155; }
 .dark .reply-tag { background: #1f2937; color: #cbd5e1; }
 .dark .pager-btn { background: #0f172a; border-color: #334155; color: #e2e8f0; }
