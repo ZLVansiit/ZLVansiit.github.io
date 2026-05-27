@@ -33,6 +33,9 @@
 
     <!-- 动态列表 -->
     <section class="moments-feed">
+      <p v-if="loading" class="feed-status">加载中...</p>
+      <p v-else-if="errorMessage" class="feed-status feed-status-error">{{ errorMessage }}</p>
+      <p v-else-if="!posts.length" class="feed-status">暂无动态</p>
       <article v-for="post in posts" :key="post.id" class="moment-item">
         <img class="moment-avatar" :src="profile.avatar" :alt="profile.name" />
         <div class="moment-body">
@@ -119,12 +122,14 @@
 
 <script setup>
 import { nextTick, onMounted, onUnmounted, ref } from 'vue'
-import { momentsPosts, momentsProfile } from '../data/moments'
+import { fetchMomentsFeed } from '../api/momentsApi'
 
 const CONTENT_LIMIT = 140
 
-const profile = momentsProfile
-const posts = momentsPosts
+const profile = ref({ name: '张磊', avatar: '/img/logo.svg', cover: '/moments/cover.jpg' })
+const posts = ref([])
+const loading = ref(false)
+const errorMessage = ref('')
 const coverBroken = ref(false)
 const expandedIds = ref(new Set())
 const activeMenuId = ref(null)
@@ -134,9 +139,9 @@ const onCoverError = () => {
 }
 
 const needExpand = (post) => (post.content?.length || 0) > CONTENT_LIMIT
-const isExpanded = (id) => expandedIds.value.has(id)
+const isExpanded = (id) => expandedIds.value.has(String(id))
 const expandPost = (id) => {
-  expandedIds.value = new Set([...expandedIds.value, id])
+  expandedIds.value = new Set([...expandedIds.value, String(id)])
 }
 const displayContent = (post) => {
   if (!post.content) return ''
@@ -211,8 +216,24 @@ const closeMenuOnClickOutside = () => {
   activeMenuId.value = null
 }
 
+const loadFeed = async () => {
+  loading.value = true
+  errorMessage.value = ''
+  try {
+    const data = await fetchMomentsFeed()
+    profile.value = data.profile
+    posts.value = data.list
+  } catch (error) {
+    errorMessage.value = error?.message || '朋友圈加载失败'
+    posts.value = []
+  } finally {
+    loading.value = false
+  }
+}
+
 onMounted(() => {
   document.addEventListener('click', closeMenuOnClickOutside)
+  loadFeed()
 })
 
 onUnmounted(() => {
@@ -324,6 +345,18 @@ onUnmounted(() => {
 .moments-feed {
   padding: 36px 0 24px;
   background: #fff;
+}
+
+.feed-status {
+  margin: 0;
+  padding: 24px 16px;
+  text-align: center;
+  font-size: 14px;
+  color: #b2b2b2;
+}
+
+.feed-status-error {
+  color: #b91c1c;
 }
 
 .moment-item {
