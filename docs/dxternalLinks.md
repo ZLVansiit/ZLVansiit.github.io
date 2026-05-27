@@ -16,12 +16,6 @@ comment: false
       <span class="link-name">Meet Blog 博客星图</span>
     </a>
     <p>博客导航星图，收录优质站点，随机发现新站。</p>
-    <p class="link-extra">
-      随机访问：
-      <a href="https://meet-blog.buyixiao.xyz/?random=on&ref=https%3A%2F%2Fvansiit.cc" target="_blank" rel="noopener noreferrer">全站随机</a>
-      ·
-      <a href="https://meet-blog.buyixiao.xyz/?random=on&category=AI&ref=https%3A%2F%2Fvansiit.cc" target="_blank" rel="noopener noreferrer">AI 分类随机</a>
-    </p>
   </div>
 
   <div class="link-item">
