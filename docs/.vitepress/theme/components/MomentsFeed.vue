@@ -3,14 +3,16 @@
     <!-- 封面区：昵称在右、头像贴封面右下角 -->
     <header class="moments-header">
       <div class="cover-wrap">
-        <img
-          v-if="profile.cover && !coverBroken"
-          :src="profile.cover"
-          alt=""
-          class="cover-img"
-          @error="onCoverError"
-        />
-        <div v-else class="cover-fallback" />
+        <div class="cover-media">
+          <img
+            v-if="profile.cover && !coverBroken"
+            :src="profile.cover"
+            alt=""
+            class="cover-img"
+            @error="onCoverError"
+          />
+          <div v-else class="cover-fallback" />
+        </div>
 
         <div class="cover-toolbar">
           <a class="toolbar-btn" href="/" aria-label="返回">‹</a>
@@ -224,7 +226,7 @@ const loadFeed = async () => {
     profile.value = data.profile
     posts.value = data.list
   } catch (error) {
-    errorMessage.value = error?.message || '朋友圈加载失败'
+    
     posts.value = []
   } finally {
     loading.value = false
@@ -251,6 +253,7 @@ onUnmounted(() => {
   background: #fff;
   min-height: 100vh;
   flex-shrink: 0;
+  overflow: visible;
   font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei',
     sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -259,12 +262,20 @@ onUnmounted(() => {
 /* ---------- 封面 ---------- */
 .moments-header {
   margin-bottom: 0;
+  overflow: visible;
 }
 
 .cover-wrap {
   position: relative;
   width: 100%;
   height: 300px;
+  overflow: visible;
+  background: transparent;
+}
+
+.cover-media {
+  position: absolute;
+  inset: 0;
   overflow: hidden;
   background: #d8d8d8;
 }
@@ -317,19 +328,24 @@ onUnmounted(() => {
 .cover-profile {
   position: absolute;
   right: 16px;
-  bottom: -24px;
+  bottom: -36px;
   display: flex;
   align-items: flex-end;
-  gap: 12px;
-  z-index: 2;
+  gap: 10px;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.cover-profile .cover-avatar {
+  pointer-events: auto;
 }
 
 .cover-name {
   color: #fff;
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   font-weight: 500;
   line-height: 1.3;
-  padding-bottom: 8px;
+  padding-bottom: 42px;
   text-shadow: 0 1px 4px rgba(0, 0, 0, 0.45);
   max-width: 200px;
   text-align: right;
@@ -342,12 +358,16 @@ onUnmounted(() => {
   object-fit: cover;
   background: #f0f0f0;
   flex-shrink: 0;
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
 }
 
 /* ---------- 动态列表 ---------- */
 .moments-feed {
-  padding: 36px 0 24px;
+  padding: 44px 0 24px;
   background: #fff;
+  position: relative;
+  z-index: 1;
 }
 
 .feed-status {
