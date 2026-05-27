@@ -15,7 +15,7 @@
 <script setup>
 import { ref } from 'vue'
 
-const siteInfoText = `申请友链
+const siteInfoText = `
 title： Z.L Vansiit's blog
 website： https://vansiit.cc/
 description： 技术博客 | 生活随笔 | 唠嗑扯淡
