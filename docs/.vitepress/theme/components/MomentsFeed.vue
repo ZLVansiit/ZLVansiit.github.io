@@ -252,9 +252,19 @@ const formatRelativeTime = (timeStr) => {
   return `${month}月${day}日`
 }
 
+/** 解析 yyyy-MM-dd HH:mm:ss（兼容无秒、斜杠分隔） */
 const parseTime = (timeStr) => {
   if (!timeStr) return null
-  const normalized = timeStr.replace(/-/g, '/')
+  const trimmed = String(timeStr).trim()
+  const matched = trimmed.match(
+    /^(\d{4})-(\d{2})-(\d{2})[ T](\d{2}):(\d{2})(?::(\d{2}))?$/
+  )
+  if (matched) {
+    const [, y, mo, d, h, mi, s] = matched
+    const date = new Date(+y, +mo - 1, +d, +h, +mi, +(s || 0))
+    return Number.isNaN(date.getTime()) ? null : date
+  }
+  const normalized = trimmed.replace(/-/g, '/')
   const date = new Date(normalized)
   return Number.isNaN(date.getTime()) ? null : date
 }

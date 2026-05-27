@@ -7,6 +7,7 @@ export interface MomentMedia {
 
 export interface MomentPost {
   id: number | string
+  /** yyyy-MM-dd HH:mm:ss */
   time: string
   content?: string
   location?: string
