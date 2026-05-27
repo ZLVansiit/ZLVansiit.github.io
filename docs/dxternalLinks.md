@@ -38,8 +38,28 @@ comment: false
     <p>对当下的反思和批判</p>
   </div>
 
+  <div class="link-item">
+    <a class="link-title" href="https://cnb.cool/Blog_Bazaar/" target="_blank" rel="noopener noreferrer">
+      <img class="link-icon" src="https://s41.ax1x.com/2026/05/23/pm9EXnS.png" alt="" width="20" height="20" />
+      <span class="link-name">博客集市</span>
+    </a>
+    <p>来这里摆摊，让更多人认识你！</p>
+  </div>
+
+  <div class="link-item">
+    <a class="link-title" href="https://wangxinyang.top" target="_blank" rel="noopener noreferrer">
+      <img class="link-icon" src="https://wangxinyang.top/upload/%E3%80%90%E5%93%B2%E9%A3%8E%E5%A3%81%E7%BA%B8%E3%80%91%E6%8F%92%E7%94%BB%E9%A3%8E%E6%A0%BC-%E8%8A%B1%E6%9C%B5%E5%85%83%E7%B4%A0-PHSR.png" alt="" width="20" height="20" />
+      <span class="link-name">wangxinyang</span>
+    </a>
+    <p>个人博客 / 学习交流 / 生活日常</p>
+  </div>
+
   <ClientOnly>
     <FriendLinkList />
+  </ClientOnly>
+
+  <ClientOnly>
+    <FriendLinkSiteInfo />
   </ClientOnly>
 
   <ClientOnly>

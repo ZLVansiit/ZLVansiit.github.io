@@ -7,6 +7,7 @@ import './style.css'
 import CustomCommentSystem from './components/CustomCommentSystem.vue'
 import FriendLinkApply from './components/FriendLinkApply.vue'
 import FriendLinkList from './components/FriendLinkList.vue'
+import FriendLinkSiteInfo from './components/FriendLinkSiteInfo.vue'
 import MomentsFeed from './components/MomentsFeed.vue'
 
 export default {
@@ -16,6 +17,7 @@ export default {
     app.component('CustomCommentSystem', CustomCommentSystem)
     app.component('FriendLinkApply', FriendLinkApply)
     app.component('FriendLinkList', FriendLinkList)
+    app.component('FriendLinkSiteInfo', FriendLinkSiteInfo)
     app.component('MomentsFeed', MomentsFeed)
   }
 }
