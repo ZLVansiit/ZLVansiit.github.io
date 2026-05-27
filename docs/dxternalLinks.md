@@ -66,6 +66,15 @@ comment: false
     <p>致虚极，守静笃。</p>
   </div>
 
+  <div class="link-item">
+    <a class="link-title" href="https://ursb.me/blog/" target="_blank" rel="noopener noreferrer">
+      <img class="link-icon" src="https://airing.ursb.me/image/favicon.ico" alt="" width="20" height="20" />
+      <span class="link-name">Airing's Blog</span>
+    </a>
+    <p>应无所住而生其心</p>
+  </div>
+
+
   </div>
 
   <ClientOnly>
