@@ -80,19 +80,7 @@
                 class="live-badge"
                 aria-label="实况照片"
               >
-                <svg class="live-badge-icon" viewBox="0 0 17 17" aria-hidden="true">
-                  <circle cx="8.5" cy="8.5" r="7" fill="none" stroke="currentColor" stroke-width="1.25" />
-                  <circle
-                    cx="8.5"
-                    cy="8.5"
-                    r="4.25"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.25"
-                    stroke-dasharray="2.2 1.35"
-                  />
-                  <circle cx="8.5" cy="8.5" r="1.15" fill="currentColor" />
-                </svg>
+                <LivePhotoIcon class="live-badge-icon" />
                 <span class="live-badge-text">LIVE</span>
               </span>
             </div>
@@ -200,19 +188,7 @@
                 <span class="live-spinner" />
               </div>
               <span v-if="liveVideoPlaying" class="live-preview-badge" aria-hidden="true">
-                <svg class="live-badge-icon" viewBox="0 0 17 17">
-                  <circle cx="8.5" cy="8.5" r="7" fill="none" stroke="currentColor" stroke-width="1.25" />
-                  <circle
-                    cx="8.5"
-                    cy="8.5"
-                    r="4.25"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.25"
-                    stroke-dasharray="2.2 1.35"
-                  />
-                  <circle cx="8.5" cy="8.5" r="1.15" fill="currentColor" />
-                </svg>
+                <LivePhotoIcon class="live-badge-icon" />
                 <span class="live-badge-text">LIVE</span>
               </span>
             </div>
@@ -226,6 +202,7 @@
 <script setup>
 import { nextTick, onMounted, onUnmounted, ref, watch } from 'vue'
 import { fetchMomentsFeed, isMomentsMockMode } from '../api/momentsApi'
+import LivePhotoIcon from './LivePhotoIcon.vue'
 
 const CONTENT_LIMIT = 140
 
