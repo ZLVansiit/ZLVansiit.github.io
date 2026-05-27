@@ -444,26 +444,32 @@ a.VPSocialLink[aria-label="mastodon"]>svg {
 
 .VPDoc:has(.moments-page) .content,
 .vp-doc:has(.moments-page) .content {
-  width: 100%;
+  width: 480px;
+  min-width: 480px;
   max-width: 480px;
   margin: 0 auto;
   padding: 0 0 24px;
   flex: none;
+  box-sizing: border-box;
 }
 
 .VPDoc:has(.moments-page) .content-container,
 .vp-doc:has(.moments-page) .content-container {
+  width: 480px;
+  min-width: 480px;
   max-width: 480px;
-  width: 100%;
   margin: 0 auto;
   padding: 0;
+  box-sizing: border-box;
 }
 
 .VPDoc:has(.moments-page) .vp-doc,
 .vp-doc:has(.moments-page) {
-  width: 100%;
-  max-width: 100%;
+  width: 480px;
+  min-width: 480px;
+  max-width: 480px;
   margin: 0 auto;
+  box-sizing: border-box;
 }
 
 .VPDoc:has(.moments-page) h1,
@@ -474,9 +480,25 @@ a.VPSocialLink[aria-label="mastodon"]>svg {
 .VPDoc:has(.moments-page) .VPDocFooter,
 .vp-doc:has(.moments-page) .VPDocFooter {
   margin-top: 0;
+  width: 480px;
   max-width: 480px;
   margin-left: auto;
   margin-right: auto;
+}
+
+@media (max-width: 520px) {
+  .VPDoc:has(.moments-page) .content,
+  .vp-doc:has(.moments-page) .content,
+  .VPDoc:has(.moments-page) .content-container,
+  .vp-doc:has(.moments-page) .content-container,
+  .VPDoc:has(.moments-page) .vp-doc,
+  .vp-doc:has(.moments-page),
+  .VPDoc:has(.moments-page) .VPDocFooter,
+  .vp-doc:has(.moments-page) .VPDocFooter {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+  }
 }
 
 /* 朋友圈固定浅色，贴近微信 */

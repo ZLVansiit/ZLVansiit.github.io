@@ -243,11 +243,14 @@ onUnmounted(() => {
 
 <style scoped>
 .moments-page {
-  width: 100%;
-  max-width: 480px;
+  --moments-width: 480px;
+  width: var(--moments-width);
+  min-width: var(--moments-width);
+  max-width: var(--moments-width);
   margin: 0 auto;
   background: #fff;
   min-height: 100vh;
+  flex-shrink: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei',
     sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -602,8 +605,11 @@ onUnmounted(() => {
   object-fit: contain;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 520px) {
   .moments-page {
+    --moments-width: 100%;
+    width: 100%;
+    min-width: 0;
     max-width: 100%;
   }
 

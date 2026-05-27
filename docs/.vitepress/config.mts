@@ -276,4 +276,15 @@ export default defineConfig({
     return head
   },
 
+  vite: {
+    server: {
+      proxy: {
+        '/hd/api': {
+          target: 'http://127.0.0.1:8080',
+          changeOrigin: true
+        }
+      }
+    }
+  }
+
 })

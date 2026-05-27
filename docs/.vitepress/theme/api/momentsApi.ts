@@ -25,7 +25,7 @@ export interface MomentsFeedData {
 }
 
 const MOMENTS_FEED_API = import.meta.env.DEV
-  ? 'http://127.0.0.1:8080/hd/api/third/moments/feed'
+  ? '/hd/api/third/moments/feed'
   : 'https://vansiit.site/hd/api/third/moments/feed'
 
 const THIRD_PARTY_KEY = 'blog_vansiit_cc'
