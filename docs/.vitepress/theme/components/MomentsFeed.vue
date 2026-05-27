@@ -74,7 +74,26 @@
                 class="media-img"
                 loading="lazy"
               />
-              <span v-if="item.type === 'live'" class="live-badge">LIVE</span>
+              <span
+                v-if="item.type === 'live'"
+                class="live-badge"
+                aria-label="实况照片"
+              >
+                <svg class="live-badge-icon" viewBox="0 0 17 17" aria-hidden="true">
+                  <circle cx="8.5" cy="8.5" r="7" fill="none" stroke="currentColor" stroke-width="1.25" />
+                  <circle
+                    cx="8.5"
+                    cy="8.5"
+                    r="4.25"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.25"
+                    stroke-dasharray="2.2 1.35"
+                  />
+                  <circle cx="8.5" cy="8.5" r="1.15" fill="currentColor" />
+                </svg>
+                <span class="live-badge-text">LIVE</span>
+              </span>
             </div>
           </div>
 
@@ -128,7 +147,7 @@ import { fetchMomentsFeed } from '../api/momentsApi'
 
 const CONTENT_LIMIT = 140
 
-const profile = ref({ name: '张磊', avatar: '/img/logo.svg', cover: '/moments/cover.jpg' })
+const profile = ref({ name: 'Vansiit', avatar: '/img/logo.svg', cover: '/moments/cover.jpg' })
 const posts = ref([])
 const loading = ref(false)
 const errorMessage = ref('')
@@ -500,16 +519,56 @@ onUnmounted(() => {
   display: block;
 }
 
+/* iOS 相册缩略图默认 LIVE 标记 */
 .live-badge {
   position: absolute;
-  left: 4px;
-  top: 4px;
+  left: 6px;
+  top: 6px;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  height: 18px;
+  padding: 0 6px 0 4px;
+  border-radius: 999px;
+  color: #fff;
+  background: rgba(60, 60, 67, 0.55);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  backdrop-filter: blur(12px) saturate(180%);
+  box-shadow: 0 0 0 0.5px rgba(255, 255, 255, 0.12) inset;
+  pointer-events: none;
+  user-select: none;
+}
+
+.live-badge-icon {
+  width: 13px;
+  height: 13px;
+  flex-shrink: 0;
+}
+
+.live-badge-text {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', sans-serif;
   font-size: 10px;
   font-weight: 600;
-  color: #fff;
-  background: rgba(0, 0, 0, 0.4);
-  padding: 1px 5px;
-  border-radius: 2px;
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+
+.media-count-1 .live-badge {
+  left: 10px;
+  top: 10px;
+  height: 22px;
+  padding: 0 8px 0 6px;
+  gap: 4px;
+}
+
+.media-count-1 .live-badge-icon {
+  width: 15px;
+  height: 15px;
+}
+
+.media-count-1 .live-badge-text {
+  font-size: 11px;
 }
 
 /* 时间 + 两点菜单 */
