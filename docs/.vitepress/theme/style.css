@@ -420,3 +420,56 @@ a.VPSocialLink[aria-label="mastodon"]>svg {
   font-weight: 600;
   color: var(--vp-c-text-1);
 }
+
+/* 朋友圈页面：仿微信时间线，隐藏侧栏并收窄内容区 */
+.vp-doc:has(.moments-page) .aside-container,
+.vp-doc:has(.moments-page) .aside {
+  display: none !important;
+}
+
+.vp-doc:has(.moments-page) .content {
+  max-width: 100%;
+}
+
+.vp-doc:has(.moments-page) .content-container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding-top: 12px;
+  padding-bottom: 32px;
+}
+
+.vp-doc:has(.moments-page) h1 {
+  display: none;
+}
+
+.vp-doc:has(.moments-page) .VPDocFooter {
+  margin-top: 0;
+}
+
+.dark .moments-page {
+  background: #1a1a1a;
+  box-shadow: none;
+}
+
+.dark .moments-header,
+.dark .moments-feed {
+  background: #2b2b2b;
+}
+
+.dark .moment-item {
+  border-bottom-color: #3a3a3a;
+}
+
+.dark .moment-name {
+  color: #7d90b8;
+}
+
+.dark .moment-content,
+.dark .profile-name {
+  color: #e8e8e8;
+}
+
+.dark .profile-sign,
+.dark .moment-meta {
+  color: #888;
+}

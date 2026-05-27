@@ -114,6 +114,7 @@ export default defineConfig({
 
     nav: [
       {text: 'Home', link: '/'},
+      {text: '朋友圈', link: '/moments'},
       {text: '归档', link: '/archive'},
       /*{text: '书签', link: '/bookmark'},*/
       {text: '关于', link: '/about'},
