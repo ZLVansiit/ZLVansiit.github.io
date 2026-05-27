@@ -5,7 +5,8 @@
 | 文件 | 用途 |
 |------|------|
 | `cover.jpg` | 顶部封面 |
-| `img.jpg`、`img-1.jpg` … | 动态配图（可只保留一张，在 `moments.ts` 里改路径） |
+| `img-1.jpg` … `img-9.jpg` | 动态配图，`moments.ts` 中 `localImg(1)` 对应 `img-1.jpg` |
+| `img.jpg` | 可选备用，当前数据未使用 |
 | `live-poster.jpg` | Live 封面静帧 |
 | `demo-live.mp4` | Live 短视频 |
 

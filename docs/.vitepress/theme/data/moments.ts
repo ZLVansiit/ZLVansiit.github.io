@@ -25,8 +25,8 @@ const MOMENTS_ASSET = '/moments'
 
 const asset = (filename: string) => `${MOMENTS_ASSET}/${filename}`
 
-/** 本地配图（替换 docs/public/moments/img.jpg 即可） */
-const localImg = (_index: number) => asset('img.jpg')
+/** 本地配图：index 对应 docs/public/moments/img-{index}.jpg */
+const localImg = (index: number) => asset(`img-${index}.jpg`)
 
 export const momentsProfile: MomentsProfile = {
   name: '张磊',
