@@ -24,10 +24,9 @@ export interface MomentsProfile {
 }
 
 export const momentsProfile: MomentsProfile = {
-  name: 'Z.L Vansiit',
+  name: '张磊',
   avatar: '/img/logo.svg',
-  cover: '/moments/cover.jpg',
-  signature: '随笔 · 简短思考 · 生活碎片'
+  cover: '/moments/cover.jpg'
 }
 
 /** 按时间倒序，最新在前 */
@@ -51,7 +50,8 @@ export const momentsPosts: MomentPost[] = [
   {
     id: 'm-20260512-1',
     time: '2026-05-12 22:40',
-    content: '博客友链页接好了，Meet Blog 星图留着，其余的走审核列表。'
+    content:
+      '博客友链页接好了，Meet Blog 星图留着，其余的走审核列表。朋友圈也按微信样式搭了一版：封面、昵称在右下角、九宫格、Live 标记、全文折叠和时间「几分钟前」。后面慢慢把随笔都搬过来，当自己的一小块自留地。'
   },
   {
     id: 'm-20260408-1',

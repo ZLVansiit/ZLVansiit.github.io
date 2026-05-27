@@ -445,15 +445,15 @@ a.VPSocialLink[aria-label="mastodon"]>svg {
 .VPDoc:has(.moments-page) .content,
 .vp-doc:has(.moments-page) .content {
   width: 100%;
-  max-width: 720px;
+  max-width: 480px;
   margin: 0 auto;
-  padding: 12px 16px 32px;
+  padding: 0 0 24px;
   flex: none;
 }
 
 .VPDoc:has(.moments-page) .content-container,
 .vp-doc:has(.moments-page) .content-container {
-  max-width: 720px;
+  max-width: 480px;
   width: 100%;
   margin: 0 auto;
   padding: 0;
@@ -474,35 +474,32 @@ a.VPSocialLink[aria-label="mastodon"]>svg {
 .VPDoc:has(.moments-page) .VPDocFooter,
 .vp-doc:has(.moments-page) .VPDocFooter {
   margin-top: 0;
-  max-width: 720px;
+  max-width: 480px;
   margin-left: auto;
   margin-right: auto;
 }
 
-.dark .moments-page {
-  background: #1a1a1a;
-  box-shadow: none;
+/* 朋友圈固定浅色，贴近微信 */
+.dark .moments-page,
+.dark .moments-feed,
+.dark .moments-header {
+  background: #fff;
 }
 
-.dark .moments-header,
-.dark .moments-feed {
-  background: #2b2b2b;
+.dark .moment-content {
+  color: #191919;
 }
 
-.dark .moment-item {
-  border-bottom-color: #3a3a3a;
+.dark .moment-name,
+.dark .link-full {
+  color: #576b95;
 }
 
-.dark .moment-name {
-  color: #7d90b8;
-}
-
-.dark .moment-content,
-.dark .profile-name {
-  color: #e8e8e8;
-}
-
-.dark .profile-sign,
 .dark .moment-meta {
-  color: #888;
+  color: #b2b2b2;
+}
+
+.dark .action-btn {
+  background: #f7f7f7;
+  color: #576b95;
 }
