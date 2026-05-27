@@ -122,28 +122,88 @@
     </section>
 
     <Teleport to="body">
-      <div v-if="previewVisible" class="preview-mask" @click.self="closePreview">
-        <button type="button" class="preview-close" aria-label="关闭" @click="closePreview">×</button>
-        <div class="preview-body">
-          <img v-if="previewMode === 'image'" :src="previewSrc" alt="" class="preview-img" />
-          <video
-            v-else
-            ref="previewVideoRef"
-            class="preview-video"
-            :src="previewSrc"
-            :poster="previewPoster"
-            controls
-            playsinline
-            autoplay
-          />
+      <Transition name="preview-fade">
+        <div
+          v-if="previewVisible"
+          class="preview-mask"
+          role="dialog"
+          aria-modal="true"
+          :aria-label="previewMode === 'live' ? '实况预览' : '图片预览'"
+          @click="closePreview"
+        >
+          <button type="button" class="preview-back" aria-label="关闭" @click.stop="closePreview">
+            <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+              <path
+                d="M15 6l-6 6 6 6"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
+
+          <div class="preview-body" @click.stop>
+            <img
+              v-if="previewMode === 'image'"
+              :src="previewSrc"
+              alt=""
+              class="preview-img"
+              @click="closePreview"
+            />
+
+            <div v-else class="live-preview" @click="closePreview">
+              <img
+                v-if="previewPoster"
+                :src="previewPoster"
+                alt=""
+                class="preview-img live-poster"
+                :class="{ 'is-hidden': liveVideoPlaying }"
+              />
+              <video
+                ref="previewVideoRef"
+                class="preview-video live-video"
+                :class="{ 'is-visible': liveVideoPlaying }"
+                :src="previewSrc"
+                playsinline
+                webkit-playsinline
+                muted
+                preload="auto"
+                @canplay="onLiveCanPlay"
+                @playing="onLivePlaying"
+                @ended="onLiveEnded"
+                @waiting="liveLoading = true"
+              />
+              <div v-if="liveLoading" class="live-preview-loading" aria-hidden="true">
+                <span class="live-spinner" />
+              </div>
+              <span v-if="liveVideoPlaying" class="live-preview-badge" aria-hidden="true">
+                <svg class="live-badge-icon" viewBox="0 0 17 17">
+                  <circle cx="8.5" cy="8.5" r="7" fill="none" stroke="currentColor" stroke-width="1.25" />
+                  <circle
+                    cx="8.5"
+                    cy="8.5"
+                    r="4.25"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.25"
+                    stroke-dasharray="2.2 1.35"
+                  />
+                  <circle cx="8.5" cy="8.5" r="1.15" fill="currentColor" />
+                </svg>
+                <span class="live-badge-text">LIVE</span>
+              </span>
+            </div>
+          </div>
         </div>
-      </div>
+      </Transition>
     </Teleport>
   </div>
 </template>
 
 <script setup>
-import { nextTick, onMounted, onUnmounted, ref } from 'vue'
+import { nextTick, onMounted, onUnmounted, ref, watch } from 'vue'
 import { fetchMomentsFeed, isMomentsMockMode } from '../api/momentsApi'
 
 const CONTENT_LIMIT = 140
@@ -209,27 +269,106 @@ const previewMode = ref('image')
 const previewSrc = ref('')
 const previewPoster = ref('')
 const previewVideoRef = ref(null)
+const liveVideoPlaying = ref(false)
+const liveLoading = ref(false)
+let livePlayTimer = null
+let livePlayStarted = false
+
+const resetLivePreviewState = () => {
+  liveVideoPlaying.value = false
+  liveLoading.value = false
+  livePlayStarted = false
+  if (livePlayTimer) {
+    clearTimeout(livePlayTimer)
+    livePlayTimer = null
+  }
+  const video = previewVideoRef.value
+  if (video) {
+    video.pause()
+    video.currentTime = 0
+  }
+}
+
+const startLivePlayback = async () => {
+  if (livePlayStarted || previewMode.value !== 'live' || !previewVisible.value) return
+  const video = previewVideoRef.value
+  if (!video) return
+  livePlayStarted = true
+  liveLoading.value = true
+  try {
+    video.currentTime = 0
+    video.loop = false
+    video.muted = true
+    await video.play()
+  } catch {
+    livePlayStarted = false
+    liveLoading.value = false
+  }
+}
+
+const onLiveCanPlay = () => {
+  if (previewMode.value !== 'live' || liveVideoPlaying.value) return
+  startLivePlayback()
+}
+
+const onLivePlaying = () => {
+  liveLoading.value = false
+  liveVideoPlaying.value = true
+}
+
+/** 播放结束后回到封面静帧，与微信实况浏览一致 */
+const onLiveEnded = () => {
+  liveVideoPlaying.value = false
+  const video = previewVideoRef.value
+  if (video) {
+    video.pause()
+    video.currentTime = 0
+  }
+}
 
 const openPreview = (post, index) => {
   const item = post.media?.[index]
   if (!item) return
+  resetLivePreviewState()
   if (item.type === 'live') {
     previewMode.value = 'live'
     previewSrc.value = item.src
     previewPoster.value = item.poster || ''
-  } else {
-    previewMode.value = 'image'
-    previewSrc.value = item.src
-    previewPoster.value = ''
+    previewVisible.value = true
+    liveLoading.value = true
+    // 先展示封面静帧，再播放实况（微信约 150ms 后开播）
+    nextTick(() => {
+      livePlayTimer = setTimeout(() => {
+        startLivePlayback()
+      }, 160)
+    })
+    return
   }
+  previewMode.value = 'image'
+  previewSrc.value = item.src
+  previewPoster.value = ''
   previewVisible.value = true
-  nextTick(() => previewVideoRef.value?.play?.())
 }
 
 const closePreview = () => {
+  resetLivePreviewState()
   previewVisible.value = false
-  previewVideoRef.value?.pause?.()
 }
+
+const onPreviewKeydown = (event) => {
+  if (event.key === 'Escape' && previewVisible.value) {
+    closePreview()
+  }
+}
+
+watch(previewVisible, (visible) => {
+  document.body.style.overflow = visible ? 'hidden' : ''
+  if (visible) {
+    document.addEventListener('keydown', onPreviewKeydown)
+  } else {
+    document.removeEventListener('keydown', onPreviewKeydown)
+  }
+})
 
 const toggleMenu = (id) => {
   activeMenuId.value = activeMenuId.value === id ? null : id
@@ -261,6 +400,9 @@ onMounted(() => {
 
 onUnmounted(() => {
   document.removeEventListener('click', closeMenuOnClickOutside)
+  document.removeEventListener('keydown', onPreviewKeydown)
+  document.body.style.overflow = ''
+  resetLivePreviewState()
 })
 </script>
 
@@ -664,7 +806,17 @@ onUnmounted(() => {
   opacity: 0.9;
 }
 
-/* 预览 */
+/* 全屏预览（仿微信朋友圈） */
+.preview-fade-enter-active,
+.preview-fade-leave-active {
+  transition: opacity 0.22s ease;
+}
+
+.preview-fade-enter-from,
+.preview-fade-leave-to {
+  opacity: 0;
+}
+
 .preview-mask {
   position: fixed;
   inset: 0;
@@ -673,25 +825,149 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: zoom-out;
 }
 
-.preview-close {
+.preview-back {
   position: absolute;
-  top: 12px;
-  right: 16px;
+  top: env(safe-area-inset-top, 0);
+  left: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  margin: 4px 0 0 4px;
+  padding: 0;
   border: 0;
   background: transparent;
   color: #fff;
-  font-size: 2rem;
   cursor: pointer;
-  z-index: 1;
+  opacity: 0.92;
 }
 
-.preview-img,
-.preview-video {
+.preview-back:active {
+  opacity: 0.65;
+}
+
+.preview-body {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: default;
+}
+
+.preview-img {
   max-width: 100%;
   max-height: 100vh;
   object-fit: contain;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* Live 实况：无控件、封面→短片→回封面 */
+.live-preview {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: zoom-out;
+}
+
+.live-poster {
+  position: absolute;
+  z-index: 1;
+  transition: opacity 0.28s ease;
+}
+
+.live-poster.is-hidden {
+  opacity: 0;
+}
+
+.live-video {
+  position: relative;
+  z-index: 0;
+  max-width: 100%;
+  max-height: 100vh;
+  object-fit: contain;
+  opacity: 0;
+  transition: opacity 0.28s ease;
+}
+
+.live-video.is-visible {
+  opacity: 1;
+  z-index: 2;
+}
+
+.live-preview-loading {
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.live-spinner {
+  width: 28px;
+  height: 28px;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: live-spin 0.75s linear infinite;
+}
+
+@keyframes live-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.live-preview-badge {
+  position: absolute;
+  left: 16px;
+  top: calc(env(safe-area-inset-top, 0px) + 52px);
+  z-index: 4;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  height: 20px;
+  padding: 0 7px 0 5px;
+  border-radius: 999px;
+  color: #fff;
+  background: rgba(60, 60, 67, 0.55);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  backdrop-filter: blur(12px) saturate(180%);
+  pointer-events: none;
+  animation: live-badge-pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes live-badge-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.72;
+  }
+}
+
+.live-preview-badge .live-badge-icon {
+  width: 14px;
+  height: 14px;
+}
+
+.live-preview-badge .live-badge-text {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
 }
 
 @media (max-width: 520px) {
