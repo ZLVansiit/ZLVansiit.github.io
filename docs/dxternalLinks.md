@@ -22,6 +22,22 @@ comment: false
     </p>
   </div>
 
+  <div class="link-item">
+    <a class="link-title" href="https://blog.debuginn.com/" target="_blank" rel="noopener noreferrer">
+      <img class="link-icon" src="https://webp.debuginn.com/20250929bC0ReU.jpg" alt="" width="20" height="20" />
+      <span class="link-name">Debug客栈</span>
+    </a>
+    <p>永远相信美好的事情即将发生</p>
+  </div>
+
+  <div class="link-item">
+    <a class="link-title" href="https://prologue.dev" target="_blank" rel="noopener noreferrer">
+      <img class="link-icon" src="https://prologue.dev/static/favicons/avatar.png" alt="" width="20" height="20" />
+      <span class="link-name">Prologue</span>
+    </a>
+    <p>对当下的反思和批判</p>
+  </div>
+
   <ClientOnly>
     <FriendLinkList />
   </ClientOnly>
