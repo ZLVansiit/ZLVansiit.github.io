@@ -54,13 +54,11 @@ export const momentsProfile: MomentsProfile = {
 /** 长文：用于验证「全文」折叠（>140 字） */
 const LONG_CONTENT =
   '这是一条用于验证「全文」折叠的长动态。博客朋友圈按微信样式做了封面叠层、九宫格、Live 标记与相对时间。' +
-  '把接口关掉或本地开发时会走 Mock，方便你逐条点开看单图、四宫格、九宫格和实况预览。' +
+  '数据在 moments.ts 里静态维护，方便逐条验证单图、四宫格、九宫格和实况预览。' +
   '常家岩、友链、评论和后台发布可以慢慢接，先把展示效果摸清楚。'
 
-/**
- * Mock 动态列表：覆盖纯文字、长文、1/2/3/4/5/6/9 图、Live、位置、多种相对时间
- */
-export function buildMomentsMockPosts(): MomentPost[] {
+/** 朋友圈动态列表（前端静态维护，按时间倒序） */
+export function buildMomentsPosts(): MomentPost[] {
   return [
     {
       id: 'mock-text',
@@ -157,8 +155,9 @@ export function buildMomentsMockPosts(): MomentPost[] {
   ]
 }
 
-export function buildMomentsMockFeed() {
-  const list = buildMomentsMockPosts()
+/** 朋友圈完整数据（主页资料 + 动态列表） */
+export function getMomentsFeedData() {
+  const list = buildMomentsPosts()
   return {
     profile: { ...momentsProfile },
     list,
@@ -166,5 +165,10 @@ export function buildMomentsMockFeed() {
   }
 }
 
-/** @deprecated 请使用 buildMomentsMockFeed() */
-export const momentsPosts = buildMomentsMockPosts()
+/** @deprecated 请使用 getMomentsFeedData() */
+export const buildMomentsMockFeed = getMomentsFeedData
+
+/** @deprecated 请使用 buildMomentsPosts() */
+export const buildMomentsMockPosts = buildMomentsPosts
+
+export const momentsPosts = buildMomentsPosts()
