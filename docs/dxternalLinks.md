@@ -82,6 +82,14 @@ comment: false
     <p>茫茫人海，多么幸运才能遇见你！</p>
   </div>
 
+  <div class="link-item">
+    <a class="link-title" href="https://styunlen.cn/" target="_blank" rel="noopener noreferrer">
+      <img class="link-icon" src="https://styunlen.cn/wp-content/uploads/2020/08/cropped-window-wolsion-3.png" alt="" width="20" height="20" />
+      <span class="link-name">九仞之行</span>
+    </a>
+    <p>严于律己，宽以待人，深自警省，讷言敏行</p>
+  </div>
+
   </div>
 
   <ClientOnly>
