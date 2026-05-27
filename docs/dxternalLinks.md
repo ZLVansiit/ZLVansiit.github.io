@@ -90,6 +90,14 @@ comment: false
     <p>严于律己，宽以待人，深自警省，讷言敏行</p>
   </div>
 
+  <div class="link-item">
+    <a class="link-title" href="https://b.utopias.site" target="_blank" rel="noopener noreferrer">
+      <img class="link-icon" src="https://b.utopias.site/upload/utopias.png" alt="" width="20" height="20" />
+      <span class="link-name">烏托邦的理想國</span>
+    </a>
+    <p>One Blog, One Dreamland</p>
+  </div>
+
   </div>
 
   <ClientOnly>
