@@ -122,13 +122,14 @@
     </section>
 
     <Teleport to="body">
+      <!-- 图片：全屏预览 -->
       <Transition name="preview-fade">
         <div
-          v-if="previewVisible"
+          v-if="previewVisible && previewMode === 'image'"
           class="preview-mask"
           role="dialog"
           aria-modal="true"
-          :aria-label="previewMode === 'live' ? '实况预览' : '图片预览'"
+          aria-label="图片预览"
           @click="closePreview"
         >
           <button type="button" class="preview-back" aria-label="关闭" @click.stop="closePreview">
@@ -143,17 +144,38 @@
               />
             </svg>
           </button>
-
           <div class="preview-body" @click.stop>
-            <img
-              v-if="previewMode === 'image'"
-              :src="previewSrc"
-              alt=""
-              class="preview-img"
-              @click="closePreview"
-            />
+            <img :src="previewSrc" alt="" class="preview-img" @click="closePreview" />
+          </div>
+        </div>
+      </Transition>
 
-            <div v-else class="live-preview" @click="closePreview">
+      <!-- Live：半屏底部弹框 -->
+      <Transition name="live-sheet">
+        <div
+          v-if="previewVisible && previewMode === 'live'"
+          class="live-sheet-mask"
+          role="dialog"
+          aria-modal="true"
+          aria-label="实况预览"
+          @click="closePreview"
+        >
+          <div class="live-sheet-panel" @click.stop>
+            <div class="live-sheet-handle" aria-hidden="true" />
+            <button type="button" class="preview-back live-sheet-back" aria-label="关闭" @click.stop="closePreview">
+              <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+                <path
+                  d="M15 6l-6 6 6 6"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+
+            <div class="live-preview" @click="closePreview">
               <img
                 v-if="previewPoster"
                 :src="previewPoster"
@@ -806,7 +828,7 @@ onUnmounted(() => {
   opacity: 0.9;
 }
 
-/* 全屏预览（仿微信朋友圈） */
+/* 图片全屏预览 */
 .preview-fade-enter-active,
 .preview-fade-leave-active {
   transition: opacity 0.22s ease;
@@ -826,6 +848,69 @@ onUnmounted(() => {
   align-items: center;
   justify-content: center;
   cursor: zoom-out;
+}
+
+/* Live 半屏弹框 */
+.live-sheet-enter-active,
+.live-sheet-leave-active {
+  transition: opacity 0.22s ease;
+}
+
+.live-sheet-enter-active .live-sheet-panel,
+.live-sheet-leave-active .live-sheet-panel {
+  transition: transform 0.28s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.live-sheet-enter-from,
+.live-sheet-leave-to {
+  opacity: 0;
+}
+
+.live-sheet-enter-from .live-sheet-panel,
+.live-sheet-leave-to .live-sheet-panel {
+  transform: translateY(100%);
+}
+
+.live-sheet-mask {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background: rgba(0, 0, 0, 0.45);
+  cursor: zoom-out;
+}
+
+.live-sheet-panel {
+  position: relative;
+  width: 100%;
+  height: 50vh;
+  min-height: 240px;
+  max-height: 50dvh;
+  background: #000;
+  border-radius: 12px 12px 0 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  cursor: default;
+  box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.2);
+}
+
+.live-sheet-handle {
+  flex-shrink: 0;
+  width: 36px;
+  height: 4px;
+  margin: 8px auto 0;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.28);
+}
+
+.live-sheet-back {
+  position: absolute;
+  top: 4px;
+  left: 0;
+  z-index: 2;
 }
 
 .preview-back {
@@ -868,11 +953,12 @@ onUnmounted(() => {
   -webkit-user-drag: none;
 }
 
-/* Live 实况：无控件、封面→短片→回封面 */
-.live-preview {
+/* Live 实况：无控件、封面→短片→回封面（半屏内） */
+.live-sheet-panel .live-preview {
   position: relative;
+  flex: 1;
+  min-height: 0;
   width: 100%;
-  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -889,11 +975,17 @@ onUnmounted(() => {
   opacity: 0;
 }
 
+.live-sheet-panel .live-poster,
+.live-sheet-panel .live-video {
+  max-width: 100%;
+  max-height: 100%;
+}
+
 .live-video {
   position: relative;
   z-index: 0;
-  max-width: 100%;
-  max-height: 100vh;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
   opacity: 0;
   transition: opacity 0.28s ease;
@@ -932,7 +1024,7 @@ onUnmounted(() => {
 .live-preview-badge {
   position: absolute;
   left: 16px;
-  top: calc(env(safe-area-inset-top, 0px) + 52px);
+  top: 44px;
   z-index: 4;
   display: inline-flex;
   align-items: center;
