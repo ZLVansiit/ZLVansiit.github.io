@@ -19,16 +19,13 @@ export interface MomentsProfile {
   signature?: string
 }
 
-/** 占位图（picsum 固定 seed，便于本地反复验证） */
-const pic = (seed: string, w = 400, h = 400) =>
-  `https://picsum.photos/seed/${seed}/${w}/${h}`
+/** 本地静态资源目录（对应 docs/public/moments/） */
+const MOMENTS_ASSET = '/moments'
 
-/** 示例 Live 短视频（公开样片） */
-const DEMO_LIVE_MP4 = 'https://www.w3schools.com/html/mov_bbb.mp4'
+const asset = (filename: string) => `${MOMENTS_ASSET}/${filename}`
 
 const pad = (n: number) => String(n).padStart(2, '0')
 
-/** 生成「几分钟前」等相对时间文案所需的展示时间 */
 function formatDisplayTime(date: Date): string {
   return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())} ${pad(date.getHours())}:${pad(date.getMinutes())}`
 }
@@ -44,18 +41,20 @@ function daysAgo(days: number, hour = 12, minute = 0): string {
   return formatDisplayTime(d)
 }
 
+/** 本地配图（替换 docs/public/moments/img.jpg 即可） */
+const localImg = (_index: number) => asset('img.jpg')
+
 export const momentsProfile: MomentsProfile = {
   name: '张磊',
   avatar: '/img/logo.svg',
-  cover: pic('moments-cover', 960, 640),
+  cover: asset('cover.jpg'),
   signature: '坐睡觉来无一事，满窗晴日看蚕生'
 }
 
-/** 长文：用于验证「全文」折叠（>140 字） */
 const LONG_CONTENT =
   '这是一条用于验证「全文」折叠的长动态。博客朋友圈按微信样式做了封面叠层、九宫格、Live 标记与相对时间。' +
-  '数据在 moments.ts 里静态维护，方便逐条验证单图、四宫格、九宫格和实况预览。' +
-  '常家岩、友链、评论和后台发布可以慢慢接，先把展示效果摸清楚。'
+  '配图与实况文件放在 docs/public/moments/，构建后通过 /moments/ 路径访问。' +
+  '常家岩、友链、评论可以慢慢接，先把展示效果摸清楚。'
 
 /** 朋友圈动态列表（前端静态维护，按时间倒序） */
 export function buildMomentsPosts(): MomentPost[] {
@@ -75,7 +74,7 @@ export function buildMomentsPosts(): MomentPost[] {
       id: 'mock-1img',
       time: minutesAgo(25),
       content: '单张大图布局（media-count-1）',
-      media: [{ type: 'image', src: pic('moments-single', 800, 600) }]
+      media: [{ type: 'image', src: localImg(1) }]
     },
     {
       id: 'mock-live-1',
@@ -84,8 +83,8 @@ export function buildMomentsPosts(): MomentPost[] {
       media: [
         {
           type: 'live',
-          src: DEMO_LIVE_MP4,
-          poster: pic('moments-live-poster-1')
+          src: asset('demo-live.mp4'),
+          poster: asset('live-poster.jpg')
         }
       ]
     },
@@ -94,8 +93,8 @@ export function buildMomentsPosts(): MomentPost[] {
       time: minutesAgo(90),
       content: '两张图（横排两列）',
       media: [
-        { type: 'image', src: pic('moments-2a') },
-        { type: 'image', src: pic('moments-2b') }
+        { type: 'image', src: localImg(1) },
+        { type: 'image', src: localImg(2) }
       ]
     },
     {
@@ -103,33 +102,33 @@ export function buildMomentsPosts(): MomentPost[] {
       time: minutesAgo(180),
       content: '四张图（2×2 四宫格）',
       location: '鄂西北',
-      media: [1, 2, 3, 4].map((i) => ({ type: 'image' as const, src: pic(`moments-4-${i}`) }))
+      media: [1, 2, 3, 4].map((i) => ({ type: 'image' as const, src: localImg(i) }))
     },
     {
       id: 'mock-3img',
       time: minutesAgo(300),
       content: '三张图（三列宫格）',
-      media: [1, 2, 3].map((i) => ({ type: 'image' as const, src: pic(`moments-3-${i}`) }))
+      media: [1, 2, 3].map((i) => ({ type: 'image' as const, src: localImg(i) }))
     },
     {
       id: 'mock-mix-live',
       time: minutesAgo(420),
       content: '静图 + Live 混排（点 Live 格可预览视频）',
       media: [
-        { type: 'image', src: pic('moments-mix-1') },
+        { type: 'image', src: localImg(5) },
         {
           type: 'live',
-          src: DEMO_LIVE_MP4,
-          poster: pic('moments-mix-live')
+          src: asset('demo-live.mp4'),
+          poster: asset('live-poster.jpg')
         },
-        { type: 'image', src: pic('moments-mix-3') }
+        { type: 'image', src: localImg(6) }
       ]
     },
     {
       id: 'mock-6img',
       time: minutesAgo(600),
       content: '六张图',
-      media: [1, 2, 3, 4, 5, 6].map((i) => ({ type: 'image' as const, src: pic(`moments-6-${i}`) }))
+      media: [1, 2, 3, 4, 5, 6].map((i) => ({ type: 'image' as const, src: localImg(i) }))
     },
     {
       id: 'mock-9img',
@@ -137,20 +136,20 @@ export function buildMomentsPosts(): MomentPost[] {
       content: '九宫格上限（9 张）',
       media: [1, 2, 3, 4, 5, 6, 7, 8, 9].map((i) => ({
         type: 'image' as const,
-        src: pic(`moments-9-${i}`)
+        src: localImg(i)
       }))
     },
     {
       id: 'mock-5img',
       time: minutesAgo(1200),
       content: '五张图（多列不规则尾行）',
-      media: [1, 2, 3, 4, 5].map((i) => ({ type: 'image' as const, src: pic(`moments-5-${i}`) }))
+      media: [1, 2, 3, 4, 5].map((i) => ({ type: 'image' as const, src: localImg(i) }))
     },
     {
       id: 'mock-old',
       time: daysAgo(12, 7, 30),
       content: '较早日期，应显示为「X月X日」而非「X天前」',
-      media: [{ type: 'image', src: pic('moments-old') }]
+      media: [{ type: 'image', src: localImg(3) }]
     }
   ]
 }

@@ -1,11 +1,12 @@
-# 朋友圈素材目录
+# 朋友圈本地素材
 
-将图片、Live 短视频放在此目录，例如：
+文件放在此目录，构建后通过 `/moments/文件名` 访问。
 
-- `cover.jpg` — 顶部封面
-- `demo-live.mp4` — Live 实况视频
-- `*.jpg` / `*.png` — 动态配图
+| 文件 | 用途 |
+|------|------|
+| `cover.jpg` | 顶部封面 |
+| `img.jpg`、`img-1.jpg` … | 动态配图（可只保留一张，在 `moments.ts` 里改路径） |
+| `live-poster.jpg` | Live 封面静帧 |
+| `demo-live.mp4` | Live 短视频 |
 
-## 数据维护
-
-朋友圈主页与动态列表在 **`docs/.vitepress/theme/data/moments.ts`** 中静态编写，修改后重新构建或刷新开发服务即可生效。
+数据配置：`docs/.vitepress/theme/data/moments.ts` 中的 `asset('文件名')`。
