@@ -16,6 +16,8 @@ export interface MomentsProfile {
   name: string
   avatar: string
   cover?: string
+  /** 个性签名，显示在头像下方 */
+  signature?: string
 }
 
 export interface MomentsFeedData {

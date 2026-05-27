@@ -16,6 +16,7 @@ export interface MomentsProfile {
   name: string
   avatar: string
   cover?: string
+  signature?: string
 }
 
 /** 占位图（picsum 固定 seed，便于本地反复验证） */
@@ -46,7 +47,8 @@ function daysAgo(days: number, hour = 12, minute = 0): string {
 export const momentsProfile: MomentsProfile = {
   name: '张磊',
   avatar: '/img/logo.svg',
-  cover: pic('moments-cover', 960, 640)
+  cover: pic('moments-cover', 960, 640),
+  signature: '坐睡觉来无一事，满窗晴日看蚕生'
 }
 
 /** 长文：用于验证「全文」折叠（>140 字） */

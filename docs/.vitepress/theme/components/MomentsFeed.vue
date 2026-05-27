@@ -31,6 +31,8 @@
           <img class="cover-avatar" :src="profile.avatar" :alt="profile.name" />
         </div>
       </div>
+
+      <p v-if="profile.signature" class="cover-signature">{{ profile.signature }}</p>
     </header>
 
     <!-- 动态列表 -->
@@ -206,7 +208,12 @@ import LivePhotoIcon from './LivePhotoIcon.vue'
 
 const CONTENT_LIMIT = 140
 
-const profile = ref({ name: 'Vansiit', avatar: '/img/logo.svg', cover: '/moments/cover.jpg' })
+const profile = ref({
+  name: '张磊',
+  avatar: '/img/logo.svg',
+  cover: '/moments/cover.jpg',
+  signature: ''
+})
 const posts = ref([])
 const loading = ref(false)
 const errorMessage = ref('')
@@ -515,17 +522,27 @@ onUnmounted(() => {
 .cover-avatar {
   width: 72px;
   height: 72px;
-  border-radius: 6px;
+  border-radius: 8px;
   object-fit: cover;
   background: #f0f0f0;
   flex-shrink: 0;
-  border: 2px solid rgba(255, 255, 255, 0.9);
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+}
+
+.cover-signature {
+  position: relative;
+  z-index: 2;
+  margin: 0;
+  padding: 38px 16px 10px;
+  font-size: 13px;
+  line-height: 1.45;
+  color: #888;
+  text-align: right;
+  background: #fff;
 }
 
 /* ---------- 动态列表 ---------- */
 .moments-feed {
-  padding: 44px 0 24px;
+  padding: 8px 0 24px;
   background: #fff;
   position: relative;
   z-index: 1;
