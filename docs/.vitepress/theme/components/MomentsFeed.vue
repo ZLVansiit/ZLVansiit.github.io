@@ -144,8 +144,8 @@
               />
             </svg>
           </button>
-          <div class="preview-body" @click.stop>
-            <img :src="previewSrc" alt="" class="preview-img" @click="closePreview" />
+          <div class="preview-body">
+            <img :src="previewSrc" alt="" class="preview-img" @click.stop />
           </div>
         </div>
       </Transition>
@@ -934,15 +934,17 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: default;
+  pointer-events: none;
 }
 
 .preview-img {
   max-width: 100%;
   max-height: 100vh;
   object-fit: contain;
+  pointer-events: auto;
   user-select: none;
   -webkit-user-drag: none;
+  cursor: default;
 }
 
 /* Live 实况：模块内 100% 铺满（半屏居中弹框） */
