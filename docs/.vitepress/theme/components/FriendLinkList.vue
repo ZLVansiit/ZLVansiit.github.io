@@ -1,5 +1,5 @@
 <template>
-  <div class="friend-link-list">
+  <div class="friend-link-list link-grid">
     <p v-if="loading" class="status-loading">友链加载中...</p>
     <p v-else-if="errorMessage" class="status-error">{{ errorMessage }}</p>
     <article v-for="item in links" :key="item.id" class="link-item">
@@ -71,6 +71,16 @@ onMounted(() => {
 .friend-link-list {
   margin: 0;
 }
+.friend-link-list.link-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.friend-link-list.link-grid .link-item {
+  margin-bottom: 0;
+  min-width: 0;
+}
 .link-item {
   padding: 12px;
   margin-bottom: 8px;
@@ -111,7 +121,13 @@ onMounted(() => {
 }
 .link-item .link-name {
   line-height: 1.2;
-  white-space: nowrap;
+  white-space: normal;
+  word-break: break-word;
+}
+@media (max-width: 640px) {
+  .friend-link-list.link-grid {
+    grid-template-columns: 1fr;
+  }
 }
 .link-item p {
   margin: 5px 0 0;

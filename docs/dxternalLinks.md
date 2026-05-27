@@ -8,6 +8,8 @@ comment: false
 <div class="links-micro">
   <h2>🌐 友情链接</h2>
   <p>欢迎与我交换友链！请确保您的网站内容原创且符合中国大陆法律，已开启HTTPS并有持续更新~</p>
+
+  <div class="link-grid">
   <div class="link-item">
     <a class="link-title" href="https://meet-blog.buyixiao.xyz/?ref=https%3A%2F%2Fvansiit.cc" target="_blank" rel="noopener noreferrer">
       <img class="link-icon" src="https://meet-blog.buyixiao.xyz/favicon.svg" alt="" width="20" height="20" />
@@ -61,6 +63,7 @@ comment: false
     </a>
     <p>分享设计与科技生活</p>
   </div>
+  </div>
 
   <ClientOnly>
     <FriendLinkList />
@@ -85,6 +88,16 @@ a:link, a:visited, a:hover, a:active {
   .links-micro {
     max-width: 800px;
     margin: 1rem auto;
+  }
+  .link-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  .link-grid .link-item {
+    margin-bottom: 0;
+    min-width: 0;
   }
   .link-item {
     padding: 12px;
@@ -112,7 +125,13 @@ a:link, a:visited, a:hover, a:active {
   }
   .link-item .link-name {
     line-height: 1.2;
-    white-space: nowrap;
+    white-space: normal;
+    word-break: break-word;
+  }
+  @media (max-width: 640px) {
+    .link-grid {
+      grid-template-columns: 1fr;
+    }
   }
   .link-item p {
     margin: 5px 0 0;
