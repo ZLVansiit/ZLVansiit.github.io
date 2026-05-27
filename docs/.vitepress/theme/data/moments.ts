@@ -44,6 +44,11 @@ export function buildMomentsPosts(): MomentPost[] {
       content: '五一。 回老家，见闻。',
       location: '老家',
       media: [1, 2, 3, 4].map((i) => ({ type: 'image' as const, src: localImg(i) }))
+    },
+    {
+      id: 'moments-1',
+      time: '2026-05-27 13:52:00',
+      content: '《儒林外史》的开篇词里，有一句 “人生南北多歧路，将相神仙，也要凡人做”，此句有佛家思想，意味良多。后面几句则是功名富贵、百代兴亡的无聊流俗之语。'
     }
   ]
 }
