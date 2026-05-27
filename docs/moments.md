@@ -1,5 +1,6 @@
 ---
 title: 朋友圈
+layout: page
 sidebar: false
 outline: false
 comment: false

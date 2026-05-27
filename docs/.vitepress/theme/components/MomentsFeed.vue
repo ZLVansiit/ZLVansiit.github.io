@@ -139,8 +139,10 @@ const closePreview = () => {
 
 <style scoped>
 .moments-page {
+  width: 100%;
   max-width: 680px;
-  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
   background: #ededed;
   min-height: 60vh;
   border-radius: 8px;

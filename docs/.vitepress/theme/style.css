@@ -421,29 +421,62 @@ a.VPSocialLink[aria-label="mastodon"]>svg {
   color: var(--vp-c-text-1);
 }
 
-/* 朋友圈页面：仿微信时间线，隐藏侧栏并收窄内容区 */
+/* 朋友圈页面：仿微信时间线，主内容居中 */
+.VPContent:has(.moments-page) .VPDoc,
+.VPContent:has(.moments-page) .VPPage {
+  display: flex;
+  justify-content: center;
+}
+
+.VPDoc:has(.moments-page) .aside-container,
+.VPDoc:has(.moments-page) .aside,
 .vp-doc:has(.moments-page) .aside-container,
 .vp-doc:has(.moments-page) .aside {
   display: none !important;
 }
 
-.vp-doc:has(.moments-page) .content {
+.VPDoc:has(.moments-page) .container,
+.vp-doc:has(.moments-page) .container {
+  display: flex;
+  justify-content: center;
   max-width: 100%;
 }
 
-.vp-doc:has(.moments-page) .content-container {
+.VPDoc:has(.moments-page) .content,
+.vp-doc:has(.moments-page) .content {
+  width: 100%;
   max-width: 720px;
   margin: 0 auto;
-  padding-top: 12px;
-  padding-bottom: 32px;
+  padding: 12px 16px 32px;
+  flex: none;
 }
 
+.VPDoc:has(.moments-page) .content-container,
+.vp-doc:has(.moments-page) .content-container {
+  max-width: 720px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.VPDoc:has(.moments-page) .vp-doc,
+.vp-doc:has(.moments-page) {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.VPDoc:has(.moments-page) h1,
 .vp-doc:has(.moments-page) h1 {
   display: none;
 }
 
+.VPDoc:has(.moments-page) .VPDocFooter,
 .vp-doc:has(.moments-page) .VPDocFooter {
   margin-top: 0;
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .dark .moments-page {
