@@ -100,10 +100,18 @@
               ···
             </button>
             <div v-if="activeMenuId === post.id" class="action-popover" @click.stop>
-              <button type="button" class="popover-item">赞</button>
-              <button type="button" class="popover-item">评论</button>
+              <button type="button" class="popover-item" @click="handleLike(post)">赞</button>
+              <button type="button" class="popover-item" @click="openComment(post)">评论</button>
             </div>
           </div>
+
+          <MomentInteractions
+            :ref="(el) => setInteractionRef(post.id, el)"
+            :post-id="post.id"
+            :post-title="getPostTitle(post)"
+            :composer-open="composerOpenId === post.id"
+            @composer-close="composerOpenId = null"
+          />
         </div>
       </article>
     </section>
@@ -202,6 +210,7 @@
 import { nextTick, onMounted, onUnmounted, ref, watch } from 'vue'
 import { getMomentsFeedData } from '../data/moments'
 import LivePhotoIcon from './LivePhotoIcon.vue'
+import MomentInteractions from './MomentInteractions.vue'
 
 const CONTENT_LIMIT = 140
 
@@ -211,6 +220,31 @@ const posts = ref([...feedData.list])
 const coverBroken = ref(false)
 const expandedIds = ref(new Set())
 const activeMenuId = ref(null)
+const composerOpenId = ref(null)
+const interactionRefs = ref({})
+
+const setInteractionRef = (postId, el) => {
+  if (el) interactionRefs.value[postId] = el
+  else delete interactionRefs.value[postId]
+}
+
+const getPostTitle = (post) => {
+  const text = post.content?.trim()
+  if (text) return text.slice(0, 60)
+  return `朋友圈 ${post.id}`
+}
+
+const handleLike = async (post) => {
+  activeMenuId.value = null
+  composerOpenId.value = null
+  await nextTick()
+  interactionRefs.value[post.id]?.submitLike?.()
+}
+
+const openComment = (post) => {
+  activeMenuId.value = null
+  composerOpenId.value = post.id
+}
 
 const onCoverError = () => {
   coverBroken.value = true
