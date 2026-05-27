@@ -15,7 +15,7 @@ comment: false
       <img class="link-icon" src="https://meet-blog.buyixiao.xyz/favicon.svg" alt="" width="20" height="20" />
       <span class="link-name">Meet Blog 博客星图</span>
     </a>
-    <p>博客导航与星图，收录优质站点，可随机发现新站。</p>
+    <p>博客导航星图，收录优质站点，随机发现新站。</p>
     <p class="link-extra">
       随机访问：
       <a href="https://meet-blog.buyixiao.xyz/?random=on&ref=https%3A%2F%2Fvansiit.cc" target="_blank" rel="noopener noreferrer">全站随机</a>
@@ -63,6 +63,15 @@ comment: false
     </a>
     <p>分享设计与科技生活</p>
   </div>
+
+  <div class="link-item">
+    <a class="link-title" href="https://innei.in/" target="_blank" rel="noopener noreferrer">
+      <img class="link-icon" src="https://innei.in/_next/image?url=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F41265413%3Fv%3D4&w=96&q=75" alt="" width="20" height="20" />
+      <span class="link-name">静かな森</span>
+    </a>
+    <p>致虚极，守静笃。</p>
+  </div>
+
   </div>
 
   <ClientOnly>
