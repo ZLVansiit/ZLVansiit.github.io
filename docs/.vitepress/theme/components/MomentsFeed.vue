@@ -161,7 +161,6 @@
           @click="closePreview"
         >
           <div class="live-sheet-panel" @click.stop>
-            <div class="live-sheet-handle" aria-hidden="true" />
             <button type="button" class="preview-back live-sheet-back" aria-label="关闭" @click.stop="closePreview">
               <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
                 <path
@@ -868,7 +867,8 @@ onUnmounted(() => {
 
 .live-sheet-enter-from .live-sheet-panel,
 .live-sheet-leave-to .live-sheet-panel {
-  transform: translateY(100%);
+  transform: scale(0.94) translateY(10px);
+  opacity: 0.6;
 }
 
 .live-sheet-mask {
@@ -876,41 +876,33 @@ onUnmounted(() => {
   inset: 0;
   z-index: 9999;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  box-sizing: border-box;
   background: rgba(0, 0, 0, 0.45);
   cursor: zoom-out;
 }
 
 .live-sheet-panel {
+  --live-sheet-width: min(480px, 100%);
   position: relative;
-  width: 100%;
-  height: 50vh;
+  width: var(--live-sheet-width);
+  height: min(50vh, 50dvh);
   min-height: 240px;
-  max-height: 50dvh;
   background: #000;
-  border-radius: 12px 12px 0 0;
+  border-radius: 12px;
   overflow: hidden;
-  display: flex;
-  flex-direction: column;
   cursor: default;
-  box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.2);
-}
-
-.live-sheet-handle {
-  flex-shrink: 0;
-  width: 36px;
-  height: 4px;
-  margin: 8px auto 0;
-  border-radius: 2px;
-  background: rgba(255, 255, 255, 0.28);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
 }
 
 .live-sheet-back {
   position: absolute;
-  top: 4px;
+  top: 0;
   left: 0;
-  z-index: 2;
+  z-index: 5;
+  margin: 0;
 }
 
 .preview-back {
@@ -953,21 +945,26 @@ onUnmounted(() => {
   -webkit-user-drag: none;
 }
 
-/* Live 实况：无控件、封面→短片→回封面（半屏内） */
+/* Live 实况：模块内 100% 铺满（半屏居中弹框） */
 .live-sheet-panel .live-preview {
-  position: relative;
-  flex: 1;
-  min-height: 0;
+  position: absolute;
+  inset: 0;
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  height: 100%;
   cursor: zoom-out;
 }
 
-.live-poster {
+.live-sheet-panel .live-poster,
+.live-sheet-panel .live-video {
   position: absolute;
+  inset: 0;
   z-index: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  object-fit: cover;
   transition: opacity 0.28s ease;
 }
 
@@ -975,20 +972,9 @@ onUnmounted(() => {
   opacity: 0;
 }
 
-.live-sheet-panel .live-poster,
-.live-sheet-panel .live-video {
-  max-width: 100%;
-  max-height: 100%;
-}
-
 .live-video {
-  position: relative;
   z-index: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
   opacity: 0;
-  transition: opacity 0.28s ease;
 }
 
 .live-video.is-visible {
@@ -1023,8 +1009,8 @@ onUnmounted(() => {
 
 .live-preview-badge {
   position: absolute;
-  left: 16px;
-  top: 44px;
+  left: 12px;
+  top: 52px;
   z-index: 4;
   display: inline-flex;
   align-items: center;
@@ -1072,6 +1058,16 @@ onUnmounted(() => {
 
   .cover-wrap {
     height: 260px;
+  }
+
+  .live-sheet-mask {
+    padding: 12px;
+  }
+
+  .live-sheet-panel {
+    --live-sheet-width: 100%;
+    width: 100%;
+    min-height: 200px;
   }
 }
 </style>
