@@ -38,6 +38,7 @@
       <p v-if="loading" class="feed-status">加载中...</p>
       <p v-else-if="errorMessage" class="feed-status feed-status-error">{{ errorMessage }}</p>
       <p v-else-if="!posts.length" class="feed-status">暂无动态</p>
+      <p v-else-if="usingMock" class="feed-mock-hint">开发预览 · Mock 数据（12 条，覆盖各布局）</p>
       <article v-for="post in posts" :key="post.id" class="moment-item">
         <img class="moment-avatar" :src="profile.avatar" :alt="profile.name" />
         <div class="moment-body">
@@ -143,7 +144,7 @@
 
 <script setup>
 import { nextTick, onMounted, onUnmounted, ref } from 'vue'
-import { fetchMomentsFeed } from '../api/momentsApi'
+import { fetchMomentsFeed, isMomentsMockMode } from '../api/momentsApi'
 
 const CONTENT_LIMIT = 140
 
@@ -151,6 +152,7 @@ const profile = ref({ name: 'Vansiit', avatar: '/img/logo.svg', cover: '/moments
 const posts = ref([])
 const loading = ref(false)
 const errorMessage = ref('')
+const usingMock = ref(isMomentsMockMode)
 const coverBroken = ref(false)
 const expandedIds = ref(new Set())
 const activeMenuId = ref(null)
@@ -244,8 +246,8 @@ const loadFeed = async () => {
     const data = await fetchMomentsFeed()
     profile.value = data.profile
     posts.value = data.list
-  } catch (error) {
-    
+  } catch {
+    errorMessage.value = '加载失败，请稍后重试'
     posts.value = []
   } finally {
     loading.value = false
@@ -399,6 +401,14 @@ onUnmounted(() => {
 
 .feed-status-error {
   color: #b91c1c;
+}
+
+.feed-mock-hint {
+  margin: 0;
+  padding: 10px 16px 0;
+  text-align: center;
+  font-size: 12px;
+  color: #9ca3af;
 }
 
 .moment-item {

@@ -1,15 +1,11 @@
 export interface MomentMedia {
-  /** image 静态图；live 实况（短视频，可配 poster） */
   type: 'image' | 'live'
-  /** 图片地址，或 live 的视频地址 */
   src: string
-  /** live 封面图（可选，默认同 src 为图片时仅展示封面） */
   poster?: string
 }
 
 export interface MomentPost {
   id: string
-  /** 展示时间，如 2026-05-26 18:30 */
   time: string
   content?: string
   location?: string
@@ -20,43 +16,153 @@ export interface MomentsProfile {
   name: string
   avatar: string
   cover?: string
-  signature?: string
+}
+
+/** 占位图（picsum 固定 seed，便于本地反复验证） */
+const pic = (seed: string, w = 400, h = 400) =>
+  `https://picsum.photos/seed/${seed}/${w}/${h}`
+
+/** 示例 Live 短视频（公开样片） */
+const DEMO_LIVE_MP4 = 'https://www.w3schools.com/html/mov_bbb.mp4'
+
+const pad = (n: number) => String(n).padStart(2, '0')
+
+/** 生成「几分钟前」等相对时间文案所需的展示时间 */
+function formatDisplayTime(date: Date): string {
+  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())} ${pad(date.getHours())}:${pad(date.getMinutes())}`
+}
+
+function minutesAgo(minutes: number): string {
+  return formatDisplayTime(new Date(Date.now() - minutes * 60_000))
+}
+
+function daysAgo(days: number, hour = 12, minute = 0): string {
+  const d = new Date()
+  d.setDate(d.getDate() - days)
+  d.setHours(hour, minute, 0, 0)
+  return formatDisplayTime(d)
 }
 
 export const momentsProfile: MomentsProfile = {
   name: '张磊',
   avatar: '/img/logo.svg',
-  cover: '/moments/cover.jpg'
+  cover: pic('moments-cover', 960, 640)
 }
 
-/** 按时间倒序，最新在前 */
-export const momentsPosts: MomentPost[] = [
-  {
-    id: 'm-20260526-1',
-    time: '2026-05-26 18:20',
-    content: '常家岩的名字，再过一代也许就没人说得清了。写下来，算给自己留个底。',
-    location: '鄂西北'
-  },
-  {
-    id: 'm-20260520-1',
-    time: '2026-05-20 09:15',
-    content: '五一回去，山上风还是老样子。给了老张一支烟，两个人都没多说话。',
-    media: [
-      { type: 'image', src: '/img/logo.svg' },
-      { type: 'image', src: '/img/logo.svg' },
-      { type: 'live', src: '/moments/demo-live.mp4', poster: '/img/logo.svg' }
-    ]
-  },
-  {
-    id: 'm-20260512-1',
-    time: '2026-05-12 22:40',
-    content:
-      '博客友链页接好了，Meet Blog 星图留着，其余的走审核列表。朋友圈也按微信样式搭了一版：封面、昵称在右下角、九宫格、Live 标记、全文折叠和时间「几分钟前」。后面慢慢把随笔都搬过来，当自己的一小块自留地。'
-  },
-  {
-    id: 'm-20260408-1',
-    time: '2026-04-08 07:30',
-    content: '早上喝咖啡，看窗外发呆五分钟，比刷手机舒服。',
-    media: [{ type: 'image', src: '/img/logo.svg' }]
+/** 长文：用于验证「全文」折叠（>140 字） */
+const LONG_CONTENT =
+  '这是一条用于验证「全文」折叠的长动态。博客朋友圈按微信样式做了封面叠层、九宫格、Live 标记与相对时间。' +
+  '把接口关掉或本地开发时会走 Mock，方便你逐条点开看单图、四宫格、九宫格和实况预览。' +
+  '常家岩、友链、评论和后台发布可以慢慢接，先把展示效果摸清楚。'
+
+/**
+ * Mock 动态列表：覆盖纯文字、长文、1/2/3/4/5/6/9 图、Live、位置、多种相对时间
+ */
+export function buildMomentsMockPosts(): MomentPost[] {
+  return [
+    {
+      id: 'mock-text',
+      time: minutesAgo(0),
+      content: '纯文字动态，无配图。时间应显示为「刚刚」。'
+    },
+    {
+      id: 'mock-long',
+      time: minutesAgo(8),
+      content: LONG_CONTENT,
+      location: '武汉'
+    },
+    {
+      id: 'mock-1img',
+      time: minutesAgo(25),
+      content: '单张大图布局（media-count-1）',
+      media: [{ type: 'image', src: pic('moments-single', 800, 600) }]
+    },
+    {
+      id: 'mock-live-1',
+      time: minutesAgo(40),
+      content: '单张 Live，左上角 iOS 风格 LIVE 标记',
+      media: [
+        {
+          type: 'live',
+          src: DEMO_LIVE_MP4,
+          poster: pic('moments-live-poster-1')
+        }
+      ]
+    },
+    {
+      id: 'mock-2img',
+      time: minutesAgo(90),
+      content: '两张图（横排两列）',
+      media: [
+        { type: 'image', src: pic('moments-2a') },
+        { type: 'image', src: pic('moments-2b') }
+      ]
+    },
+    {
+      id: 'mock-4img',
+      time: minutesAgo(180),
+      content: '四张图（2×2 四宫格）',
+      location: '鄂西北',
+      media: [1, 2, 3, 4].map((i) => ({ type: 'image' as const, src: pic(`moments-4-${i}`) }))
+    },
+    {
+      id: 'mock-3img',
+      time: minutesAgo(300),
+      content: '三张图（三列宫格）',
+      media: [1, 2, 3].map((i) => ({ type: 'image' as const, src: pic(`moments-3-${i}`) }))
+    },
+    {
+      id: 'mock-mix-live',
+      time: minutesAgo(420),
+      content: '静图 + Live 混排（点 Live 格可预览视频）',
+      media: [
+        { type: 'image', src: pic('moments-mix-1') },
+        {
+          type: 'live',
+          src: DEMO_LIVE_MP4,
+          poster: pic('moments-mix-live')
+        },
+        { type: 'image', src: pic('moments-mix-3') }
+      ]
+    },
+    {
+      id: 'mock-6img',
+      time: minutesAgo(600),
+      content: '六张图',
+      media: [1, 2, 3, 4, 5, 6].map((i) => ({ type: 'image' as const, src: pic(`moments-6-${i}`) }))
+    },
+    {
+      id: 'mock-9img',
+      time: minutesAgo(900),
+      content: '九宫格上限（9 张）',
+      media: [1, 2, 3, 4, 5, 6, 7, 8, 9].map((i) => ({
+        type: 'image' as const,
+        src: pic(`moments-9-${i}`)
+      }))
+    },
+    {
+      id: 'mock-5img',
+      time: minutesAgo(1200),
+      content: '五张图（多列不规则尾行）',
+      media: [1, 2, 3, 4, 5].map((i) => ({ type: 'image' as const, src: pic(`moments-5-${i}`) }))
+    },
+    {
+      id: 'mock-old',
+      time: daysAgo(12, 7, 30),
+      content: '较早日期，应显示为「X月X日」而非「X天前」',
+      media: [{ type: 'image', src: pic('moments-old') }]
+    }
+  ]
+}
+
+export function buildMomentsMockFeed() {
+  const list = buildMomentsMockPosts()
+  return {
+    profile: { ...momentsProfile },
+    list,
+    total: list.length
   }
-]
+}
+
+/** @deprecated 请使用 buildMomentsMockFeed() */
+export const momentsPosts = buildMomentsMockPosts()

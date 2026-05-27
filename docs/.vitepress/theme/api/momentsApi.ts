@@ -24,6 +24,12 @@ export interface MomentsFeedData {
   total: number
 }
 
+import { buildMomentsMockFeed } from '../data/moments'
+
+/** 开发环境默认 Mock；设 VITE_MOMENTS_USE_API=true 时走真实接口 */
+export const isMomentsMockMode =
+  import.meta.env.DEV && import.meta.env.VITE_MOMENTS_USE_API !== 'true'
+
 const MOMENTS_FEED_API = import.meta.env.DEV
   ? '/hd/api/third/moments/feed'
   : 'https://vansiit.site/hd/api/third/moments/feed'
@@ -38,6 +44,11 @@ const buildHeaders = () => ({
 })
 
 export async function fetchMomentsFeed(): Promise<MomentsFeedData> {
+  if (isMomentsMockMode) {
+    await new Promise((r) => setTimeout(r, 280))
+    return buildMomentsMockFeed()
+  }
+
   const res = await fetch(MOMENTS_FEED_API, {
     method: 'GET',
     headers: buildHeaders()
