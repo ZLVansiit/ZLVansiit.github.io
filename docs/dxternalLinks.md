@@ -54,6 +54,14 @@ comment: false
     <p>个人博客 / 学习交流 / 生活日常</p>
   </div>
 
+  <div class="link-item">
+    <a class="link-title" href="https://blog.zhheo.com/" target="_blank" rel="noopener noreferrer">
+      <img class="link-icon" src="https://img.zhheo.com/i/67d8fb5f563ff.webp" alt="" width="20" height="20" />
+      <span class="link-name">张洪Heo</span>
+    </a>
+    <p>分享设计与科技生活</p>
+  </div>
+
   <ClientOnly>
     <FriendLinkList />
   </ClientOnly>
