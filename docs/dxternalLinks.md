@@ -76,7 +76,7 @@ comment: false
 
   <div class="link-item">
     <a class="link-title" href="https://www.qingfengnb.cn" target="_blank" rel="noopener noreferrer">
-      <img class="link-icon" src="hhttps://img.qingfengnb.cn/LightPicture/2025/07/bec6eb9625656d60.jpg" alt="" width="20" height="20" />
+      <img class="link-icon" src="https://img.qingfengnb.cn/LightPicture/2025/07/bec6eb9625656d60.jpg" alt="" width="20" height="20" />
       <span class="link-name">轻风blog</span>
     </a>
     <p>茫茫人海，多么幸运才能遇见你！</p>
