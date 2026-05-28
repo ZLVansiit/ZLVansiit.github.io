@@ -130,6 +130,22 @@ comment: false
     <p>见崎的猫箱</p>
   </div>
 
+  <div class="link-item">
+    <a class="link-title" href="https://weitao-jiang.cn" target="_blank" rel="noopener noreferrer">
+      <img class="link-icon" src="https://www.weitao-jiang.cn/images/avatar.jpg" alt="" width="20" height="20" />
+      <span class="link-name">CBDT的小站</span>
+    </a>
+    <p>漂泊在互联网一角的牢无一只</p>
+  </div>
+
+  <div class="link-item">
+    <a class="link-title" href="https://blog.tsoo.net" target="_blank" rel="noopener noreferrer">
+      <img class="link-icon" src="https://blog.tsoo.net/upload/lsyb.png" alt="" width="20" height="20" />
+      <span class="link-name">bbb-lsy07</span>
+    </a>
+    <p>科技激荡人文，洞见智慧本真。</p>
+  </div>
+
   </div>
 
   <ClientOnly>
