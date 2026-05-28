@@ -8,6 +8,7 @@ import CustomCommentSystem from './components/CustomCommentSystem.vue'
 import FriendLinkApply from './components/FriendLinkApply.vue'
 import FriendLinkList from './components/FriendLinkList.vue'
 import FriendLinkSiteInfo from './components/FriendLinkSiteInfo.vue'
+import FriendLinkRss from './components/FriendLinkRss.vue'
 import MomentsFeed from './components/MomentsFeed.vue'
 
 export default {
@@ -18,6 +19,7 @@ export default {
     app.component('FriendLinkApply', FriendLinkApply)
     app.component('FriendLinkList', FriendLinkList)
     app.component('FriendLinkSiteInfo', FriendLinkSiteInfo)
+    app.component('FriendLinkRss', FriendLinkRss)
     app.component('MomentsFeed', MomentsFeed)
   }
 }

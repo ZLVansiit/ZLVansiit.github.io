@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Z.L Vansiit&apos;s blog</title>
+    <link>https://vansiit.cc/</link>
+    <description>开发 | vansiit，Web &amp; Front-end Engineer | vansiit的个人博客呀</description>
+    <language>zh-CN</language>
+    <lastBuildDate>Thu, 28 May 2026 10:02:42 GMT</lastBuildDate>
+    <managingEditor>vansiit@163.com (Z.L Vansiit)</managingEditor>
+    <webMaster>vansiit@163.com (Z.L Vansiit)</webMaster>
+    <atom:link href="https://vansiit.cc/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>常家岩</title>
+      <link>https://vansiit.cc/2026/05/12/changjiayan.html</link>
+      <guid isPermaLink="true">https://vansiit.cc/2026/05/12/changjiayan.html</guid>
+      <pubDate>Tue, 12 May 2026 04:00:00 GMT</pubDate>
+      <description>常家岩</description>
+    </item>
+    <item>
+      <title>《失眠》（原创诗歌）</title>
+      <link>https://vansiit.cc/2026/01/27/yesterday.html</link>
+      <guid isPermaLink="true">https://vansiit.cc/2026/01/27/yesterday.html</guid>
+      <pubDate>Tue, 27 Jan 2026 04:00:00 GMT</pubDate>
+      <description>《失眠》（原创诗歌）</description>
+    </item>
+    <item>
+      <title>读诗《有人问我公理和正义的问题》有感</title>
+      <link>https://vansiit.cc/2025/12/10/gongli_zhengyi.html</link>
+      <guid isPermaLink="true">https://vansiit.cc/2025/12/10/gongli_zhengyi.html</guid>
+      <pubDate>Thu, 11 Dec 2025 04:00:00 GMT</pubDate>
+      <description>读诗《有人问我公理和正义的问题》有感</description>
+    </item>
+    <item>
+      <title>shanhe</title>
+      <link>https://vansiit.cc/2025/12/10/shanhe.html</link>
+      <guid isPermaLink="true">https://vansiit.cc/2025/12/10/shanhe.html</guid>
+      <pubDate>Wed, 10 Dec 2025 04:00:00 GMT</pubDate>
+      <description>shanhe</description>
+    </item>
+    <item>
+      <title>高频Sql面试实战题目（mysql）的解答思路</title>
+      <link>https://vansiit.cc/2025/12/09/sql-face.html</link>
+      <guid isPermaLink="true">https://vansiit.cc/2025/12/09/sql-face.html</guid>
+      <pubDate>Tue, 09 Dec 2025 04:00:00 GMT</pubDate>
+      <description>高频Sql面试题目及答案和解答思路</description>
+    </item>
+    <item>
+      <title>为什么英文字母 W 读作 double u？</title>
+      <link>https://vansiit.cc/2025/12/03/double-u.html</link>
+      <guid isPermaLink="true">https://vansiit.cc/2025/12/03/double-u.html</guid>
+      <pubDate>Wed, 03 Dec 2025 04:00:00 GMT</pubDate>
+      <description>为什么英文字母 W 读作 double u</description>
+    </item>
+    <item>
+      <title>星期天到底是怎么来的？</title>
+      <link>https://vansiit.cc/2025/09/08/week.html</link>
+      <guid isPermaLink="true">https://vansiit.cc/2025/09/08/week.html</guid>
+      <pubDate>Tue, 09 Sep 2025 04:00:00 GMT</pubDate>
+      <description>星期天到底是怎么来的</description>
+    </item>
+    <item>
+      <title>那个长头发大胡子的老师出家了</title>
+      <link>https://vansiit.cc/2025/08/19/teacher.html</link>
+      <guid isPermaLink="true">https://vansiit.cc/2025/08/19/teacher.html</guid>
+      <pubDate>Tue, 19 Aug 2025 04:00:00 GMT</pubDate>
+      <description>那个长头发大胡子的老师出家了</description>
+    </item>
+    <item>
+      <title>changpeiban</title>
+      <link>https://vansiit.cc/2025/07/01/changpeiban.html</link>
+      <guid isPermaLink="true">https://vansiit.cc/2025/07/01/changpeiban.html</guid>
+      <pubDate>Tue, 01 Jul 2025 04:00:00 GMT</pubDate>
+      <description>changpeiban</description>
+    </item>
+    <item>
+      <title>Golang学习笔记(一)：Go语言起源、发展历程与核心特性</title>
+      <link>https://vansiit.cc/2025/05/28/golang1.html</link>
+      <guid isPermaLink="true">https://vansiit.cc/2025/05/28/golang1.html</guid>
+      <pubDate>Wed, 28 May 2025 04:00:00 GMT</pubDate>
+      <description>详细介绍Go语言的起源发展历程、核心设计理念和主要特性，适合Go语言初学者了解语言背景和基础知识</description>
+    </item>
+    <item>
+      <title>Java项目升级实战：从JDK8到JDK17的完整迁移指南</title>
+      <link>https://vansiit.cc/2025/05/21/project-upgrade.html</link>
+      <guid isPermaLink="true">https://vansiit.cc/2025/05/21/project-upgrade.html</guid>
+      <pubDate>Wed, 21 May 2025 04:00:00 GMT</pubDate>
+      <description>详细记录Java项目从JDK8升级到JDK17的完整过程，包括Spring Boot 3.x迁移、依赖包升级、安全漏洞修复等实战经验</description>
+    </item>
+    <item>
+      <title>人工智能(AI)深度分析：现状、挑战、瓶颈与未来发展趋势</title>
+      <link>https://vansiit.cc/2025/02/08/ai.html</link>
+      <guid isPermaLink="true">https://vansiit.cc/2025/02/08/ai.html</guid>
+      <pubDate>Sat, 08 Feb 2025 04:00:00 GMT</pubDate>
+      <description>全面分析人工智能技术的发展现状、面临的技术挑战和瓶颈问题，展望AI技术的未来发展方向和应用前景</description>
+    </item>
+    <item>
+      <title>Java对接Google Pay完整指南：支付集成与安全实现</title>
+      <link>https://vansiit.cc/2025/02/08/googlepay.html</link>
+      <guid isPermaLink="true">https://vansiit.cc/2025/02/08/googlepay.html</guid>
+      <pubDate>Sat, 08 Feb 2025 04:00:00 GMT</pubDate>
+      <description>详细介绍Java后端系统对接Google Pay的完整流程，包含支付令牌处理、安全验证、错误处理等关键技术要点</description>
+    </item>
+    <item>
+      <title>国外支付平台全面对比：国际化APP支付集成最佳实践</title>
+      <link>https://vansiit.cc/2025/02/08/pay.html</link>
+      <guid isPermaLink="true">https://vansiit.cc/2025/02/08/pay.html</guid>
+      <pubDate>Sat, 08 Feb 2025 04:00:00 GMT</pubDate>
+      <description>详细对比分析PayPal、Stripe、Square等主流国外支付平台的特点和优势，提供国际化APP支付对接的完整建议和实施方案</description>
+    </item>
+    <item>
+      <title>Java对接PayPal完整教程：REST API集成与关键注意事项</title>
+      <link>https://vansiit.cc/2025/02/08/paypal.html</link>
+      <guid isPermaLink="true">https://vansiit.cc/2025/02/08/paypal.html</guid>
+      <pubDate>Sat, 08 Feb 2025 04:00:00 GMT</pubDate>
+      <description>详细介绍Java项目中集成PayPal REST API的完整流程，包含开发环境配置、API调用、错误处理和安全性建议</description>
+    </item>
+    <item>
+      <title>Java21虚拟线程详解：与Go协程性能对比分析</title>
+      <link>https://vansiit.cc/2025/02/08/virtual-thread.html</link>
+      <guid isPermaLink="true">https://vansiit.cc/2025/02/08/virtual-thread.html</guid>
+      <pubDate>Sat, 08 Feb 2025 04:00:00 GMT</pubDate>
+      <description>深入解析Java21虚拟线程特性，对比Go协程性能差异，包含实战代码示例和最佳实践指南</description>
+    </item>
+    <item>
+      <title>shanliren</title>
+      <link>https://vansiit.cc/2025/01/07/shanliren.html</link>
+      <guid isPermaLink="true">https://vansiit.cc/2025/01/07/shanliren.html</guid>
+      <pubDate>Tue, 07 Jan 2025 04:00:00 GMT</pubDate>
+      <description>shanliren</description>
+    </item>
+    <item>
+      <title>shudong</title>
+      <link>https://vansiit.cc/2025/01/06/shudong.html</link>
+      <guid isPermaLink="true">https://vansiit.cc/2025/01/06/shudong.html</guid>
+      <pubDate>Mon, 06 Jan 2025 04:00:00 GMT</pubDate>
+      <description>shudong</description>
+    </item>
+    <item>
+      <title>春节真的是中国传统节日吗？探寻春节的历史真相</title>
+      <link>https://vansiit.cc/2025/01/05/chunjie.html</link>
+      <guid isPermaLink="true">https://vansiit.cc/2025/01/05/chunjie.html</guid>
+      <pubDate>Sun, 05 Jan 2025 04:00:00 GMT</pubDate>
+      <description>深入探讨春节作为中国传统节日的历史渊源和文化内涵，分析春节习俗的演变过程和现代意义</description>
+    </item>
+    <item>
+      <title>供奉释迦牟尼、李白、耶稣、姜子牙的高台教到底是什么</title>
+      <link>https://vansiit.cc/2024/09/21/Caodaism.html</link>
+      <guid isPermaLink="true">https://vansiit.cc/2024/09/21/Caodaism.html</guid>
+      <pubDate>Sat, 21 Sep 2024 04:00:00 GMT</pubDate>
+      <description>深入了解越南高台教的历史起源、教义特色和现状发展，探索这个融合佛教、基督教、儒道等多种宗教元素的独特信仰体系</description>
+    </item>
+    <item>
+      <title>高台教</title>
+      <link>https://vansiit.cc/2024/09/21/middle-east.html</link>
+      <guid isPermaLink="true">https://vansiit.cc/2024/09/21/middle-east.html</guid>
+      <pubDate>Sat, 21 Sep 2024 04:00:00 GMT</pubDate>
+      <description>高台教</description>
+    </item>
+    <item>
+      <title>人工智能发展史：从历史到现状再到未来趋势</title>
+      <link>https://vansiit.cc/2024/04/09/what-is-ai.html</link>
+      <guid isPermaLink="true">https://vansiit.cc/2024/04/09/what-is-ai.html</guid>
+      <pubDate>Tue, 09 Apr 2024 04:00:00 GMT</pubDate>
+      <description>深入探讨人工智能的发展历程、当前技术现状和未来发展趋势，分析AI技术对社会和行业的深远影响</description>
+    </item>
+    <item>
+      <title>grand-unification-theory</title>
+      <link>https://vansiit.cc/2024/03/29/grand-unification-theory.html</link>
+      <guid isPermaLink="true">https://vansiit.cc/2024/03/29/grand-unification-theory.html</guid>
+      <pubDate>Fri, 29 Mar 2024 04:00:00 GMT</pubDate>
+      <description>grand-unification-theory</description>
+    </item>
+    <item>
+      <title>当我在看NBA的时候在看什么</title>
+      <link>https://vansiit.cc/2024/03/29/nba.html</link>
+      <guid isPermaLink="true">https://vansiit.cc/2024/03/29/nba.html</guid>
+      <pubDate>Fri, 29 Mar 2024 04:00:00 GMT</pubDate>
+      <description>当我在看NBA的时候在看什么</description>
+    </item>
+    <item>
+      <title>Git常用指令大全及IDEA提交插件推荐</title>
+      <link>https://vansiit.cc/2024/03/21/git-common-commands.html</link>
+      <guid isPermaLink="true">https://vansiit.cc/2024/03/21/git-common-commands.html</guid>
+      <pubDate>Thu, 21 Mar 2024 04:00:00 GMT</pubDate>
+      <description>详细整理Git版本控制的常用命令和操作技巧，推荐IDEA中好用的commit插件，提升开发效率和代码管理质量</description>
+    </item>
+    <item>
+      <title>MySQL字符集详解：utf8与utf8mb4的区别及最佳实践</title>
+      <link>https://vansiit.cc/2023/12/02/mysql-character-set.html</link>
+      <guid isPermaLink="true">https://vansiit.cc/2023/12/02/mysql-character-set.html</guid>
+      <pubDate>Sat, 02 Dec 2023 04:00:00 GMT</pubDate>
+      <description>深入解析MySQL中utf8和utf8mb4字符集的区别、应用场景和配置方法，包含字符编码原理、存储差异和性能对比分析</description>
+    </item>
+    <item>
+      <title>APP扫码登录完整实现：从原理到代码的全栈开发指南</title>
+      <link>https://vansiit.cc/2023/06/15/scan-qrcode-login.html</link>
+      <guid isPermaLink="true">https://vansiit.cc/2023/06/15/scan-qrcode-login.html</guid>
+      <pubDate>Thu, 15 Jun 2023 04:00:00 GMT</pubDate>
+      <description>详细讲解APP扫码登录的实现原理和完整代码实现，包含前端二维码生成、后端接口设计、移动端扫码处理等全栈开发方案</description>
+    </item>
+    <item>
+      <title>平滑加权轮询算法详解：Smooth Weighted Round Robin实现与应用</title>
+      <link>https://vansiit.cc/2023/06/15/weighted-round-robin.html</link>
+      <guid isPermaLink="true">https://vansiit.cc/2023/06/15/weighted-round-robin.html</guid>
+      <pubDate>Thu, 15 Jun 2023 04:00:00 GMT</pubDate>
+      <description>深入解析平滑加权轮询算法的原理、实现和应用场景，包含负载均衡、进程调度等实际应用案例和代码实现</description>
+    </item>
+    <item>
+      <title>使用NanoID替换整型ID：防爬虫与数据安全实战方案</title>
+      <link>https://vansiit.cc/2023/06/12/NanoID-mapping.html</link>
+      <guid isPermaLink="true">https://vansiit.cc/2023/06/12/NanoID-mapping.html</guid>
+      <pubDate>Mon, 12 Jun 2023 04:00:00 GMT</pubDate>
+      <description>详细介绍如何使用NanoID替换自增长整型ID，防止爬虫轮询抓取数据，包含数据库映射表设计、缓存处理等完整实现方案</description>
+    </item>
+    <item>
+      <title>ID生成器全面对比：UUID vs SnowFlake vs NanoId性能分析</title>
+      <link>https://vansiit.cc/2023/06/12/NanoId.html</link>
+      <guid isPermaLink="true">https://vansiit.cc/2023/06/12/NanoId.html</guid>
+      <pubDate>Mon, 12 Jun 2023 04:00:00 GMT</pubDate>
+      <description>深入对比分析UUID、SnowFlake、NanoId等常用ID生成器的优缺点、性能表现和适用场景，为分布式系统选择最佳ID方案</description>
+    </item>
+    <item>
+      <title>MapStruct完整使用指南：高性能JavaBean映射框架详解</title>
+      <link>https://vansiit.cc/2023/05/25/mapstruct.html</link>
+      <guid isPermaLink="true">https://vansiit.cc/2023/05/25/mapstruct.html</guid>
+      <pubDate>Thu, 25 May 2023 04:00:00 GMT</pubDate>
+      <description>深入解析MapStruct映射框架的使用方法和实现原理，包含性能对比、注解详解、实战示例等完整教程，助你掌握高效的JavaBean对象转换技术</description>
+    </item>
+  </channel>
+</rss>

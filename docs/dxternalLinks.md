@@ -173,6 +173,10 @@ comment: false
   </ClientOnly>
 
   <ClientOnly>
+    <FriendLinkRss />
+  </ClientOnly>
+
+  <ClientOnly>
     <FriendLinkApply />
   </ClientOnly>
 </div>

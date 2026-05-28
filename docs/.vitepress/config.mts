@@ -1,5 +1,6 @@
 import { defineConfig } from 'vitepress'
 import emailSVGString from './theme/svgs/email'
+import rssSVGString from './theme/svgs/rss'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -72,6 +73,7 @@ export default defineConfig({
     })],
 
     ['link', { rel: 'icon', href: '/favicon.ico' }],
+    ['link', { rel: 'alternate', type: 'application/rss+xml', title: 'RSS', href: '/rss.xml' }],
     [
       'script',
       { async: '', src: 'https://www.googletagmanager.com/gtag/js?id=G-341DFSJ9B1' }
@@ -177,6 +179,13 @@ export default defineConfig({
           svg: emailSVGString,
         },
         link: "mailto:vansiit@163.com",
+      },
+      {
+        icon: {
+          svg: rssSVGString,
+        },
+        link: '/rss.xml',
+        ariaLabel: 'RSS 订阅',
       },
     ],
 
