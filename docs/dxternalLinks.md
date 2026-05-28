@@ -98,6 +98,14 @@ comment: false
     <p>One Blog, One Dreamland</p>
   </div>
 
+  <div class="link-item">
+    <a class="link-title" href="https://blog.peterchen97.cn" target="_blank" rel="noopener noreferrer">
+      <img class="link-icon" src="https://blog.peterchen97.cn/favicon.png" alt="" width="20" height="20" />
+      <span class="link-name">龙场茶室</span>
+    </a>
+    <p>一只练习时长六年半的全栈开发练习生，这是他的一些杂文，欢迎交流~</p>
+  </div>
+
   </div>
 
   <ClientOnly>
