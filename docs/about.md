@@ -9,7 +9,11 @@ comment: false
 
 Hey！我是 **Vansiit**。
 
-Java开发工程师。
+Java全栈开发工程师（不是）
+
+大模型高级调用工程师（[狗头]）
+
+AI高级擦屁股专家（战绩可查）
 
 <br>
 <div style="width: 100%; max-width: 600px; margin: 0 auto; padding: 20px; background: #f8f9fa; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
@@ -41,7 +45,7 @@ Java开发工程师。
 
 某日翻看《说文解字》，“惟，凡思也”。很喜欢背后的意义，人要自主的思辨能力。英文里“van”翻译成“凡”，再加“思”的汉语拼音“si”，“it”是英文的代词。合拼起来就是“vansiit”，全网唯一，沿用至今。
 
-
+好空，那下面随便放点东西 [狗头]
 
 > 君子曰：学不可以已。
 >
