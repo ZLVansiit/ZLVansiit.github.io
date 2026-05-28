@@ -18,8 +18,8 @@
   "author": "Vansiit",
   "license": "MIT",
   "devDependencies": {
+    "markdown-it": "^14.2.0",
     "vitepress": "^1.0.1",
     "vue": "^3.4.21"
-  },
-  "dependencies": {}
+  }
 }

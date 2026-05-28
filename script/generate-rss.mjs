@@ -4,6 +4,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+import MarkdownIt from 'markdown-it'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const ROOT = path.resolve(__dirname, '..')
@@ -18,6 +19,12 @@ const AUTHOR = 'Z.L Vansiit'
 const MAX_ITEMS = 50
 
 const POST_PATH_RE = /^\d{4}\/\d{2}\/\d{2}\/[^/]+\.md$/
+
+const md = new MarkdownIt({
+  html: false,
+  linkify: true,
+  typographer: true,
+})
 
 function escapeXml(value) {
   return String(value)
@@ -39,6 +46,37 @@ function parseFrontmatter(raw) {
     if (m) data[m[1]] = m[2].trim()
   }
   return data
+}
+
+function extractBody(raw) {
+  const match = raw.match(/^---\r?\n[\s\S]*?\r?\n---\r?\n?([\s\S]*)$/)
+  return match ? match[1].trim() : raw.trim()
+}
+
+/** 将 Markdown 内相对路径转为站点绝对 URL */
+function absolutizeMarkdownUrls(markdown) {
+  return markdown
+    .replace(/\]\(\//g, `](${SITE_URL}/`)
+    .replace(/!\[([^\]]*)\]\(\//g, `![$1](${SITE_URL}/`)
+}
+
+function renderBodyHtml(markdown) {
+  if (!markdown) return ''
+  const html = md.render(absolutizeMarkdownUrls(markdown))
+  return html.replace(/src="\//g, `src="${SITE_URL}/`)
+}
+
+function plainTextExcerpt(html, maxLen = 280) {
+  const text = html
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+  if (text.length <= maxLen) return text
+  return `${text.slice(0, maxLen)}…`
+}
+
+function wrapCdata(value) {
+  return `<![CDATA[${String(value).replace(/]]>/g, ']]]]><![CDATA[>')}]]>`
 }
 
 function dateFromPath(relativePath) {
@@ -79,11 +117,15 @@ function collectPosts() {
 
       const slug = childRel.replace(/\\/g, '/').replace(/\.md$/, '')
       const title = fm.title || slug.split('/').pop()
-      const description = fm.description || fm.title || title
+      const bodyMarkdown = extractBody(raw)
+      const contentHtml = renderBodyHtml(bodyMarkdown)
+      const description =
+        fm.description || plainTextExcerpt(contentHtml) || title
 
       posts.push({
         title,
         description,
+        contentHtml,
         date,
         link: `${SITE_URL}/${slug}.html`,
         guid: `${SITE_URL}/${slug}.html`,
@@ -107,13 +149,14 @@ function buildRss(items) {
       <link>${escapeXml(item.link)}</link>
       <guid isPermaLink="true">${escapeXml(item.guid)}</guid>
       <pubDate>${toRfc822(item.date)}</pubDate>
-      <description>${escapeXml(item.description)}</description>
+      <description>${wrapCdata(item.contentHtml)}</description>
+      <content:encoded>${wrapCdata(item.contentHtml)}</content:encoded>
     </item>`,
     )
     .join('\n')
 
   return `<?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>${escapeXml(SITE_TITLE)}</title>
     <link>${escapeXml(channelLink)}</link>
