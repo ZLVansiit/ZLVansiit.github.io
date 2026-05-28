@@ -146,6 +146,14 @@ comment: false
     <p>科技激荡人文，洞见智慧本真。</p>
   </div>
 
+  <div class="link-item">
+    <a class="link-title" href="https://www.seaepoch.com" target="_blank" rel="noopener noreferrer">
+      <img class="link-icon" src="https://www.seaepoch.com/img/avatar.png" alt="" width="20" height="20" />
+      <span class="link-name">SeaEpoch</span>
+    </a>
+    <p>她站在那里，就像一个小小的永恒！</p>
+  </div>
+
   </div>
 
   <ClientOnly>
