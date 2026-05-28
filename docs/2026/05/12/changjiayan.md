@@ -15,7 +15,7 @@ tags:
 
 # 常家岩
 
-![img.png](https://vansiit.cc/img/moments/img.jpg)
+![img.png](https://vansiit.cc/moments/img.jpg)
 
 这是我老家，叫常家岩。
 
@@ -23,7 +23,7 @@ tags:
 
 说是常家岩，其实就剩老张家两户人了。姓常的早些年就绝了户，房子塌得不成样子，只剩些零星的瓦砾和半截土墙。常大爷以前家门口那棵很大的樱桃树也败了， 熟成一颗被鸟吃一颗，再加上树荫遮住了，五一回去没见着几颗樱桃。
 
-![img.png](https://vansiit.cc/img/moments/img1.jpg)
+![img.png](https://vansiit.cc/moments/img-1.jpg)
 
 这是在我奶奶家摘的。
 
