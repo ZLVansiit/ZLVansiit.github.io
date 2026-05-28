@@ -122,6 +122,14 @@ comment: false
     <p>分享技术、踩坑记录、日常吐槽</p>
   </div>
 
+  <div class="link-item">
+    <a class="link-title" href="https://catarium.me/" target="_blank" rel="noopener noreferrer">
+      <img class="link-icon" src="https://cdn.jsdelivr.net/gh/Eofs791/catpic@main/img/avatar.ico" alt="" width="20" height="20" />
+      <span class="link-name">Catarium</span>
+    </a>
+    <p>见崎的猫箱</p>
+  </div>
+
   </div>
 
   <ClientOnly>
