@@ -154,6 +154,14 @@ comment: false
     <p>她站在那里，就像一个小小的永恒！</p>
   </div>
 
+  <div class="link-item">
+    <a class="link-title" href="https://soha.moe/" target="_blank" rel="noopener noreferrer">
+      <img class="link-icon" src="https://secure.gravatar.com/avatar/5762c750aff5b549acdea423f6922ba0?s=32&r=G&d=" alt="" width="20" height="20" />
+      <span class="link-name">海上的宫殿</span>
+    </a>
+    <p>是你想来Soha的在海上宫殿参观吗？</p>
+  </div>
+
   </div>
 
   <ClientOnly>
