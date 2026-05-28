@@ -106,6 +106,22 @@ comment: false
     <p>一只练习时长六年半的全栈开发练习生，这是他的一些杂文，欢迎交流~</p>
   </div>
 
+  <div class="link-item">
+    <a class="link-title" href="https://www.7gugu.com/" target="_blank" rel="noopener noreferrer">
+      <img class="link-icon" src="https://7gugu.com/wp-content/uploads/2018/01/favicon.png" alt="" width="20" height="20" />
+      <span class="link-name">7gugu’s Blog</span>
+    </a>
+    <p>一只鸽子的Code Space</p>
+  </div>
+
+  <div class="link-item">
+    <a class="link-title" href="https://4ark.me/" target="_blank" rel="noopener noreferrer">
+      <img class="link-icon" src="https://4ark.me/favicon.ico" alt="" width="20" height="20" />
+      <span class="link-name">4Ark × Blog</span>
+    </a>
+    <p>分享技术、踩坑记录、日常吐槽</p>
+  </div>
+
   </div>
 
   <ClientOnly>
