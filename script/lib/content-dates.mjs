@@ -75,16 +75,39 @@ export function collectMomentDates(momentsFile) {
 }
 
 /** @param {{ type: string, date: string }[]} entries */
-export function aggregateDailyCounts(entries) {
+export function aggregateMonthlyCounts(entries) {
   /** @type {Record<string, { articles: number, moments: number, total: number }>} */
-  const counts = {}
+  const months = {}
   for (const entry of entries) {
-    if (!counts[entry.date]) {
-      counts[entry.date] = { articles: 0, moments: 0, total: 0 }
+    const monthKey = entry.date.slice(0, 7)
+    if (!months[monthKey]) {
+      months[monthKey] = { articles: 0, moments: 0, total: 0 }
     }
-    if (entry.type === 'article') counts[entry.date].articles += 1
-    if (entry.type === 'moment') counts[entry.date].moments += 1
-    counts[entry.date].total += 1
+    if (entry.type === 'article') months[monthKey].articles += 1
+    if (entry.type === 'moment') months[monthKey].moments += 1
+    months[monthKey].total += 1
   }
-  return counts
+  return months
+}
+
+/** @param {Record<string, { articles: number, moments: number, total: number }>} months */
+export function buildMonthlyRange(months) {
+  const keys = Object.keys(months).sort()
+  if (keys.length === 0) {
+    const now = new Date()
+    const y = now.getFullYear()
+    const m = String(now.getMonth() + 1).padStart(2, '0')
+    const current = `${y}-${m}`
+    return { rangeStart: current, rangeEnd: current, years: [y] }
+  }
+
+  const rangeStart = keys[0]
+  const rangeEnd = keys[keys.length - 1]
+  const startYear = Number(rangeStart.slice(0, 4))
+  const endYear = Number(rangeEnd.slice(0, 4))
+  const years = []
+  for (let year = startYear; year <= endYear; year += 1) {
+    years.push(year)
+  }
+  return { rangeStart, rangeEnd, years }
 }
