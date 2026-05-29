@@ -194,6 +194,14 @@ comment: false
     <p>克己慎独 守心明性</p>
   </div>
 
+  <div class="link-item">
+    <a class="link-title" href="https://blog.ryouissei.com/" target="_blank" rel="noopener noreferrer">
+      <img class="link-icon" src="https://blog.ryouissei.com/favicon.svg" alt="" width="20" height="20" />
+      <span class="link-name">觉论</span>
+    </a>
+    <p>The Sense of Design &amp; Life</p>
+  </div>
+
   </div>
 
   <ClientOnly>
