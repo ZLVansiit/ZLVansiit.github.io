@@ -178,6 +178,14 @@ comment: false
     <p>不负心灵，不负今生。</p>
   </div>
 
+  <div class="link-item">
+    <a class="link-title" href="https://blog.xiowo.net/" target="_blank" rel="noopener noreferrer">
+      <img class="link-icon" src="https://blog.xiowo.net/img/avatar.png" alt="" width="20" height="20" />
+      <span class="link-name">Mo的记事簿</span>
+    </a>
+    <p>万年鸽王，哈哈OvO</p>
+  </div>
+
   </div>
 
   <ClientOnly>
