@@ -1,11 +1,11 @@
 ---
 title: 关于我
+prev: false
+next: false
 comment: false
 ---
 
-
-
-# 关于
+# About Me
 
 Hey！我是 **Vansiit**。
 
