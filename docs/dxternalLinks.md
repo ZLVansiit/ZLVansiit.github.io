@@ -186,6 +186,14 @@ comment: false
     <p>万年鸽王，哈哈OvO</p>
   </div>
 
+  <div class="link-item">
+    <a class="link-title" href="https://sanbaiblog.cn/" target="_blank" rel="noopener noreferrer">
+      <img class="link-icon" src="https://s21.ax1x.com/2025/01/05/pE9CfDU.jpg" alt="" width="20" height="20" />
+      <span class="link-name">一清三白</span>
+    </a>
+    <p>克己慎独 守心明性</p>
+  </div>
+
   </div>
 
   <ClientOnly>
