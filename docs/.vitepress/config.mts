@@ -167,6 +167,7 @@ export default defineConfig({
           {text: '那个长头发大胡子的老师出家了', link: '/2025/08/19/teacher', tag: '非虚构'},
           {text: '常家岩', link: '/2026/05/12/changjiayan', tag: '非虚构'},
           {text: '《失眠》（原创诗歌）', link: '/2026/01/27/yesterday', tag: '诗歌'},
+          {text: '年轻人，请忍受一下（转载）', link: '/2026/05/29/youngpeople', tag: '诗歌'},
 
           /*{text: '山里娃', link: '/2025/01/07/shanliren', tag: '非虚构'},*/
         ]
