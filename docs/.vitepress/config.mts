@@ -169,6 +169,7 @@ export default defineConfig({
           {text: '《失眠》（原创诗歌）', link: '/2026/01/27/yesterday', tag: '诗歌'},
           {text: '年轻人，请忍受一下（转载）', link: '/2026/05/29/youngpeople', tag: '诗歌'},
           {text: '三块广告牌观后感', link: '/2026/05/29/threeBillboards', tag: '电影'},
+          {text: '豆瓣 8.8分：独属于中国人的浪漫父子情《那山那人那狗》', link: '/2026/05/29/nashannarenagou', tag: '电影'},
 
           /*{text: '山里娃', link: '/2025/01/07/shanliren', tag: '非虚构'},*/
         ]
