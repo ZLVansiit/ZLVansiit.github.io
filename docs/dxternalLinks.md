@@ -170,6 +170,14 @@ comment: false
     <p>On the other side of obstacles</p>
   </div>
 
+  <div class="link-item">
+    <a class="link-title" href="https://blog.bsgun.cn/" target="_blank" rel="noopener noreferrer">
+      <img class="link-icon" src="https://oss-cdn.bsgun.cn/logo/avatar.256.png" alt="" width="20" height="20" />
+      <span class="link-name">梦爱吃鱼</span>
+    </a>
+    <p>不负心灵，不负今生。</p>
+  </div>
+
   </div>
 
   <ClientOnly>
