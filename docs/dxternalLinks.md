@@ -162,6 +162,14 @@ comment: false
     <p>是你想来Soha的在海上宫殿参观吗？</p>
   </div>
 
+  <div class="link-item">
+    <a class="link-title" href="https://blog.hesiy.cn" target="_blank" rel="noopener noreferrer">
+      <img class="link-icon" src="https://registry.npmmirror.com/@floatsheep/fsl-fim/1.0.23/files/avatar%202024.main.webp" alt="" width="20" height="20" />
+      <span class="link-name">FloatSheep</span>
+    </a>
+    <p>On the other side of obstacles</p>
+  </div>
+
   </div>
 
   <ClientOnly>
