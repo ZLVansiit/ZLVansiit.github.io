@@ -81,38 +81,38 @@ function cellTitle(year, month) {
 
 <style scoped>
 .activity-heatmap {
-  margin: 0 0 1.6rem;
-  padding: 16px;
-  border-radius: 10px;
+  margin: 0 0 1.28rem;
+  padding: 13px;
+  border-radius: 8px;
   background: var(--vp-c-bg-soft);
   border: 1px solid var(--vp-c-divider);
-  box-shadow: 0 3px 10px rgba(15, 23, 42, 0.04);
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
 }
 
 .heatmap-title {
   margin: 0;
-  font-size: 0.8rem;
+  font-size: 0.96rem;
   font-weight: 600;
   color: var(--vp-c-text-1);
 }
 
 .heatmap-subtitle {
-  margin: 3px 0 13px;
-  font-size: 0.68rem;
+  margin: 2px 0 10px;
+  font-size: 0.82rem;
   color: var(--vp-c-text-2);
 }
 
 .heatmap-table {
   display: grid;
-  gap: 3px;
+  gap: 2px;
   width: 100%;
 }
 
 .header-row,
 .data-row {
   display: grid;
-  grid-template-columns: 32px repeat(12, minmax(0, 1fr));
-  gap: 3px;
+  grid-template-columns: 26px repeat(12, minmax(0, 1fr));
+  gap: 2px;
   align-items: stretch;
 }
 
@@ -125,20 +125,20 @@ function cellTitle(year, month) {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 9px;
+  font-size: 11px;
   color: var(--vp-c-text-2);
 }
 
 .year-label {
   justify-content: flex-end;
-  padding-right: 5px;
+  padding-right: 4px;
 }
 
 .cell {
   aspect-ratio: 1;
   width: 100%;
-  min-height: 18px;
-  border-radius: 3px;
+  min-height: 14px;
+  border-radius: 2px;
   background: #ebedf0;
 }
 
@@ -166,24 +166,24 @@ function cellTitle(year, month) {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 10px;
+  gap: 8px;
   flex-wrap: wrap;
-  margin-top: 11px;
-  font-size: 10px;
+  margin-top: 9px;
+  font-size: 12px;
   color: var(--vp-c-text-2);
 }
 
 .legend {
   display: flex;
   align-items: center;
-  gap: 3px;
+  gap: 2px;
   flex-shrink: 0;
 }
 
 .legend .cell {
-  width: 10px;
-  height: 10px;
-  min-height: 10px;
+  width: 8px;
+  height: 8px;
+  min-height: 8px;
   aspect-ratio: auto;
 }
 
@@ -209,22 +209,22 @@ function cellTitle(year, month) {
 
 @media (max-width: 640px) {
   .activity-heatmap {
-    padding: 13px;
+    padding: 10px;
   }
 
   .header-row,
   .data-row {
-    grid-template-columns: 26px repeat(12, minmax(0, 1fr));
+    grid-template-columns: 21px repeat(12, minmax(0, 1fr));
     gap: 2px;
   }
 
   .month-label,
   .year-label {
-    font-size: 8px;
+    font-size: 10px;
   }
 
   .cell {
-    min-height: 14px;
+    min-height: 11px;
     border-radius: 2px;
   }
 }
