@@ -17,7 +17,7 @@ tags:
 
 ![img.png](https://vansiit.cc/moments/img.jpg)
 
-这是我老家，叫常家岩。
+这是我老家，叫常家岩（ai 第二声）。
 
 五一回去，去了很多趟。
 
