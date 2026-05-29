@@ -12,6 +12,10 @@ const { site } = useData()
 
 </script>
 
+<ClientOnly>
+  <ActivityHeatmap />
+</ClientOnly>
+
 ## 从无知到有知
 <div v-for="(item, index) in site.themeConfig.sidebar[0].items.reverse()" style="line-height:40px">
   <a :href="item.link" :class="$style.a"> {{item.text}} </a>

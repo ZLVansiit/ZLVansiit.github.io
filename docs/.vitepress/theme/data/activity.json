@@ -1,0 +1,137 @@
+{
+  "generatedAt": "2026-05-29T03:59:28.652Z",
+  "rangeStart": "2025-05-30",
+  "rangeEnd": "2026-05-29",
+  "counts": {
+    "2023-05-25": {
+      "articles": 1,
+      "moments": 0,
+      "total": 1
+    },
+    "2023-06-12": {
+      "articles": 2,
+      "moments": 0,
+      "total": 2
+    },
+    "2023-06-15": {
+      "articles": 2,
+      "moments": 0,
+      "total": 2
+    },
+    "2023-12-02": {
+      "articles": 1,
+      "moments": 0,
+      "total": 1
+    },
+    "2024-03-21": {
+      "articles": 1,
+      "moments": 0,
+      "total": 1
+    },
+    "2024-03-29": {
+      "articles": 2,
+      "moments": 0,
+      "total": 2
+    },
+    "2024-04-09": {
+      "articles": 1,
+      "moments": 0,
+      "total": 1
+    },
+    "2024-09-21": {
+      "articles": 2,
+      "moments": 0,
+      "total": 2
+    },
+    "2025-01-05": {
+      "articles": 1,
+      "moments": 0,
+      "total": 1
+    },
+    "2025-01-06": {
+      "articles": 1,
+      "moments": 0,
+      "total": 1
+    },
+    "2025-01-07": {
+      "articles": 1,
+      "moments": 0,
+      "total": 1
+    },
+    "2025-02-08": {
+      "articles": 5,
+      "moments": 0,
+      "total": 5
+    },
+    "2025-05-21": {
+      "articles": 1,
+      "moments": 0,
+      "total": 1
+    },
+    "2025-05-28": {
+      "articles": 1,
+      "moments": 0,
+      "total": 1
+    },
+    "2025-07-01": {
+      "articles": 1,
+      "moments": 0,
+      "total": 1
+    },
+    "2025-08-19": {
+      "articles": 1,
+      "moments": 0,
+      "total": 1
+    },
+    "2025-09-09": {
+      "articles": 1,
+      "moments": 0,
+      "total": 1
+    },
+    "2025-12-03": {
+      "articles": 1,
+      "moments": 0,
+      "total": 1
+    },
+    "2025-12-09": {
+      "articles": 1,
+      "moments": 0,
+      "total": 1
+    },
+    "2025-12-11": {
+      "articles": 1,
+      "moments": 0,
+      "total": 1
+    },
+    "2025-12-10": {
+      "articles": 1,
+      "moments": 0,
+      "total": 1
+    },
+    "2026-01-27": {
+      "articles": 1,
+      "moments": 0,
+      "total": 1
+    },
+    "2026-05-12": {
+      "articles": 1,
+      "moments": 0,
+      "total": 1
+    },
+    "2026-05-04": {
+      "articles": 0,
+      "moments": 1,
+      "total": 1
+    },
+    "2026-05-27": {
+      "articles": 0,
+      "moments": 1,
+      "total": 1
+    }
+  },
+  "summary": {
+    "totalArticles": 31,
+    "totalMoments": 2,
+    "activeDays": 25
+  }
+}

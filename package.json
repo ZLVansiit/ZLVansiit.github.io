@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "docs:dev": "node script/generate-rss.mjs && vitepress dev docs",
-    "docs:build": "node script/generate-rss.mjs && vitepress build docs",
+    "docs:dev": "node script/generate-site-data.mjs && vitepress dev docs",
+    "docs:build": "node script/generate-site-data.mjs && vitepress build docs",
     "docs:rss": "node script/generate-rss.mjs",
+    "docs:activity": "node script/generate-activity.mjs",
     "docs:preview": "vitepress preview docs",
     "docs:deploy": "sh script/deploy.sh",
     "pub": "sh script/publish.sh"

@@ -1,6 +1,7 @@
 import { defineConfig } from 'vitepress'
 import emailSVGString from './theme/svgs/email'
 import rssSVGString from './theme/svgs/rss'
+import { activityWatchPlugin } from './plugins/activity-watch.mjs'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -286,6 +287,7 @@ export default defineConfig({
   },
 
   vite: {
+    plugins: [activityWatchPlugin()],
     server: {
       proxy: {
         '/hd/api': {

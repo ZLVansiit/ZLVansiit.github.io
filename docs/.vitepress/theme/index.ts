@@ -10,6 +10,7 @@ import FriendLinkList from './components/FriendLinkList.vue'
 import FriendLinkSiteInfo from './components/FriendLinkSiteInfo.vue'
 import FriendLinkRss from './components/FriendLinkRss.vue'
 import MomentsFeed from './components/MomentsFeed.vue'
+import ActivityHeatmap from './components/ActivityHeatmap.vue'
 
 export default {
   extends: DefaultTheme,
@@ -21,5 +22,6 @@ export default {
     app.component('FriendLinkSiteInfo', FriendLinkSiteInfo)
     app.component('FriendLinkRss', FriendLinkRss)
     app.component('MomentsFeed', MomentsFeed)
+    app.component('ActivityHeatmap', ActivityHeatmap)
   }
 }
