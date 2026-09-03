@@ -593,8 +593,7 @@ a.VPSocialLink[aria-label="mastodon"]>svg {
   display: none !important;
 }
 
-/* 详情正文阅读宽度适中，标题区仍全宽 */
-.youyong-detail .youyong-body,
+/* 详情区：来源与导航保持适中宽度；正文随版面铺开 */
 .youyong-detail .youyong-sources,
 .youyong-detail .youyong-nav,
 .youyong-detail .youyong-summary {
