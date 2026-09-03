@@ -182,9 +182,9 @@ onMounted(() => load())
   --youyong-text: #2c2c2c;
   --youyong-muted: #7a7a7a;
   width: 100%;
-  max-width: 1080px;
-  margin: 0 auto;
-  padding: 1.75rem clamp(36px, 7vw, 96px) 2.5rem;
+  max-width: none;
+  margin: 0;
+  padding: 1.75rem clamp(24px, 4vw, 48px) 2.5rem;
   box-sizing: border-box;
   font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'PingFang SC',
     'Microsoft YaHei', sans-serif;

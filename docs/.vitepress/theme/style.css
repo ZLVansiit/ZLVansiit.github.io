@@ -526,32 +526,37 @@ a.VPSocialLink[aria-label="mastodon"]>svg {
   color: #576b95;
 }
 
-/* 有用百科：页面布局安全边距 + 隐藏 VP 默认标题 */
+/* 有用百科：纸感背景铺满，消除左右白边 */
+.VPContent:has(.youyong-page),
+.VPContent:has(.youyong-detail) {
+  padding-top: 0 !important;
+  background: #f7f4ef !important;
+}
+
 .VPContent:has(.youyong-page) .VPDoc,
 .VPContent:has(.youyong-page) .VPPage,
 .VPContent:has(.youyong-detail) .VPDoc,
 .VPContent:has(.youyong-detail) .VPPage {
-  display: flex;
-  justify-content: center;
-}
-
-.VPContent:has(.youyong-page),
-.VPContent:has(.youyong-detail) {
-  padding-top: 0 !important;
+  display: block;
+  width: 100%;
+  max-width: none;
+  background: #f7f4ef;
 }
 
 .VPDoc:has(.youyong-page),
 .VPDoc:has(.youyong-detail) {
-  padding: 24px 0 80px !important;
+  padding: 0 0 64px !important;
+  background: #f7f4ef !important;
 }
 
 .VPDoc:has(.youyong-page) .container,
 .VPDoc:has(.youyong-detail) .container {
-  display: flex;
-  justify-content: center;
-  max-width: 100% !important;
+  display: block;
+  max-width: none !important;
+  width: 100% !important;
   margin: 0 !important;
-  width: 100%;
+  padding: 0 !important;
+  background: #f7f4ef;
 }
 
 .VPDoc:has(.youyong-page) .content,
@@ -561,10 +566,11 @@ a.VPSocialLink[aria-label="mastodon"]>svg {
 .VPDoc:has(.youyong-page) .vp-doc,
 .VPDoc:has(.youyong-detail) .vp-doc {
   width: 100% !important;
-  max-width: 100% !important;
-  margin: 0 auto !important;
+  max-width: none !important;
+  margin: 0 !important;
   padding: 0 !important;
   box-sizing: border-box;
+  background: #f7f4ef;
 }
 
 /* 仅隐藏 frontmatter 注入的默认 h1，强制保留组件标题 */
@@ -585,4 +591,18 @@ a.VPSocialLink[aria-label="mastodon"]>svg {
 .VPDoc:has(.youyong-page) .aside-container,
 .VPDoc:has(.youyong-detail) .aside-container {
   display: none !important;
+}
+
+/* 详情正文阅读宽度适中，标题区仍全宽 */
+.youyong-detail .youyong-body,
+.youyong-detail .youyong-sources,
+.youyong-detail .youyong-nav,
+.youyong-detail .youyong-summary {
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.youyong-detail .youyong-summary {
+  margin-top: 1.5rem;
 }
