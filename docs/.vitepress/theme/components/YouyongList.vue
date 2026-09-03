@@ -16,7 +16,7 @@
         class="youyong-item"
         :style="{ animationDelay: `${index % 20 * 60}ms` }"
       >
-        <a :href="`/youyong/detail?slug=${item.slug}`" class="youyong-link">
+        <a :href="`/youyong/detail?slug=${encodeURIComponent(item.slug)}`" class="youyong-link">
           <div class="youyong-meta">
             <time class="youyong-date">{{ formatDate(item.created_at) }}</time>
             <span class="youyong-dot" aria-hidden="true">·</span>

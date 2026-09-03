@@ -46,9 +46,15 @@ export function getArticleBySlug(db, slug) {
     WHERE created_at > ? OR (created_at = ? AND id > ?)
     ORDER BY created_at ASC, id ASC LIMIT 1
   `).get(row.created_at, row.created_at, row.id)
+  let sources = []
+  try {
+    sources = JSON.parse(row.sources || '[]')
+  } catch (e) {
+    console.error(`[db] invalid sources JSON for slug=${slug}:`, e.message || e)
+  }
   return {
     ...row,
-    sources: JSON.parse(row.sources || '[]'),
+    sources,
     prev_slug: prev?.slug ?? null,
     next_slug: next?.slug ?? null
   }

@@ -100,8 +100,20 @@ async function generateOne(db) {
 
 const { count } = parseArgs(process.argv.slice(2))
 const db = initDb()
+let ok = 0
+let failed = 0
 for (let i = 0; i < count; i++) {
   console.log(`--- generating ${i + 1}/${count} ---`)
-  await generateOne(db)
+  try {
+    await generateOne(db)
+    ok++
+  } catch (e) {
+    failed++
+    console.error(`[fail ${i + 1}/${count}]`, e.message || e)
+  }
 }
 db.close()
+console.log(`[done] ok=${ok} failed=${failed}`)
+if (failed > 0 && (count === 1 || failed === count)) {
+  process.exit(1)
+}
