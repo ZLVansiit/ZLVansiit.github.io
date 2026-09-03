@@ -170,9 +170,10 @@ onUnmounted(() => window.removeEventListener('popstate', load))
   --youyong-text: #2c2c2c;
   --youyong-muted: #7a7a7a;
   width: 100%;
-  max-width: none;
-  margin: 0;
-  padding: 1.75rem 0 2.5rem;
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 1.75rem clamp(36px, 7vw, 96px) 2.5rem;
+  box-sizing: border-box;
   font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'PingFang SC',
     'Microsoft YaHei', sans-serif;
   color: var(--youyong-text);
@@ -193,8 +194,9 @@ onUnmounted(() => window.removeEventListener('popstate', load))
 .youyong-meta {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.4rem;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.85rem;
   font-size: 0.8rem;
   color: var(--youyong-muted);
   letter-spacing: 0.02em;
@@ -221,10 +223,12 @@ onUnmounted(() => window.removeEventListener('popstate', load))
   line-height: 1.4;
   color: var(--youyong-primary);
   letter-spacing: 0.02em;
+  text-align: center;
 }
 
 .youyong-title-sub {
-  margin: 0.65rem 0 0;
+  margin: 0.75rem auto 0;
+  max-width: 92%;
   font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'PingFang SC',
     'Microsoft YaHei', sans-serif;
   font-size: clamp(1rem, 2.2vw, 1.15rem);
@@ -232,10 +236,13 @@ onUnmounted(() => window.removeEventListener('popstate', load))
   line-height: 1.55;
   color: var(--youyong-muted);
   letter-spacing: 0.03em;
+  text-align: center;
+  /* 常规文章副标题：居中略偏右 */
+  transform: translateX(0.75em);
 }
 
 .youyong-summary {
-  margin: 1.35rem 0 0;
+  margin: 1.5rem 0 0;
   padding: 1rem 1.25rem;
   border-left: 3px solid var(--youyong-primary);
   background: rgba(0, 133, 161, 0.05);
@@ -439,7 +446,11 @@ onUnmounted(() => window.removeEventListener('popstate', load))
 
 @media (max-width: 600px) {
   .youyong-detail {
-    padding: 1.25rem 0 2rem;
+    padding: 1.25rem 20px 2rem;
+  }
+
+  .youyong-title-sub {
+    transform: translateX(0.35em);
   }
 
   .youyong-nav {

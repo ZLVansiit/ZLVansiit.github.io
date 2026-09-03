@@ -526,12 +526,13 @@ a.VPSocialLink[aria-label="mastodon"]>svg {
   color: #576b95;
 }
 
-/* 有用百科：只隐藏 VP 默认 h1，保留组件内标题；左右留安全边距 */
-.VPDoc:has(.youyong-page) .vp-doc > h1,
-.vp-doc:has(.youyong-page) > h1,
-.VPDoc:has(.youyong-detail) .vp-doc > h1,
-.vp-doc:has(.youyong-detail) > h1 {
-  display: none;
+/* 有用百科：页面布局安全边距 + 隐藏 VP 默认标题 */
+.VPContent:has(.youyong-page) .VPDoc,
+.VPContent:has(.youyong-page) .VPPage,
+.VPContent:has(.youyong-detail) .VPDoc,
+.VPContent:has(.youyong-detail) .VPPage {
+  display: flex;
+  justify-content: center;
 }
 
 .VPContent:has(.youyong-page),
@@ -541,13 +542,16 @@ a.VPSocialLink[aria-label="mastodon"]>svg {
 
 .VPDoc:has(.youyong-page),
 .VPDoc:has(.youyong-detail) {
-  padding: 32px 0 96px !important;
+  padding: 24px 0 80px !important;
 }
 
 .VPDoc:has(.youyong-page) .container,
 .VPDoc:has(.youyong-detail) .container {
+  display: flex;
+  justify-content: center;
   max-width: 100% !important;
   margin: 0 !important;
+  width: 100%;
 }
 
 .VPDoc:has(.youyong-page) .content,
@@ -556,10 +560,24 @@ a.VPSocialLink[aria-label="mastodon"]>svg {
 .VPDoc:has(.youyong-detail) .content-container,
 .VPDoc:has(.youyong-page) .vp-doc,
 .VPDoc:has(.youyong-detail) .vp-doc {
-  max-width: min(1040px, 100%) !important;
+  width: 100% !important;
+  max-width: 100% !important;
   margin: 0 auto !important;
-  padding: 0 clamp(28px, 5.5vw, 80px) !important;
+  padding: 0 !important;
   box-sizing: border-box;
+}
+
+/* 仅隐藏 frontmatter 注入的默认 h1，强制保留组件标题 */
+.VPDoc:has(.youyong-page) .vp-doc > h1:not(.youyong-title),
+.vp-doc:has(.youyong-page) > h1:not(.youyong-title),
+.VPDoc:has(.youyong-detail) .vp-doc > h1:not(.youyong-title),
+.vp-doc:has(.youyong-detail) > h1:not(.youyong-title) {
+  display: none !important;
+}
+
+.youyong-page h1.youyong-title,
+.youyong-detail h1.youyong-title {
+  display: block !important;
 }
 
 .VPDoc:has(.youyong-page) .aside,
@@ -567,15 +585,4 @@ a.VPSocialLink[aria-label="mastodon"]>svg {
 .VPDoc:has(.youyong-page) .aside-container,
 .VPDoc:has(.youyong-detail) .aside-container {
   display: none !important;
-}
-
-@media (max-width: 768px) {
-  .VPDoc:has(.youyong-page) .content,
-  .VPDoc:has(.youyong-detail) .content,
-  .VPDoc:has(.youyong-page) .content-container,
-  .VPDoc:has(.youyong-detail) .content-container,
-  .VPDoc:has(.youyong-page) .vp-doc,
-  .VPDoc:has(.youyong-detail) .vp-doc {
-    padding: 0 20px !important;
-  }
 }
