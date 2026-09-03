@@ -149,9 +149,10 @@ onUnmounted(() => window.removeEventListener('popstate', load))
   --youyong-bg: #f7f4ef;
   --youyong-text: #2c2c2c;
   --youyong-muted: #7a7a7a;
-  max-width: 720px;
-  margin: 0 auto;
-  padding: 2rem 1.25rem 3rem;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 1.75rem 0 2.5rem;
   font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'PingFang SC',
     'Microsoft YaHei', sans-serif;
   color: var(--youyong-text);
@@ -407,7 +408,7 @@ onUnmounted(() => window.removeEventListener('popstate', load))
 
 @media (max-width: 600px) {
   .youyong-detail {
-    padding: 1.5rem 1rem 2.5rem;
+    padding: 1.25rem 0 2rem;
   }
 
   .youyong-nav {

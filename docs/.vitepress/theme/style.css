@@ -526,10 +526,55 @@ a.VPSocialLink[aria-label="mastodon"]>svg {
   color: #576b95;
 }
 
-/* 有用百科页面：隐藏 VitePress 默认标题，避免与组件内 h1 重复 */
+/* 有用百科：隐藏默认标题，并拉宽内容区减少两侧留白 */
 .VPDoc:has(.youyong-page) h1,
 .vp-doc:has(.youyong-page) h1,
 .VPDoc:has(.youyong-detail) h1,
 .vp-doc:has(.youyong-detail) h1 {
   display: none;
+}
+
+.VPContent:has(.youyong-page),
+.VPContent:has(.youyong-detail) {
+  padding-top: 0 !important;
+}
+
+.VPDoc:has(.youyong-page),
+.VPDoc:has(.youyong-detail) {
+  padding: 32px 0 96px !important;
+}
+
+.VPDoc:has(.youyong-page) .container,
+.VPDoc:has(.youyong-detail) .container {
+  max-width: 100% !important;
+  margin: 0 !important;
+}
+
+.VPDoc:has(.youyong-page) .content,
+.VPDoc:has(.youyong-detail) .content,
+.VPDoc:has(.youyong-page) .content-container,
+.VPDoc:has(.youyong-detail) .content-container,
+.VPDoc:has(.youyong-page) .vp-doc,
+.VPDoc:has(.youyong-detail) .vp-doc {
+  max-width: min(1180px, 100%) !important;
+  margin: 0 auto !important;
+  padding: 0 28px !important;
+}
+
+.VPDoc:has(.youyong-page) .aside,
+.VPDoc:has(.youyong-detail) .aside,
+.VPDoc:has(.youyong-page) .aside-container,
+.VPDoc:has(.youyong-detail) .aside-container {
+  display: none !important;
+}
+
+@media (max-width: 768px) {
+  .VPDoc:has(.youyong-page) .content,
+  .VPDoc:has(.youyong-detail) .content,
+  .VPDoc:has(.youyong-page) .content-container,
+  .VPDoc:has(.youyong-detail) .content-container,
+  .VPDoc:has(.youyong-page) .vp-doc,
+  .VPDoc:has(.youyong-detail) .vp-doc {
+    padding: 0 16px !important;
+  }
 }

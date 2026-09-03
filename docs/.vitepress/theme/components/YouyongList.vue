@@ -5,6 +5,27 @@
       <p class="youyong-subtitle">跨学科知识短文，每日一知</p>
     </header>
 
+    <nav class="youyong-filters" aria-label="分类筛选">
+      <button
+        type="button"
+        class="youyong-tag"
+        :class="{ active: !category }"
+        @click="selectCategory('')"
+      >
+        全部
+      </button>
+      <button
+        v-for="cat in YOUYONG_CATEGORIES"
+        :key="cat"
+        type="button"
+        class="youyong-tag"
+        :class="{ active: category === cat }"
+        @click="selectCategory(cat)"
+      >
+        {{ cat }}
+      </button>
+    </nav>
+
     <div v-if="loading && !list.length" class="youyong-status">加载中…</div>
     <div v-else-if="error && !list.length" class="youyong-status youyong-error">{{ error }}</div>
     <div v-else-if="!list.length" class="youyong-status">暂无条目</div>
@@ -14,7 +35,7 @@
         v-for="(item, index) in list"
         :key="item.id"
         class="youyong-item"
-        :style="{ animationDelay: `${index % 20 * 60}ms` }"
+        :style="{ animationDelay: `${index * 50}ms` }"
       >
         <a :href="`/youyong/detail?slug=${encodeURIComponent(item.slug)}`" class="youyong-link">
           <div class="youyong-meta">
@@ -28,29 +49,80 @@
       </li>
     </ul>
 
-    <div v-if="list.length && list.length < total" class="youyong-more-wrap">
+    <nav v-if="totalPages > 1" class="youyong-pager" aria-label="分页">
       <p v-if="error" class="youyong-more-error">{{ error }}</p>
-      <button
-        type="button"
-        class="youyong-more"
-        :disabled="loading"
-        @click="loadMore"
-      >
-        {{ loading ? '加载中…' : '加载更多' }}
-      </button>
-    </div>
+      <div class="youyong-pager-row">
+        <button
+          type="button"
+          class="youyong-page-btn"
+          :disabled="loading || page <= 1"
+          @click="goPage(page - 1)"
+        >
+          上一页
+        </button>
+        <template v-for="(p, i) in pageItems" :key="`${p}-${i}`">
+          <span v-if="p === '…'" class="youyong-page-ellipsis" aria-hidden="true">…</span>
+          <button
+            v-else
+            type="button"
+            class="youyong-page-btn"
+            :class="{ active: p === page }"
+            :disabled="loading"
+            :aria-current="p === page ? 'page' : undefined"
+            @click="goPage(p as number)"
+          >
+            {{ p }}
+          </button>
+        </template>
+        <button
+          type="button"
+          class="youyong-page-btn"
+          :disabled="loading || page >= totalPages"
+          @click="goPage(page + 1)"
+        >
+          下一页
+        </button>
+      </div>
+      <p class="youyong-pager-meta">共 {{ total }} 条 · 第 {{ page }} / {{ totalPages }} 页</p>
+    </nav>
   </div>
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
-import { fetchArticleList, type YouyongListItem } from '../api/youyongApi'
+import { computed, onMounted, ref } from 'vue'
+import {
+  YOUYONG_CATEGORIES,
+  fetchArticleList,
+  type YouyongListItem
+} from '../api/youyongApi'
+
+const PAGE_SIZE = 12
 
 const list = ref<YouyongListItem[]>([])
 const total = ref(0)
 const page = ref(1)
+const category = ref('')
 const loading = ref(false)
 const error = ref('')
+
+const totalPages = computed(() => Math.max(1, Math.ceil(total.value / PAGE_SIZE)))
+
+/** 生成带省略号的页码序列 */
+const pageItems = computed(() => {
+  const totalP = totalPages.value
+  const current = page.value
+  if (totalP <= 7) {
+    return Array.from({ length: totalP }, (_, i) => i + 1)
+  }
+  const items: (number | '…')[] = [1]
+  const left = Math.max(2, current - 1)
+  const right = Math.min(totalP - 1, current + 1)
+  if (left > 2) items.push('…')
+  for (let i = left; i <= right; i++) items.push(i)
+  if (right < totalP - 1) items.push('…')
+  items.push(totalP)
+  return items
+})
 
 function formatDate(iso: string) {
   if (!iso) return ''
@@ -62,32 +134,43 @@ function formatDate(iso: string) {
   return `${y}-${m}-${day}`
 }
 
-async function load(reset = false) {
+async function load() {
   if (loading.value) return
   loading.value = true
   error.value = ''
   try {
-    if (reset) {
-      page.value = 1
-      list.value = []
-    }
-    const data = await fetchArticleList(page.value, 20)
+    const data = await fetchArticleList(page.value, PAGE_SIZE, category.value)
     total.value = data.total
-    list.value = reset ? data.list : list.value.concat(data.list)
-    page.value += 1
+    list.value = data.list
+    const maxPage = Math.max(1, Math.ceil(data.total / PAGE_SIZE) || 1)
+    if (page.value > maxPage) {
+      page.value = maxPage
+      const again = await fetchArticleList(page.value, PAGE_SIZE, category.value)
+      total.value = again.total
+      list.value = again.list
+    }
   } catch (e: unknown) {
-    const msg = e instanceof Error ? e.message : '加载失败'
-    error.value = msg
+    error.value = e instanceof Error ? e.message : '加载失败'
   } finally {
     loading.value = false
   }
 }
 
-function loadMore() {
-  load(false)
+function selectCategory(cat: string) {
+  if (category.value === cat) return
+  category.value = cat
+  page.value = 1
+  load()
 }
 
-onMounted(() => load(true))
+function goPage(p: number) {
+  if (p < 1 || p > totalPages.value || p === page.value) return
+  page.value = p
+  load()
+  document.querySelector('.youyong-page')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+}
+
+onMounted(() => load())
 </script>
 
 <style scoped>
@@ -98,9 +181,10 @@ onMounted(() => load(true))
   --youyong-bg: #f7f4ef;
   --youyong-text: #2c2c2c;
   --youyong-muted: #7a7a7a;
-  max-width: 720px;
-  margin: 0 auto;
-  padding: 2rem 1.25rem 3rem;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 1.75rem 0 2.5rem;
   font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'PingFang SC',
     'Microsoft YaHei', sans-serif;
   color: var(--youyong-text);
@@ -111,10 +195,11 @@ onMounted(() => load(true))
     url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
   min-height: 60vh;
   border-radius: 2px;
+  box-sizing: border-box;
 }
 
 .youyong-header {
-  margin-bottom: 2.5rem;
+  margin-bottom: 1.5rem;
   animation: youyong-fade-down 0.6s ease both;
 }
 
@@ -134,6 +219,39 @@ onMounted(() => load(true))
   letter-spacing: 0.04em;
 }
 
+.youyong-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.75rem;
+  animation: youyong-fade-down 0.55s ease 0.08s both;
+}
+
+.youyong-tag {
+  padding: 0.35rem 0.85rem;
+  border: 1px solid rgba(0, 133, 161, 0.28);
+  border-radius: 2px;
+  background: transparent;
+  color: var(--youyong-muted);
+  font-family: inherit;
+  font-size: 0.82rem;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.youyong-tag:hover {
+  border-color: var(--youyong-primary);
+  color: var(--youyong-primary);
+}
+
+.youyong-tag.active {
+  background: rgba(0, 133, 161, 0.1);
+  border-color: var(--youyong-primary);
+  color: var(--youyong-primary);
+  font-weight: 500;
+}
+
 .youyong-status {
   text-align: center;
   padding: 3rem 1rem;
@@ -149,6 +267,20 @@ onMounted(() => load(true))
   list-style: none;
   margin: 0;
   padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+
+@media (min-width: 900px) {
+  .youyong-list {
+    grid-template-columns: 1fr 1fr;
+    column-gap: 2.5rem;
+  }
+
+  .youyong-item {
+    border-bottom: 1px solid rgba(0, 133, 161, 0.12);
+  }
 }
 
 .youyong-item {
@@ -156,13 +288,9 @@ onMounted(() => load(true))
   animation: youyong-fade-up 0.5s ease both;
 }
 
-.youyong-item:last-child {
-  border-bottom: none;
-}
-
 .youyong-link {
   display: block;
-  padding: 1.35rem 0;
+  padding: 1.2rem 0;
   text-decoration: none;
   color: inherit;
   transition: padding-left 0.25s ease;
@@ -202,7 +330,7 @@ onMounted(() => load(true))
 .youyong-item-title {
   margin: 0 0 0.5rem;
   font-family: 'Source Serif 4', 'Noto Serif SC', 'Songti SC', serif;
-  font-size: 1.15rem;
+  font-size: 1.12rem;
   font-weight: 600;
   line-height: 1.45;
   color: var(--youyong-text);
@@ -214,47 +342,72 @@ onMounted(() => load(true))
   font-size: 0.92rem;
   line-height: 1.65;
   color: var(--youyong-muted);
-  animation: youyong-summary-in 0.6s ease both;
-  animation-delay: 0.15s;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
-.youyong-more-wrap {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.75rem;
+.youyong-pager {
   margin-top: 2rem;
-  animation: youyong-fade-up 0.5s ease 0.2s both;
+  animation: youyong-fade-up 0.5s ease 0.15s both;
 }
 
-.youyong-more-error {
-  margin: 0;
-  font-size: 0.9rem;
-  color: #b54a4a;
-  text-align: center;
+.youyong-pager-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
 }
 
-.youyong-more {
-  padding: 0.6rem 1.75rem;
-  border: 1px solid rgba(0, 133, 161, 0.35);
+.youyong-page-btn {
+  min-width: 2.25rem;
+  height: 2.25rem;
+  padding: 0 0.65rem;
+  border: 1px solid rgba(0, 133, 161, 0.28);
   border-radius: 2px;
   background: transparent;
   color: var(--youyong-primary);
   font-family: inherit;
-  font-size: 0.9rem;
-  letter-spacing: 0.06em;
+  font-size: 0.88rem;
   cursor: pointer;
   transition: background 0.2s ease, border-color 0.2s ease;
 }
 
-.youyong-more:hover:not(:disabled) {
+.youyong-page-btn:hover:not(:disabled) {
   background: rgba(0, 133, 161, 0.06);
   border-color: var(--youyong-primary);
 }
 
-.youyong-more:disabled {
-  opacity: 0.6;
-  cursor: wait;
+.youyong-page-btn.active {
+  background: rgba(0, 133, 161, 0.12);
+  border-color: var(--youyong-primary);
+  font-weight: 600;
+}
+
+.youyong-page-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.youyong-page-ellipsis {
+  color: var(--youyong-muted);
+  padding: 0 0.2rem;
+}
+
+.youyong-pager-meta {
+  margin: 0.85rem 0 0;
+  text-align: center;
+  font-size: 0.82rem;
+  color: var(--youyong-muted);
+}
+
+.youyong-more-error {
+  margin: 0 0 0.75rem;
+  font-size: 0.9rem;
+  color: #b54a4a;
+  text-align: center;
 }
 
 @keyframes youyong-fade-down {
@@ -279,22 +432,18 @@ onMounted(() => load(true))
   }
 }
 
-@keyframes youyong-summary-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
 @media (max-width: 600px) {
   .youyong-page {
-    padding: 1.5rem 1rem 2.5rem;
+    padding: 1.25rem 0 2rem;
   }
 
   .youyong-item-title {
     font-size: 1.05rem;
+  }
+
+  .youyong-tag {
+    font-size: 0.78rem;
+    padding: 0.3rem 0.7rem;
   }
 }
 </style>

@@ -23,7 +23,8 @@ app.get('/wiki-api/health', (_req, res) => {
 app.get('/wiki-api/articles', (req, res) => {
   const page = Number(req.query.page || 1)
   const pageSize = Number(req.query.pageSize || 20)
-  res.json(listArticles(db, { page, pageSize }))
+  const category = typeof req.query.category === 'string' ? req.query.category : ''
+  res.json(listArticles(db, { page, pageSize, category }))
 })
 
 app.get('/wiki-api/articles/:slug', (req, res) => {

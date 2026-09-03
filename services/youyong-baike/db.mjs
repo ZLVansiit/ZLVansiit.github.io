@@ -21,15 +21,19 @@ export function initDb(dbPath = process.env.DB_PATH || './data/youyong.db') {
   return db
 }
 
-export function listArticles(db, { page = 1, pageSize = 20 } = {}) {
+export function listArticles(db, { page = 1, pageSize = 20, category } = {}) {
   const size = Math.min(Math.max(Number(pageSize) || 20, 1), 50)
   const p = Math.max(Number(page) || 1, 1)
-  const total = db.prepare('SELECT COUNT(*) AS c FROM articles').get().c
+  const cat = typeof category === 'string' ? category.trim() : ''
+  const where = cat ? 'WHERE category = ?' : ''
+  const params = cat ? [cat] : []
+  const total = db.prepare(`SELECT COUNT(*) AS c FROM articles ${where}`).get(...params).c
   const list = db.prepare(`
     SELECT id, slug, title, summary, category, created_at
-    FROM articles ORDER BY created_at DESC, id DESC
+    FROM articles ${where}
+    ORDER BY created_at DESC, id DESC
     LIMIT ? OFFSET ?
-  `).all(size, (p - 1) * size)
+  `).all(...params, size, (p - 1) * size)
   return { total, list }
 }
 

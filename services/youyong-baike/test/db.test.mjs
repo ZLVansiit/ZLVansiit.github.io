@@ -23,5 +23,8 @@ test('insert list get with prev next', () => {
   const a1 = getArticleBySlug(db, 'a1')
   assert.equal(a1.next_slug, 'a2')
   assert.equal(a1.prev_slug, null)
+  const filtered = listArticles(db, { page: 1, pageSize: 10, category: '历史与文明' })
+  assert.equal(filtered.total, 1)
+  assert.equal(filtered.list[0].slug, 'a2')
   db.close()
 })
