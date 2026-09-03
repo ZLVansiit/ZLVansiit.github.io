@@ -277,7 +277,7 @@ onUnmounted(() => window.removeEventListener('popstate', load))
 }
 
 .youyong-summary {
-  margin: 1.5rem 0 0;
+  margin: 1.5rem auto 0;
   padding: 1rem 1.25rem;
   border-left: 3px solid var(--youyong-primary);
   background: rgba(0, 133, 161, 0.05);
@@ -285,6 +285,7 @@ onUnmounted(() => window.removeEventListener('popstate', load))
   font-size: 1rem;
   line-height: 1.65;
   color: var(--youyong-text);
+  text-align: center;
   animation: youyong-summary-in 0.7s ease 0.15s both;
 }
 
