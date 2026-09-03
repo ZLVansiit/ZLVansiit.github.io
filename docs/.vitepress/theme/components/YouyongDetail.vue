@@ -16,7 +16,7 @@
         <blockquote v-if="article.summary" class="youyong-summary">{{ article.summary }}</blockquote>
       </header>
 
-      <article class="youyong-body" v-html="renderedBody" />
+      <article ref="bodyEl" class="youyong-body" v-html="renderedBody" />
 
       <section v-if="article.sources?.length" class="youyong-sources">
         <h2 class="youyong-sources-title">参考来源</h2>
@@ -51,18 +51,49 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
+import { computed, nextTick, onMounted, onUnmounted, ref, watch } from 'vue'
 import { useRoute } from 'vitepress'
 import MarkdownIt from 'markdown-it'
 import DOMPurify from 'dompurify'
 import { fetchArticleDetail, type YouyongArticle } from '../api/youyongApi'
 
 const route = useRoute()
+const bodyEl = ref<HTMLElement | null>(null)
 
 const md = new MarkdownIt({ html: false, linkify: true, breaks: true })
+const defaultFence = md.renderer.rules.fence!
+md.renderer.rules.fence = (tokens, idx, options, env, self) => {
+  const token = tokens[idx]
+  const info = (token.info || '').trim().split(/\s+/)[0]
+  if (info === 'mermaid') {
+    const code = md.utils.escapeHtml(token.content.trim())
+    return `<pre class="mermaid">${code}</pre>\n`
+  }
+  return defaultFence(tokens, idx, options, env, self)
+}
 
 function renderBody(src: string) {
-  return DOMPurify.sanitize(md.render(src || ''))
+  return DOMPurify.sanitize(md.render(src || ''), {
+    ADD_ATTR: ['class']
+  })
+}
+
+async function renderMermaid() {
+  await nextTick()
+  const root = bodyEl.value
+  if (!root?.querySelector('.mermaid')) return
+  const mermaid = (await import('mermaid')).default
+  mermaid.initialize({
+    startOnLoad: false,
+    theme: 'neutral',
+    securityLevel: 'strict',
+    fontFamily: 'Source Sans 3, PingFang SC, Microsoft YaHei, sans-serif'
+  })
+  try {
+    await mermaid.run({ nodes: root.querySelectorAll('.mermaid') })
+  } catch (e) {
+    console.warn('[youyong] mermaid render failed', e)
+  }
 }
 
 function readSlug() {
@@ -96,6 +127,10 @@ function splitTitle(title: string) {
 const titleParts = computed(() =>
   article.value ? splitTitle(article.value.title) : { main: '', sub: '' }
 )
+
+watch(renderedBody, () => {
+  renderMermaid()
+})
 
 function formatDate(iso: string) {
   if (!iso) return ''
@@ -327,6 +362,35 @@ onUnmounted(() => window.removeEventListener('popstate', load))
   border-radius: 2px;
   background: rgba(0, 0, 0, 0.04);
   font-size: 0.88rem;
+}
+
+.youyong-body :deep(pre.mermaid) {
+  background: rgba(0, 133, 161, 0.04);
+  border: 1px solid rgba(0, 133, 161, 0.12);
+  text-align: center;
+}
+
+.youyong-body :deep(pre.mermaid svg) {
+  max-width: 100%;
+  height: auto;
+}
+
+.youyong-body :deep(img) {
+  display: block;
+  max-width: min(100%, 720px);
+  width: auto;
+  height: auto;
+  margin: 1.25rem auto;
+  border-radius: 2px;
+  border: 1px solid rgba(0, 133, 161, 0.1);
+}
+
+.youyong-body :deep(img + em),
+.youyong-body :deep(p:has(img) + p em) {
+  display: block;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--youyong-muted);
 }
 
 .youyong-sources {

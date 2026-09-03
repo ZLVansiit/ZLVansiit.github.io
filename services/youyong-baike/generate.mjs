@@ -60,6 +60,9 @@ function validateArticle(obj, expectedCategory) {
   if (!Array.isArray(obj.sources)) throw new Error('sources 必须是数组')
   const len = String(obj.body_md).replace(/\s/g, '').length
   if (len < 800 || len > 3500) throw new Error(`字数异常: ${len}`)
+  if (!/```mermaid[\s\S]*?```/i.test(String(obj.body_md))) {
+    throw new Error('正文缺少 Mermaid 示意图')
+  }
   const sources = obj.sources.map((s) => ({
     title: String(s.title || s.url || '来源'),
     url: String(s.url || '')
