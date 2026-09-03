@@ -39,8 +39,10 @@ location /wiki-api/ {
 ### 定时生成
 
 ```cron
-0 8 * * * docker exec youyong-baike node generate.mjs --count=1 >> /opt/youyong-baike/logs/cron.log 2>&1
+0 5 * * * docker exec youyong-baike node generate.mjs --count=10 >> /opt/youyong-baike/logs/cron.log 2>&1
 ```
+
+每天凌晨 5:00 生成 10 条。
 
 依赖容器名 `youyong-baike` 持续运行（`--restart unless-stopped`）。
 
