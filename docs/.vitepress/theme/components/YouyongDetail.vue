@@ -29,7 +29,7 @@
       <nav class="youyong-nav" aria-label="文章导航">
         <a
           v-if="article.prev_slug"
-          :href="`/youyong/detail?slug=${article.prev_slug}`"
+          :href="`/youyong/detail?slug=${encodeURIComponent(article.prev_slug)}`"
           class="youyong-nav-link youyong-nav-prev"
         >
           ← 上一篇
@@ -38,7 +38,7 @@
         <a href="/youyong" class="youyong-nav-back">返回列表</a>
         <a
           v-if="article.next_slug"
-          :href="`/youyong/detail?slug=${article.next_slug}`"
+          :href="`/youyong/detail?slug=${encodeURIComponent(article.next_slug)}`"
           class="youyong-nav-link youyong-nav-next"
         >
           下一篇 →
@@ -50,10 +50,13 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue'
+import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
+import { useRoute } from 'vitepress'
 import MarkdownIt from 'markdown-it'
 import DOMPurify from 'dompurify'
 import { fetchArticleDetail, type YouyongArticle } from '../api/youyongApi'
+
+const route = useRoute()
 
 const md = new MarkdownIt({ html: false, linkify: true, breaks: true })
 
@@ -84,24 +87,58 @@ function formatDate(iso: string) {
   return `${y}-${m}-${day}`
 }
 
-async function load() {
-  slug.value = readSlug()
-  if (!slug.value) return
+let loadSeq = 0
+let inflightSlug = ''
 
+async function load() {
+  const nextSlug = readSlug()
+  slug.value = nextSlug
+  if (!nextSlug) {
+    article.value = null
+    error.value = ''
+    loading.value = false
+    inflightSlug = ''
+    return
+  }
+  if (inflightSlug === nextSlug && loading.value) return
+
+  const seq = ++loadSeq
+  inflightSlug = nextSlug
   loading.value = true
   error.value = ''
   article.value = null
   try {
-    article.value = await fetchArticleDetail(slug.value)
+    const data = await fetchArticleDetail(nextSlug)
+    if (seq !== loadSeq) return
+    article.value = data
   } catch (e: unknown) {
+    if (seq !== loadSeq) return
     const msg = e instanceof Error ? e.message : '加载失败'
     error.value = msg.includes('404') ? '文章不存在' : msg
   } finally {
-    loading.value = false
+    if (seq === loadSeq) {
+      loading.value = false
+      inflightSlug = ''
+    }
   }
 }
 
-onMounted(() => load())
+function watchedSlug() {
+  const q = route.query?.slug
+  if (typeof q === 'string') return q
+  if (Array.isArray(q) && q[0]) return q[0]
+  return readSlug()
+}
+
+watch(watchedSlug, (next, prev) => {
+  if (next !== prev) load()
+})
+
+onMounted(() => {
+  load()
+  window.addEventListener('popstate', load)
+})
+onUnmounted(() => window.removeEventListener('popstate', load))
 </script>
 
 <style scoped>
