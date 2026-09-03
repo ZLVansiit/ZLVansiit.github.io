@@ -528,6 +528,8 @@ a.VPSocialLink[aria-label="mastodon"]>svg {
 
 /* 有用百科页面：隐藏 VitePress 默认标题，避免与组件内 h1 重复 */
 .VPDoc:has(.youyong-page) h1,
-.vp-doc:has(.youyong-page) h1 {
+.vp-doc:has(.youyong-page) h1,
+.VPDoc:has(.youyong-detail) h1,
+.vp-doc:has(.youyong-detail) h1 {
   display: none;
 }

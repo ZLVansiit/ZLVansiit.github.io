@@ -38,6 +38,12 @@ features:
     title: 非虚构写作
     details: 天高地海
     link: /non-fiction
+  - icon:
+        dark: /icon/icons003d.png
+        light: /icon/icons003.png
+    title: 有用百科
+    details: 跨学科日更，拓展知识边界
+    link: /youyong
 ---
 
 <style module>

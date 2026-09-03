@@ -12,6 +12,7 @@ import FriendLinkRss from './components/FriendLinkRss.vue'
 import MomentsFeed from './components/MomentsFeed.vue'
 import ActivityHeatmap from './components/ActivityHeatmap.vue'
 import YouyongList from './components/YouyongList.vue'
+import YouyongDetail from './components/YouyongDetail.vue'
 
 export default {
   extends: DefaultTheme,
@@ -25,5 +26,6 @@ export default {
     app.component('MomentsFeed', MomentsFeed)
     app.component('ActivityHeatmap', ActivityHeatmap)
     app.component('YouyongList', YouyongList)
+    app.component('YouyongDetail', YouyongDetail)
   }
 }
