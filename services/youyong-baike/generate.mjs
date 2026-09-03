@@ -40,6 +40,7 @@ async function callDeepSeek({ system, user }) {
     body: JSON.stringify({
       model: 'deepseek-chat',
       temperature: 0.7,
+      response_format: { type: 'json_object' },
       messages: [
         { role: 'system', content: system },
         { role: 'user', content: user }
@@ -59,15 +60,17 @@ function validateArticle(obj, expectedCategory) {
   if (!Array.isArray(obj.sources)) throw new Error('sources 必须是数组')
   const len = String(obj.body_md).replace(/\s/g, '').length
   if (len < 800 || len > 3500) throw new Error(`字数异常: ${len}`)
+  const sources = obj.sources.map((s) => ({
+    title: String(s.title || s.url || '来源'),
+    url: String(s.url || '')
+  })).filter((s) => s.url)
+  if (sources.length < 1) throw new Error('至少需要1个来源链接')
   return {
     title: String(obj.title).trim(),
     summary: String(obj.summary).trim(),
     category: expectedCategory,
     body_md: String(obj.body_md).trim(),
-    sources: obj.sources.map((s) => ({
-      title: String(s.title || s.url || '来源'),
-      url: String(s.url || '')
-    })).filter((s) => s.url)
+    sources
   }
 }
 
