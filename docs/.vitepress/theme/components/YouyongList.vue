@@ -199,24 +199,28 @@ onMounted(() => load())
 }
 
 .youyong-header {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.75rem;
   animation: youyong-fade-down 0.6s ease both;
 }
 
 .youyong-title {
-  margin: 0 0 0.5rem;
+  margin: 0 0 0.65rem;
   font-family: 'Source Serif 4', 'Noto Serif SC', 'Songti SC', serif;
-  font-size: clamp(1.75rem, 4vw, 2.25rem);
-  font-weight: 600;
+  font-size: clamp(1.85rem, 4.2vw, 2.4rem);
+  font-weight: 700;
   color: var(--youyong-primary);
-  letter-spacing: 0.02em;
+  letter-spacing: 0.04em;
 }
 
 .youyong-subtitle {
   margin: 0;
-  font-size: 0.95rem;
-  color: var(--youyong-muted);
-  letter-spacing: 0.04em;
+  font-family: 'Source Serif 4', 'Noto Serif SC', 'Songti SC', serif;
+  font-size: clamp(1.15rem, 2.6vw, 1.45rem);
+  font-weight: 500;
+  line-height: 1.55;
+  color: var(--youyong-text);
+  letter-spacing: 0.08em;
+  opacity: 0.88;
 }
 
 .youyong-filters {

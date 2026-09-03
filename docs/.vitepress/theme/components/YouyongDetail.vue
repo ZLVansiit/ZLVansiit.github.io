@@ -11,7 +11,8 @@
           <span class="youyong-dot" aria-hidden="true">·</span>
           <span class="youyong-category">{{ article.category }}</span>
         </div>
-        <h1 class="youyong-title">{{ article.title }}</h1>
+        <h1 class="youyong-title">{{ titleParts.main }}</h1>
+        <p v-if="titleParts.sub" class="youyong-title-sub">{{ titleParts.sub }}</p>
         <blockquote v-if="article.summary" class="youyong-summary">{{ article.summary }}</blockquote>
       </header>
 
@@ -75,6 +76,25 @@ const error = ref('')
 
 const renderedBody = computed(() =>
   article.value ? renderBody(article.value.body_md) : ''
+)
+
+/** 按破折号拆成主标题 / 副标题 */
+function splitTitle(title: string) {
+  const raw = (title || '').trim()
+  const seps = ['——', '––', '—', ' - ']
+  for (const sep of seps) {
+    const i = raw.indexOf(sep)
+    if (i > 0) {
+      const main = raw.slice(0, i).trim()
+      const sub = raw.slice(i + sep.length).trim()
+      if (main && sub) return { main, sub }
+    }
+  }
+  return { main: raw, sub: '' }
+}
+
+const titleParts = computed(() =>
+  article.value ? splitTitle(article.value.title) : { main: '', sub: '' }
 )
 
 function formatDate(iso: string) {
@@ -194,17 +214,28 @@ onUnmounted(() => window.removeEventListener('popstate', load))
 }
 
 .youyong-title {
-  margin: 0 0 1.25rem;
+  margin: 0;
   font-family: 'Source Serif 4', 'Noto Serif SC', 'Songti SC', serif;
-  font-size: clamp(1.5rem, 3.5vw, 2rem);
-  font-weight: 600;
+  font-size: clamp(1.55rem, 3.6vw, 2.05rem);
+  font-weight: 700;
   line-height: 1.4;
   color: var(--youyong-primary);
   letter-spacing: 0.02em;
 }
 
+.youyong-title-sub {
+  margin: 0.65rem 0 0;
+  font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'PingFang SC',
+    'Microsoft YaHei', sans-serif;
+  font-size: clamp(1rem, 2.2vw, 1.15rem);
+  font-weight: 400;
+  line-height: 1.55;
+  color: var(--youyong-muted);
+  letter-spacing: 0.03em;
+}
+
 .youyong-summary {
-  margin: 0;
+  margin: 1.35rem 0 0;
   padding: 1rem 1.25rem;
   border-left: 3px solid var(--youyong-primary);
   background: rgba(0, 133, 161, 0.05);

@@ -526,11 +526,11 @@ a.VPSocialLink[aria-label="mastodon"]>svg {
   color: #576b95;
 }
 
-/* 有用百科：隐藏默认标题，并拉宽内容区减少两侧留白 */
-.VPDoc:has(.youyong-page) h1,
-.vp-doc:has(.youyong-page) h1,
-.VPDoc:has(.youyong-detail) h1,
-.vp-doc:has(.youyong-detail) h1 {
+/* 有用百科：只隐藏 VP 默认 h1，保留组件内标题；左右留安全边距 */
+.VPDoc:has(.youyong-page) .vp-doc > h1,
+.vp-doc:has(.youyong-page) > h1,
+.VPDoc:has(.youyong-detail) .vp-doc > h1,
+.vp-doc:has(.youyong-detail) > h1 {
   display: none;
 }
 
@@ -556,9 +556,10 @@ a.VPSocialLink[aria-label="mastodon"]>svg {
 .VPDoc:has(.youyong-detail) .content-container,
 .VPDoc:has(.youyong-page) .vp-doc,
 .VPDoc:has(.youyong-detail) .vp-doc {
-  max-width: min(1180px, 100%) !important;
+  max-width: min(1040px, 100%) !important;
   margin: 0 auto !important;
-  padding: 0 28px !important;
+  padding: 0 clamp(28px, 5.5vw, 80px) !important;
+  box-sizing: border-box;
 }
 
 .VPDoc:has(.youyong-page) .aside,
@@ -575,6 +576,6 @@ a.VPSocialLink[aria-label="mastodon"]>svg {
   .VPDoc:has(.youyong-detail) .content-container,
   .VPDoc:has(.youyong-page) .vp-doc,
   .VPDoc:has(.youyong-detail) .vp-doc {
-    padding: 0 16px !important;
+    padding: 0 20px !important;
   }
 }
