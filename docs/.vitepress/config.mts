@@ -118,6 +118,7 @@ export default defineConfig({
     nav: [
       {text: 'Home', link: '/'},
       {text: '朋友圈', link: '/moments'},
+      {text: '有用百科', link: '/youyong'},
       {text: '归档', link: '/archive'},
       /*{text: '书签', link: '/bookmark'},*/
       {text: '关于', link: '/about'},
@@ -295,6 +296,10 @@ export default defineConfig({
       proxy: {
         '/hd/api': {
           target: 'http://127.0.0.1:8080',
+          changeOrigin: true
+        },
+        '/wiki-api': {
+          target: 'http://127.0.0.1:8790',
           changeOrigin: true
         }
       }
