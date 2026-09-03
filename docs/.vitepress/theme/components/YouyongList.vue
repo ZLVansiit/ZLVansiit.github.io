@@ -29,6 +29,7 @@
     </ul>
 
     <div v-if="list.length && list.length < total" class="youyong-more-wrap">
+      <p v-if="error" class="youyong-more-error">{{ error }}</p>
       <button
         type="button"
         class="youyong-more"
@@ -73,6 +74,7 @@ async function load(reset = false) {
     const data = await fetchArticleList(page.value, 20)
     total.value = data.total
     list.value = reset ? data.list : list.value.concat(data.list)
+    page.value += 1
   } catch (e: unknown) {
     const msg = e instanceof Error ? e.message : '加载失败'
     error.value = msg
@@ -82,7 +84,6 @@ async function load(reset = false) {
 }
 
 function loadMore() {
-  page.value += 1
   load(false)
 }
 
@@ -219,9 +220,18 @@ onMounted(() => load(true))
 
 .youyong-more-wrap {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
   margin-top: 2rem;
   animation: youyong-fade-up 0.5s ease 0.2s both;
+}
+
+.youyong-more-error {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #b54a4a;
+  text-align: center;
 }
 
 .youyong-more {
