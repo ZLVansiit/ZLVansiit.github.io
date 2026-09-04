@@ -22,9 +22,21 @@ function slugify(title) {
 
 function extractJson(text) {
   const trimmed = text.trim()
-  const fence = trimmed.match(/```(?:json)?\s*([\s\S]*?)```/)
-  const raw = fence ? fence[1] : trimmed
-  return JSON.parse(raw)
+  // 优先整段 JSON（response_format=json_object 时常见）
+  if (trimmed.startsWith('{')) {
+    return JSON.parse(trimmed)
+  }
+  // 仅匹配 ```json 围栏，避免误吃正文里的 ```mermaid
+  const jsonFence = trimmed.match(/```json\s*([\s\S]*?)```/i)
+  if (jsonFence) {
+    return JSON.parse(jsonFence[1].trim())
+  }
+  const start = trimmed.indexOf('{')
+  const end = trimmed.lastIndexOf('}')
+  if (start >= 0 && end > start) {
+    return JSON.parse(trimmed.slice(start, end + 1))
+  }
+  throw new Error('未找到有效 JSON')
 }
 
 async function callDeepSeek({ system, user }) {
