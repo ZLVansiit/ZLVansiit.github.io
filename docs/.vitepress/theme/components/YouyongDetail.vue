@@ -66,10 +66,29 @@ md.renderer.rules.fence = (tokens, idx, options, env, self) => {
   const token = tokens[idx]
   const info = (token.info || '').trim().split(/\s+/)[0]
   if (info === 'mermaid') {
-    const code = md.utils.escapeHtml(token.content.trim())
+    const code = md.utils.escapeHtml(fixMermaidSource(token.content.trim()))
     return `<pre class="mermaid">${code}</pre>\n`
   }
   return defaultFence(tokens, idx, options, env, self)
+}
+
+/** 修正 LLM 常见的非法 Mermaid 箭头写法 */
+function fixMermaidSource(code: string) {
+  return code
+    .replace(/\r\n/g, '\n')
+    .replace(/[—–]/g, '-')
+    // -.- > / -. - > / - . - >  →  -.->
+    .replace(/-\s*\.\s*-\s*>/g, '-.->')
+    // - . > → -.->
+    .replace(/-\s*\.\s*>/g, '-.->')
+    // - - > → -->
+    .replace(/-\s*-\s*>/g, '-->')
+    // = = > → ==>
+    .replace(/=\s*=\s*>/g, '==>')
+    // 去掉箭头与标签之间的多余空格：--> |x| / -.-> |x|
+    .replace(/(-->|-.\->|==>)\s*\|/g, '$1|')
+    .replace(/\|\s+/g, '|')
+    .replace(/\s+\|/g, '|')
 }
 
 function renderBody(src: string) {
@@ -78,21 +97,41 @@ function renderBody(src: string) {
   })
 }
 
+let mermaidReady: Promise<typeof import('mermaid').default> | null = null
+function loadMermaid() {
+  if (!mermaidReady) {
+    mermaidReady = import('mermaid').then((m) => {
+      m.default.initialize({
+        startOnLoad: false,
+        theme: 'neutral',
+        securityLevel: 'loose',
+        fontFamily: 'Source Sans 3, PingFang SC, Microsoft YaHei, sans-serif'
+      })
+      return m.default
+    })
+  }
+  return mermaidReady
+}
+
 async function renderMermaid() {
   await nextTick()
   const root = bodyEl.value
-  if (!root?.querySelector('.mermaid')) return
-  const mermaid = (await import('mermaid')).default
-  mermaid.initialize({
-    startOnLoad: false,
-    theme: 'neutral',
-    securityLevel: 'strict',
-    fontFamily: 'Source Sans 3, PingFang SC, Microsoft YaHei, sans-serif'
-  })
-  try {
-    await mermaid.run({ nodes: root.querySelectorAll('.mermaid') })
-  } catch (e) {
-    console.warn('[youyong] mermaid render failed', e)
+  if (!root) return
+  const nodes = [...root.querySelectorAll<HTMLElement>('pre.mermaid')]
+  if (!nodes.length) return
+
+  const mermaid = await loadMermaid()
+  for (const node of nodes) {
+    if (node.getAttribute('data-processed')) continue
+    const fixed = fixMermaidSource(node.textContent || '')
+    node.textContent = fixed
+    try {
+      await mermaid.run({ nodes: [node] })
+    } catch (e) {
+      console.warn('[youyong] mermaid render failed', e)
+      node.setAttribute('data-mermaid-error', '1')
+      node.classList.add('mermaid-error')
+    }
   }
 }
 
@@ -130,7 +169,7 @@ const titleParts = computed(() =>
 
 watch(renderedBody, () => {
   renderMermaid()
-})
+}, { flush: 'post' })
 
 function formatDate(iso: string) {
   if (!iso) return ''
@@ -369,6 +408,13 @@ onUnmounted(() => window.removeEventListener('popstate', load))
   background: rgba(0, 133, 161, 0.04);
   border: 1px solid rgba(0, 133, 161, 0.12);
   text-align: center;
+}
+
+.youyong-body :deep(pre.mermaid-error) {
+  text-align: left;
+  color: var(--youyong-muted);
+  font-size: 0.82rem;
+  white-space: pre-wrap;
 }
 
 .youyong-body :deep(pre.mermaid svg) {

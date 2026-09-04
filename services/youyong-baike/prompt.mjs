@@ -33,12 +33,17 @@ export function buildSystemPrompt() {
 
 【视觉辅助，必须遵守】
 正文中至少加入 1～3 处「为解释概念服务」的可视化，优先帮助读者建立心智模型，禁止纯装饰。
-优先使用 Mermaid 图（flowchart / sequenceDiagram / mindmap / flowchart LR 等），用如下 Markdown 代码块：
+优先使用 Mermaid 图（flowchart / sequenceDiagram / mindmap 等），用如下 Markdown 代码块：
 \`\`\`mermaid
 flowchart LR
   A[概念A] --> B[机制B]
+  B -.->|旁路| C[补充]
 \`\`\`
-要求：节点文字用中文；图尽量简洁（节点一般不超过 8 个）；放在「它是什么」或「如何运作」相关段落附近，并在图前用一两句话说明这张图在展示什么。
+要求：
+- 节点文字用中文；图尽量简洁（节点一般不超过 8 个）；
+- 箭头只能用合法语法：--> 、 -.-> 、 ==> ，禁止写成 -.- >、- - >、—> 等带空格或错误符号的形式；
+- 边标签写法：A -->|说明| B 或 A -.->|说明| B；
+- 放在「它是什么」或「如何运作」相关段落附近，并在图前用一两句话说明这张图在展示什么。
 如确需静态示意且你能给出可公开访问的权威图片（例如 Wikimedia Commons 的 https://upload.wikimedia.org/... 真实地址），可用 Markdown 图片：![简短说明](https://...)；不确定 URL 是否真实存在时，不要编造图片链接，改用 Mermaid。
 不要使用 emoji 堆砌，不要插入与主题无关的配图。
 
